@@ -12,6 +12,7 @@
 
 using Dev2;
 using Dev2.Data.Enums;
+using Dev2.Data.SystemTemplates.Models;
 using Dev2.Interfaces;
 using Dev2.Studio.Core.Helpers;
 
@@ -73,6 +74,7 @@ namespace Unlimited.Applications.BusinessDesignStudio.Activities
                 // ReSharper restore ImplicitlyCapturedClosure
                 // ReSharper disable ImplicitlyCapturedClosure
             TypeSwitch.Case<FindRecordsTO>(() => toReturn = new FindRecordsTO("", "", index, inserted)),
+            TypeSwitch.Case<Dev2Decision>(() => toReturn = new Dev2Decision("", "","", index, inserted)),
                 // ReSharper restore ImplicitlyCapturedClosure
                 // ReSharper disable ImplicitlyCapturedClosure
             TypeSwitch.Default(() => toReturn = null));

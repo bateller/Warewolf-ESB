@@ -23,6 +23,7 @@ using Dev2.Validation;
 namespace Unlimited.Applications.BusinessDesignStudio.Activities
 // ReSharper restore CheckNamespace
 {
+    // ReSharper disable InconsistentNaming
     public class FindRecordsTO : ValidatedObject, IDev2TOFn
     {
         int _indexNum;
