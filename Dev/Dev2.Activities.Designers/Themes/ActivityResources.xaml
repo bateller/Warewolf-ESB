@@ -6,7 +6,8 @@
                     xmlns:ui="clr-namespace:Dev2.UI;assembly=Dev2.Intellisense"                                        
                     xmlns:customControls="clr-namespace:Dev2.CustomControls;assembly=Dev2.CustomControls"
                     xmlns:converters="clr-namespace:Dev2.AppResources.Converters;assembly=Dev2.Studio.Core"
-    x:Class="ArbitraryNameToEliminateBogusGenericsErrorDsfActivityResources">
+                    xmlns:system="clr-namespace:System;assembly=mscorlib"
+                    x:Class="ArbitraryNameToEliminateBogusGenericsErrorDsfActivityResources">
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="pack://application:,,,/Dev2.Activities.Designers;component/Themes/ActivityStyles.xaml" />
@@ -177,4 +178,19 @@
             </DataTrigger>
         </Style.Triggers>
     </Style>
+
+    <Style x:Key="FocusedBorder" TargetType="Border">
+        <Setter Property="BorderThickness" Value="1"></Setter>
+        <Setter Property="BorderBrush" Value="Transparent"></Setter>
+        <Style.Triggers>
+            <Trigger Property="IsKeyboardFocusWithin" Value="True">
+                <Setter Property="BorderBrush" Value="#FFF3700D"></Setter>
+            </Trigger>
+            <Trigger Property="IsMouseCaptured" Value="True">
+                <Setter Property="BorderBrush" Value="#FFF3700D"></Setter>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+
 </ResourceDictionary>

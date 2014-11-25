@@ -267,7 +267,9 @@ namespace Dev2.Studio.Controller
 
         protected virtual Dev2DecisionCallbackHandler StartDecisionWizard(IEnvironmentModel environmentModel, string val)
         {
-            return RootWebSite.ShowDecisionDialog(environmentModel, val);
+            // Switch to using WPF dialogs
+            return WizardController.ShowDecisionDialog(environmentModel, val);
+//          return RootWebSite.ShowDecisionDialog(environmentModel, val);
         }
 
         protected virtual Dev2DecisionCallbackHandler StartSwitchDropWizard(IEnvironmentModel environmentModel, string val)
