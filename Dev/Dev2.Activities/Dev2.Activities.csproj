@@ -131,7 +131,6 @@
     <Compile Include="Activities\Debug\DebugTOParams.cs" />
     <Compile Include="Activities\DsfBaseActivity.cs" />
     <Compile Include="Activities\DsfDropBoxFileActivity.cs" />
-    <Compile Include="Activities\DsfDecisionMultipleCriteriaActivity.cs" />
     <Compile Include="Activities\DsfRecordsetLengthActivity.cs" />
     <Compile Include="Activities\Debug\DebugItemStaticDataParams.cs" />
     <Compile Include="Activities\Debug\DebugItemVariableParams.cs" />
@@ -273,7 +272,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="TO\DataColumnMapping.cs" />
-    <Compile Include="TO\ValidatedObject.cs" />
     <Compile Include="TO\XPathDTO.cs" />
     <Compile Include="Util.cs" />
     <Compile Include="Utilities\ActivityHelper.cs" />

@@ -11,7 +11,9 @@
 
 
 using System.Collections.Generic;
+using System.ComponentModel;
 using Dev2.Activities;
+using Dev2.Data.SystemTemplates.Models;
 
 // ReSharper disable CheckNamespace
 
@@ -26,8 +28,11 @@ namespace Unlimited.Applications.BusinessDesignStudio.Activities
         public DsfFlowDecisionActivity()
             : base("Decision")
         {
+            DecisionStack = new List<Dev2Decision>();
         }
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public IList<Dev2Decision> DecisionStack { get; set; }
         #endregion
 
         public override void UpdateForEachInputs(IList<System.Tuple<string, string>> updates, System.Activities.NativeActivityContext context)

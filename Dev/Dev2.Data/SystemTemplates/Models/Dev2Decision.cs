@@ -9,19 +9,36 @@
 *  @license GNU Affero General Public License <http://www.gnu.org/licenses/agpl-3.0.html>
 */
 
-
 using System;
 using System.Text;
+using Dev2.Common.Interfaces.Infrastructure.Providers.Validation;
 using Dev2.Data.Decisions.Operations;
 using Dev2.Data.Util;
 using Dev2.DataList.Contract;
+using Dev2.Interfaces;
+using Dev2.TO;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
 namespace Dev2.Data.SystemTemplates.Models
 {
-    public class Dev2Decision : IDev2DataModel
+    public class Dev2Decision : ValidatedObject,IDev2DataModel, IDev2TOFn
     {
+        int _indexNum;
+
+        public Dev2Decision(string col1, string col2, string col3, int index, bool inserted)
+        {
+            Col1 = col1;
+            Col2 = col2;
+            Col3 = col3;
+            Inserted = inserted;
+            IndexNumber = index;
+        }
+
+        public Dev2Decision()
+        {
+        }
+
         private const int TotalCols = 3;
 
         #region Properties
@@ -361,6 +378,51 @@ namespace Dev2.Data.SystemTemplates.Models
 
             return result;
 
+        }
+
+      
+        #region Implementation of IDev2TOFn
+
+        public int IndexNumber
+        {
+            get
+            {
+                return _indexNum;
+            }
+            set
+            {
+                _indexNum = value;
+                OnPropertyChanged();
+            }
+        }
+        public bool Inserted
+        {
+            get;
+            set;
+        }
+
+        public bool CanRemove()
+        {
+            return String.IsNullOrEmpty(Col1);
+        }
+
+        public bool CanAdd()
+        {
+            return !String.IsNullOrEmpty(Col1) && EvaluationFn != enDecisionType.Choose; 
+        }
+
+        public void ClearRow()
+        {
+            Col1 = "";
+            Col2 = "";
+            Col3 = "";
+        }
+
+        #endregion
+
+        public override IRuleSet GetRuleSet(string propertyName, string datalist)
+        {
+            return null;
         }
 
     }
