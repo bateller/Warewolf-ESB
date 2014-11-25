@@ -15,13 +15,12 @@ using System.Linq;
 using System.Web;
 using System.Windows;
 using Dev2.Activities.Designers2.DecisionMultipleCriteria;
+using Dev2.Activities.Designers2.SwitchCriteria;
 using Dev2.Common;
 using Dev2.Common.Common;
 using Dev2.Common.Interfaces.Data;
-using Dev2.Data.SystemTemplates.Models;
 using Dev2.Services.Events;
 using Dev2.Studio.Core;
-using Dev2.Studio.Core.Activities.Utils;
 using Dev2.Studio.Core.Interfaces;
 using Dev2.Studio.Core.Messages;
 using Dev2.Webs.Callbacks;
@@ -37,16 +36,26 @@ namespace Dev2.Webs
 
         #region ShowSwitchDragDialog
 
-        public static Dev2DecisionCallbackHandler ShowSwitchDragDialog(IEnvironmentModel environment, string webModel)
-        {
-            const int DialogWidth = 752;
-            const int DialogHeight = 85;
 
+
+
+        #endregion
+
+        #region ShowSwitchDropDialog
+
+        // Main Switch Dialog
+        public static Dev2DecisionCallbackHandler ShowSwitchDropDialog(IEnvironmentModel environment, string webModel)
+        {
             var callBackHandler = new Dev2DecisionCallbackHandler { ModelData = webModel };
-            const string RelativeUriString = "switch/drag";
-            if(!IsTestMode)
+            const string RelativeUriString = "switch/drop";
+            if (!IsTestMode)
             {
-                environment.ShowWebPageDialog(SiteName, RelativeUriString, callBackHandler, DialogWidth, DialogHeight, "Switch Flow");
+                if (!IsWindowOpen<SwitchMainDesigner>())
+                {
+                    var window = new SwitchMainDesigner { };
+                    window.Topmost = true;
+                    window.Show();
+                }
             }
             else
             {
@@ -55,20 +64,19 @@ namespace Dev2.Webs
             return callBackHandler;
         }
 
-        #endregion
-
-        #region ShowSwitchDropDialog
-
-        public static Dev2DecisionCallbackHandler ShowSwitchDropDialog(IEnvironmentModel environment, string webModel)
+        // Secondary Switch Dialog
+        public static Dev2DecisionCallbackHandler ShowSwitchDragDialog(IEnvironmentModel environment, string webModel)
         {
-            const int DialogWidth = 752;
-            const int DialogHeight = 161;
-
             var callBackHandler = new Dev2DecisionCallbackHandler { ModelData = webModel };
-            const string RelativeUriString = "switch/drop";
-            if(!IsTestMode)
+            const string RelativeUriString = "switch/drag";
+            if (!IsTestMode)
             {
-                environment.ShowWebPageDialog(SiteName, RelativeUriString, callBackHandler, DialogWidth, DialogHeight, "Switch Flow");
+                if (!IsWindowOpen<SwitchCriteriaDesigner>())
+                {
+                    var window = new SwitchCriteriaDesigner { };
+                    window.Topmost = true;
+                    window.Show();
+                }
             }
             else
             {
@@ -90,17 +98,12 @@ namespace Dev2.Webs
             const string RelativeUriString = "decisions/wizard";
             if(!IsTestMode)
             {
-
                 if (!IsWindowOpen<DecisionMultipleCriteriaDesigner>())
                 {
-                    //var dev2DecisionStack = new Dev2DecisionStack();
-                    //var vm = new DecisionMultipleCriteriaDesignerViewModel(ModelItemUtils.CreateModelItem(dev2DecisionStack));
-                    //var window = new DecisionMultipleCriteriaDesigner { DataContext = vm };
                     var window = new DecisionMultipleCriteriaDesigner {  };
                     window.Topmost = true;
                     window.Show();
                 }
-
             }
             else
             {

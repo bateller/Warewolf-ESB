@@ -181,7 +181,7 @@
 
     <Style x:Key="FocusedBorder" TargetType="Border">
         <Setter Property="BorderThickness" Value="1"></Setter>
-        <Setter Property="BorderBrush" Value="Transparent"></Setter>
+        <Setter Property="BorderBrush" Value="#FFC1C3C5"></Setter>
         <Style.Triggers>
             <Trigger Property="IsKeyboardFocusWithin" Value="True">
                 <Setter Property="BorderBrush" Value="#FFF3700D"></Setter>
@@ -191,6 +191,8 @@
             </Trigger>
         </Style.Triggers>
     </Style>
+
+
 
 
 </ResourceDictionary>

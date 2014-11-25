@@ -204,7 +204,7 @@ namespace Dev2.Studio.Controller
                     });
 
             // now invoke the wizard ;)
-            _callBackHandler = RootWebSite.ShowSwitchDragDialog(environment, modelData);
+            _callBackHandler = WizardController.ShowSwitchDragDialog(environment, modelData);
 
             // Wizard finished...
             // Now Fetch from DL and push the model data into the workflow
@@ -237,7 +237,7 @@ namespace Dev2.Studio.Controller
             }
 
             // now invoke the wizard ;)
-            _callBackHandler = RootWebSite.ShowSwitchDragDialog(environment, modelData);
+            _callBackHandler = WizardController.ShowSwitchDragDialog(environment, modelData);
 
             // Wizard finished...
             // Now Fetch from DL and push the model data into the workflow
@@ -274,7 +274,7 @@ namespace Dev2.Studio.Controller
 
         protected virtual Dev2DecisionCallbackHandler StartSwitchDropWizard(IEnvironmentModel environmentModel, string val)
         {
-            return RootWebSite.ShowSwitchDropDialog(environmentModel, val);
+            return WizardController.ShowSwitchDropDialog(environmentModel, val);
         }
 
         #endregion

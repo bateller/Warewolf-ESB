@@ -166,6 +166,13 @@
       <DependentUpon>Small.xaml</DependentUpon>
     </Compile>
     <Compile Include="Designers2\Core\CEventHelper.cs" />
+    <Compile Include="Designers2\SwitchCriteria\SwitchCriteriaDesigner.xaml.cs">
+      <DependentUpon>SwitchCriteriaDesigner.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Designers2\SwitchCriteria\SwitchViewModel.cs" />
+    <Compile Include="Designers2\SwitchCriteria\SwitchMainDesigner.xaml.cs">
+      <DependentUpon>SwitchMainDesigner.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Designers2\Decision\DecisionMultipleCriteriaDesigner.xaml.cs">
       <DependentUpon>DecisionMultipleCriteriaDesigner.xaml</DependentUpon>
     </Compile>
@@ -720,6 +727,14 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Designers2\Comment\Small.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Designers2\SwitchCriteria\SwitchCriteriaDesigner.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Designers2\SwitchCriteria\SwitchMainDesigner.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
