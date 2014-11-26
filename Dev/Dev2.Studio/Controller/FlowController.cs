@@ -9,6 +9,9 @@
 *  @license GNU Affero General Public License <http://www.gnu.org/licenses/agpl-3.0.html>
 */
 
+using System.Linq;
+using Dev2.Activities.Designers2.DecisionMultipleCriteria;
+using Dev2.Activities.Designers2.SwitchCriteria;
 
 #region
 
@@ -81,7 +84,7 @@ namespace Dev2.Studio.Controller
         void ConfigureDecisionExpression(ConfigureDecisionExpressionMessage args)
         {
             var condition = ConfigureActivity<DsfFlowDecisionActivity>(args.ModelItem, GlobalConstants.ConditionPropertyText, args.IsNew);
-            if(condition == null)
+            if (condition == null)
             {
                 return;
             }
@@ -89,21 +92,21 @@ namespace Dev2.Studio.Controller
             var expression = condition.Properties[GlobalConstants.ExpressionPropertyText];
             var ds = DataListConstants.DefaultStack;
 
-            if(expression != null && expression.Value != null)
+            if (expression != null && expression.Value != null)
             {
                 //we got a model, push it in to the Model region ;)
                 // but first, strip and extract the model data ;)
 
                 var eval = Dev2DecisionStack.ExtractModelFromWorkflowPersistedData(expression.Value.ToString());
 
-                if(!string.IsNullOrEmpty(eval))
+                if (!string.IsNullOrEmpty(eval))
                 {
                     ds = JsonConvert.DeserializeObject<Dev2DecisionStack>(eval);
                 }
             }
 
             var displayName = args.ModelItem.Properties[GlobalConstants.DisplayNamePropertyText];
-            if(displayName != null && displayName.Value != null)
+            if (displayName != null && displayName.Value != null)
             {
                 ds.DisplayText = displayName.Value.ToString();
             }
@@ -119,7 +122,7 @@ namespace Dev2.Studio.Controller
                 string tmp = WebHelper.CleanModelData(_callBackHandler);
                 var dds = JsonConvert.DeserializeObject<Dev2DecisionStack>(tmp);
 
-                if(dds == null)
+                if (dds == null)
                 {
                     return;
                 }
@@ -140,19 +143,19 @@ namespace Dev2.Studio.Controller
         public void ConfigureSwitchExpression(ConfigureSwitchExpressionMessage args)
         {
             var expression = ConfigureActivity<DsfFlowSwitchActivity>(args.ModelItem, GlobalConstants.SwitchExpressionPropertyText, args.IsNew);
-            if(expression == null)
+            if (expression == null)
             {
                 return;
             }
 
             var expressionText = expression.Properties[GlobalConstants.SwitchExpressionTextPropertyText];
-            
+
             Dev2Switch ds;
-            if(expressionText != null && expressionText.Value != null)
+            if (expressionText != null && expressionText.Value != null)
             {
                 ds = new Dev2Switch();
                 var val = Utilities.ActivityHelper.ExtractData(expressionText.Value.ToString());
-                if(!string.IsNullOrEmpty(val))
+                if (!string.IsNullOrEmpty(val))
                 {
                     ds.SwitchVariable = val;
                 }
@@ -163,7 +166,7 @@ namespace Dev2.Studio.Controller
             }
 
             var displayName = args.ModelItem.Properties[GlobalConstants.DisplayNamePropertyText];
-            if(displayName != null && displayName.Value != null)
+            if (displayName != null && displayName.Value != null)
             {
                 ds.DisplayText = displayName.Value.ToString();
             }
@@ -204,7 +207,7 @@ namespace Dev2.Studio.Controller
                     });
 
             // now invoke the wizard ;)
-            _callBackHandler = RootWebSite.ShowSwitchDragDialog(environment, modelData);
+            _callBackHandler = StartSwitchDragWizard(environment, modelData);
 
             // Wizard finished...
             // Now Fetch from DL and push the model data into the workflow
@@ -230,14 +233,14 @@ namespace Dev2.Studio.Controller
             string modelData = JsonConvert.SerializeObject(DataListConstants.DefaultCase);
 
             // Extract existing value ;)
-            if(switchCaseValue != null)
+            if (switchCaseValue != null)
             {
                 string val = switchCaseValue.ComputedValue.ToString();
                 modelData = JsonConvert.SerializeObject(new Dev2Switch { SwitchVariable = val });
             }
 
             // now invoke the wizard ;)
-            _callBackHandler = RootWebSite.ShowSwitchDragDialog(environment, modelData);
+            _callBackHandler = StartSwitchDragWizard(environment, modelData);
 
             // Wizard finished...
             // Now Fetch from DL and push the model data into the workflow
@@ -245,9 +248,9 @@ namespace Dev2.Studio.Controller
             {
                 var ds = JsonConvert.DeserializeObject<Dev2Switch>(_callBackHandler.ModelData);
 
-                if(ds != null)
+                if (ds != null)
                 {
-                    if(switchCaseValue != null)
+                    if (switchCaseValue != null)
                     {
                         switchCaseValue.SetValue(ds.SwitchVariable);
                     }
@@ -267,15 +270,59 @@ namespace Dev2.Studio.Controller
 
         protected virtual Dev2DecisionCallbackHandler StartDecisionWizard(IEnvironmentModel environmentModel, string val)
         {
-            // Switch to using WPF dialogs
-            return new Dev2DecisionCallbackHandler();
-            //return WizardController.ShowDecisionDialog(environmentModel, val);
-//          return RootWebSite.ShowDecisionDialog(environmentModel, val);
+
+            var callBackHandler = new Dev2DecisionCallbackHandler { ModelData = val };
+            if (!IsWindowOpen<DecisionMultipleCriteriaDesigner>())
+            {
+                var window = new DecisionMultipleCriteriaDesigner { };
+                window.Topmost = true;
+                window.Show();
+            }
+
+            return callBackHandler;
+
+        }
+
+
+        public static bool IsWindowOpen<T>(string name = "") where T : Window
+        {
+            if(Application.Current != null)
+            {
+                var checkWin = Application.Current.Windows;
+                var checkWinTypes = checkWin.OfType<T>();
+                return string.IsNullOrEmpty(name)
+                    ? checkWinTypes.Any()
+                    : checkWinTypes.Any(w => w.Name.Equals(name));
+            }
+
+            return false;
         }
 
         protected virtual Dev2DecisionCallbackHandler StartSwitchDropWizard(IEnvironmentModel environmentModel, string val)
         {
-            return RootWebSite.ShowSwitchDropDialog(environmentModel, val);
+
+            var callBackHandler = new Dev2DecisionCallbackHandler { ModelData = val };
+            if (!IsWindowOpen<SwitchMainDesigner>())
+            {
+                var window = new SwitchMainDesigner { };
+                window.Topmost = true;
+                window.Show();
+            }
+
+            return callBackHandler;
+        }
+
+        protected virtual Dev2DecisionCallbackHandler StartSwitchDragWizard(IEnvironmentModel environmentModel, string val)
+        {
+            var callBackHandler = new Dev2DecisionCallbackHandler { ModelData = val };
+            if (!IsWindowOpen<SwitchCriteriaDesigner>())
+            {
+                var window = new SwitchCriteriaDesigner { };
+                window.Topmost = true;
+                window.Show();
+            }
+
+            return callBackHandler;
         }
 
         #endregion
@@ -309,14 +356,14 @@ namespace Dev2.Studio.Controller
         ModelItem ConfigureActivity<T>(ModelItem modelItem, string propertyName, bool isNew) where T : class, IFlowNodeActivity, new()
         {
             var property = modelItem.Properties[propertyName];
-            if(property == null)
+            if (property == null)
             {
                 return null;
             }
 
             ModelItem result;
             var activity = property.ComputedValue as T;
-            if(activity == null)
+            if (activity == null)
             {
                 activity = new T();
                 result = property.SetValue(activity);
@@ -327,7 +374,7 @@ namespace Dev2.Studio.Controller
 
                 // BUG 9717 - 2013.06.22 - don't show wizard on copy paste
                 var isCopyPaste = isNew && !string.IsNullOrEmpty(activity.ExpressionText);
-                if(result == null || isCopyPaste)
+                if (result == null || isCopyPaste)
                 {
                     return null;
                 }

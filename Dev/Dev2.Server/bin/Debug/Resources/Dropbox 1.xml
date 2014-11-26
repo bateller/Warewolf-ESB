@@ -1,0 +1,24 @@
+
+<Source ID="270171fe-d140-428f-ae0c-a3f34f3f4ebf" Name="Dropbox 1" ResourceType="OauthSource" IsValid="false" ConnectionString="Secret=;Key=" Type="OauthSource" ServerVersion="0.4.20.1" ServerID="51a58300-7e9d-4927-a57b-e5d700b11b55">
+  <DisplayName>Dropbox 1</DisplayName>
+  <Category>Dropbox 1</Category>
+  <AuthorRoles>
+  </AuthorRoles>
+  <ErrorMessages />
+  <TypeOf>OauthSource</TypeOf>
+  <VersionInfo DateTimeStamp="2014-11-13T14:06:47.2257819+02:00" Reason="Save" User="Unknown" VersionNumber="1" ResourceId="270171fe-d140-428f-ae0c-a3f34f3f4ebf" VersionId="11db98e4-c4a3-4079-b5d4-48f95d0004a0" />
+  <Signature xmlns="http://www.w3.org/2000/09/xmldsig#">
+    <SignedInfo>
+      <CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315" />
+      <SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1" />
+      <Reference URI="">
+        <Transforms>
+          <Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" />
+        </Transforms>
+        <DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+        <DigestValue>pUCsLmnkIfaro82+lODs0Rw0Hy8=</DigestValue>
+      </Reference>
+    </SignedInfo>
+    <SignatureValue>XvaSpncUUodNpgaE6bzul6bC5sGpcRseNUPuNCcGcc2fHiL9yO4Fcq8Ym+jl7z1zYh1ewTkiF8/xs2L8JA48C2Tmhqko6w2exsDXZfpdFqRhCf952pFz+5YRUGoyZYPNJZMRebs0jrukaNHm/Q8KcSRtnPe2KsHBXezjGeL7yYM=</SignatureValue>
+  </Signature>
+</Source>
