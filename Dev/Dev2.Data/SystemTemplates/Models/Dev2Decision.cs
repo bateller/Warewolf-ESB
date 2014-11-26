@@ -17,6 +17,7 @@ using Dev2.Data.Util;
 using Dev2.DataList.Contract;
 using Dev2.Interfaces;
 using Dev2.TO;
+using Dev2.Util;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
@@ -42,11 +43,11 @@ namespace Dev2.Data.SystemTemplates.Models
         private const int TotalCols = 3;
 
         #region Properties
-
+        [FindMissing]
         public string Col1 { get; set; }
-
+        [FindMissing]
         public string Col2 { get; set; }
-
+        [FindMissing]
         public string Col3 { get; set; }
 
         public int PopulatedColumnCount

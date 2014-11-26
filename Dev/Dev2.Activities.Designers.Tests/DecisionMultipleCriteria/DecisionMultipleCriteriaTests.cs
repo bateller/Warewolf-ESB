@@ -9,9 +9,6 @@
 *  @license GNU Affero General Public License <http://www.gnu.org/licenses/agpl-3.0.html>
 */
 
-using System;
-using System.Activities.Presentation.Model;
-using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using Dev2.Activities.Designers2.DecisionMultipleCriteria;
 using Dev2.Data.SystemTemplates.Models;
@@ -66,39 +63,5 @@ namespace Dev2.Activities.Designers.Tests.DecisionMultipleCriteria
             Assert.AreEqual("[[b]]",collection[1].GetProperty("Col1"));
         }
 
-        static void SetDataListString(DecisionMultipleCriteriaDesignerViewModel viewModel)
-        {
-            viewModel.GetDatalistString = () =>
-            {
-                const string trueString = "True";
-                const string noneString = "None";
-                var datalist = string.Format("<DataList><var Description=\"\" IsEditable=\"{0}\" ColumnIODirection=\"{1}\" /><a Description=\"\" IsEditable=\"{0}\" ColumnIODirection=\"{1}\" /><b Description=\"\" IsEditable=\"{0}\" ColumnIODirection=\"{1}\" /><h Description=\"\" IsEditable=\"{0}\" ColumnIODirection=\"{1}\" /><r Description=\"\" IsEditable=\"{0}\" ColumnIODirection=\"{1}\" /><rec Description=\"\" IsEditable=\"{0}\" ColumnIODirection=\"{1}\" ><set Description=\"\" IsEditable=\"{0}\" ColumnIODirection=\"{1}\" /></rec></DataList>", trueString, noneString);
-                return datalist;
-            };
-        }
-
-        void Verify_IsFocused(ModelItem modelItem, Action doError, string isFocusedPropertyName)
-        {
-            Assert.IsFalse(modelItem.GetProperty<bool>(isFocusedPropertyName));
-            doError.Invoke();
-            Assert.IsTrue(modelItem.GetProperty<bool>(isFocusedPropertyName));
-        }
-
-
-        static ModelItem CreateModelItem(IEnumerable<Dev2Decision> items, string displayName = "Decision")
-        {
-            var modelItem = ModelItemUtils.CreateModelItem(new DsfFlowDecisionActivity());
-            modelItem.SetProperty("DisplayName", displayName);
-
-            // ReSharper disable PossibleNullReferenceException
-            var modelItemCollection = modelItem.Properties["DecisionStack"].Collection;
-            foreach(var dto in items)
-            {
-                modelItemCollection.Add(dto);
-            }
-            // ReSharper restore PossibleNullReferenceException
-
-            return modelItem;
-        }
     }
 }
