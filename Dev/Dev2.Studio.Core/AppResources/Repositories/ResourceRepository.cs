@@ -9,7 +9,6 @@
 *  @license GNU Affero General Public License <http://www.gnu.org/licenses/agpl-3.0.html>
 */
 
-
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -338,7 +337,10 @@ namespace Dev2.Studio.Core.AppResources.Repositories
             {
                 AddResourceToStudioResourceRepository(instanceObj, executeMessage);
             }
-
+            if (ItemAdded != null)
+            {
+                ItemAdded(instanceObj, null);
+            }
             return executeMessage;
         }
 

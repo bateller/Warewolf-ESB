@@ -9,7 +9,6 @@
 *  @license GNU Affero General Public License <http://www.gnu.org/licenses/agpl-3.0.html>
 */
 
-
 using System;
 using System.Text;
 using Caliburn.Micro;
@@ -995,6 +994,7 @@ namespace Dev2.Core.Tests.Webs
             var con = new Mock<IEnvironmentConnection>();
             con.Setup(a => a.AppServerUri).Returns(new Uri("http://www.bobxzy.com"));
             env.Setup(a => a.Connection).Returns(con.Object);
+            resourceModel.Setup(model => model.Environment).Returns((IEnvironmentModel)null);
             //------------Execute Test---------------------------
             RootWebSite.ShowNewOAuthsourceSaveDialog(resourceModel.Object, null, "bob", "manny");
             //------------Assert Results-------------------------

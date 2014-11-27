@@ -7,7 +7,7 @@
                     xmlns:customControls="clr-namespace:Dev2.CustomControls;assembly=Dev2.CustomControls"
                     xmlns:converters="clr-namespace:Dev2.AppResources.Converters;assembly=Dev2.Studio.Core"
                     xmlns:system="clr-namespace:System;assembly=mscorlib"
-                    x:Class="ArbitraryNameToEliminateBogusGenericsErrorDsfActivityResources">
+    x:Class="ArbitraryNameToEliminateBogusGenericsErrorDsfActivityResources">
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="pack://application:,,,/Dev2.Activities.Designers;component/Themes/ActivityStyles.xaml" />

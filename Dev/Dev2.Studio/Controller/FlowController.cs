@@ -149,7 +149,7 @@ namespace Dev2.Studio.Controller
             }
 
             var expressionText = expression.Properties[GlobalConstants.SwitchExpressionTextPropertyText];
-
+            
             Dev2Switch ds;
             if (expressionText != null && expressionText.Value != null)
             {

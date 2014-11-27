@@ -9,7 +9,6 @@
 *  @license GNU Affero General Public License <http://www.gnu.org/licenses/agpl-3.0.html>
 */
 
-
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -757,7 +756,7 @@ namespace Dev2.Studio.ViewModels
             }
         }
 
-        public System.Action<IResourceModel, IEnvironmentModel, string, string> ShowSaveDialog
+        public System.Action<IContextualResourceModel, IEnvironmentModel, string, string> ShowSaveDialog
         {
             get { return _showSaveDialog ?? RootWebSite.ShowNewOAuthsourceSaveDialog; }
             set { _showSaveDialog = value; }
@@ -1642,7 +1641,7 @@ namespace Dev2.Studio.ViewModels
 
         public Func<bool> IsBusyDownloadingInstaller;
         public Func<DropBoxViewWindow, DropBoxSourceViewModel, bool?> _showDropAction;
-        Action<IResourceModel, IEnvironmentModel, string, string> _showSaveDialog;
+        Action<IContextualResourceModel, IEnvironmentModel, string, string> _showSaveDialog;
         IDropboxFactory _dropboxFactory;
 
         public bool IsDownloading()
