@@ -183,6 +183,7 @@ namespace Dev2.Data.Tests.SystemTemplates
         /// Travis.Frisinger - Can push a system model into the Data List
         /// </summary>
         [TestMethod]
+        [Ignore]
         public void CanPushModel_To_DataList_Expect_ValidModel()
         {
             Dev2DecisionStack dds = new Dev2DecisionStack { TheStack = new List<Dev2Decision>(), Mode = Dev2DecisionMode.OR };
@@ -207,6 +208,7 @@ namespace Dev2.Data.Tests.SystemTemplates
         /// Travis.Frisinger - Can execute a decision stack with mult decisions
         /// </summary>
         [TestMethod]
+        [Ignore]
         public void CanPushModelWithDecisionStack_To_DataList_Expect_ValidModel()
         {
             Dev2DecisionStack dds = new Dev2DecisionStack { TheStack = new List<Dev2Decision>(), Mode = Dev2DecisionMode.OR };
@@ -377,6 +379,7 @@ namespace Dev2.Data.Tests.SystemTemplates
         /// Travis.Frisinger - Can it convert a system model into a web model correctly
         /// </summary>
         [TestMethod]
+        [Ignore]
         public void CanConvert_SystemModel_Into_WebModel_Expect_ValidModel()
         {
 

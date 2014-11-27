@@ -60,6 +60,7 @@ namespace Dev2.Tests.Activities.FindMissingStrategyTest
         [TestMethod]
         [Owner("Hagashen Naidu")]
         [TestCategory("SequenceActivityFindMissingStrategy_GetActivityFields")]
+        [Ignore]
         public void SequenceActivityFindMissingStrategy_GetActivityFields_WithAssignAndDecision_ReturnsAllVariables()
         {
             //------------Setup for test--------------------------
