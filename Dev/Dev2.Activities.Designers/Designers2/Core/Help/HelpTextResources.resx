@@ -1538,16 +1538,6 @@ Data
 [[Recordset(*).Field]]   
 [[Recordset().Field]]</value>
   </data>
-  <data name="RandomHelpRangeFrom" xml:space="preserve">
-    <value>To generate a random number put the lowest/smallest number you would like in here.
-
-Allowed:
-Data   
-[[Scalar]]   
-[[Recordset(n).Field]]   
-[[Recordset(*).Field]]   
-[[Recordset().Field]]</value>
-  </data>
   <data name="RandomHelpRangeTo" xml:space="preserve">
     <value>To generate a random number put the highest/largest number you would like in here.
 
@@ -3216,5 +3206,39 @@ Data
 [[Recordset(n).Field]]   
 [[Recordset(*).Field]]   
 [[Recordset().Field]]</value>
+  </data>
+  <data name="DecisionCriteriaToolTip" xml:space="preserve">
+    <value>Set up the decision criteria for this decision</value>
+  </data>
+  <data name="DecisionDisplayTextToolTip" xml:space="preserve">
+    <value>Set the tool identifier display text</value>
+  </data>
+  <data name="DecisionFalseTextToolTip" xml:space="preserve">
+    <value>Set the identifier text for the false arm of this decision</value>
+  </data>
+  <data name="DecisionRequireAllToBeTrueToolTip" xml:space="preserve">
+    <value>Require all decision parameters in this tool to be true to make this decision true</value>
+  </data>
+  <data name="DecisionTrueTextToolTip" xml:space="preserve">
+    <value>Set the identifier text for the true arm of this decision</value>
+  </data>
+  <data name="RandomHelpRangeFrom" xml:space="preserve">
+    <value>To generate a random number put the lowest/smallest number you would like in here.
+
+Allowed:
+Data   
+[[Scalar]]   
+[[Recordset(n).Field]]   
+[[Recordset(*).Field]]   
+[[Recordset().Field]]</value>
+  </data>
+  <data name="SwitchFlowCriteriaToolTip" xml:space="preserve">
+    <value>Set the name of the variable to be compared with the switch variable </value>
+  </data>
+  <data name="SwitchFlowDisplayTextToolTip" xml:space="preserve">
+    <value>Set the tool identifier display text</value>
+  </data>
+  <data name="SwitchFlowVariableToolTip" xml:space="preserve">
+    <value>Set the name of the variable that the switch tool uses to switch on </value>
   </data>
 </root>

@@ -17,8 +17,8 @@
                                xmlns:findRecordsMultipleCriteria="clr-namespace:Dev2.Activities.Designers2.FindRecordsMultipleCriteria"
                                xmlns:decisionMultipleCriteria="clr-namespace:Dev2.Activities.Designers2.DecisionMultipleCriteria"
                                
-                               Width="600"
-                               Height="70"
+                               Width="360"
+                               Height="99"
                                ResizeMode="NoResize"
                                WindowStartupLocation="CenterScreen"
                                WindowStyle="None"
@@ -48,44 +48,41 @@
                 <ColumnDefinition Width="7" />
                 <ColumnDefinition Width="13" />
                 <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="7" />
             </Grid.ColumnDefinitions>
 
             <Grid.RowDefinitions>
                 <RowDefinition Height="20" />
                 <RowDefinition Height="7.75"/>
-                <RowDefinition Height="8*"/>
-                <RowDefinition Height="459*"/>
-                <RowDefinition Height="7" />
+                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
 
             <DockPanel Grid.Row="0" Grid.Column="0"  MouseDown="UIElement_OnMouseDown" Grid.ColumnSpan="3" Height="22" HorizontalAlignment="Left" Background="#C1C3C5" Margin="0,0,0,6" Grid.RowSpan="2" Width="21">
-                <Image  MouseDown="UIElement_OnMouseDown" Margin="2,2,2,3" Height="16" Width="16" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="1" Source="pack://application:,,,/Warewolf Studio;component/Images/ToolDecision-32.png" />
+                <Image  MouseDown="UIElement_OnMouseDown" Margin="2,2,2,3" Height="16" Width="16" Source="pack://application:,,,/Warewolf Studio;component/Images/ToolDecision-32.png" />
             </DockPanel>
 
-            <Label Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2" Height="22" VerticalContentAlignment="Center" Padding="3"  Margin="0,0,0,6"
+            <Label Grid.Row="0" Grid.Column="2" Height="22" VerticalContentAlignment="Center" Padding="3"  Margin="0,0,0,6"
                    Content="Switch Flow"  Background="#C1C3C5" MouseDown="UIElement_OnMouseDown"
                    Style="{StaticResource ActivityMapppingLabelStyle}" Grid.RowSpan="2" />
 
 
-            <Grid Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="2"  >
+            <Grid Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="240" />
-                    <ColumnDefinition Width="160" />
                     <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="171" />
                 </Grid.ColumnDefinitions>
 
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="30" />
                 </Grid.RowDefinitions>
 
 
-                <Label Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Height="25" VerticalContentAlignment="Center"
-                   Content="Switch on [[ ]] when the case is:"
-                   Style="{StaticResource ActivityMapppingLabelStyle}" />
+                <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Height="25" VerticalContentAlignment="Center"
+                   Content="Switch on [[ ]] when the case is"
+                   Style="{StaticResource ActivityLabelStyle}" />
 
-                <ui:IntellisenseTextBox Grid.Row="1" Grid.Column="1"
+                <ui:IntellisenseTextBox Grid.Row="0" Grid.Column="1"
                                     x:Name="TrueElement"
                                     AllowMultilinePaste="False"
                                     AcceptsReturn="True"
@@ -96,10 +93,10 @@
                                     VerticalContentAlignment="Center"
                                     VerticalScrollBarVisibility="Disabled"
                                     HorizontalAlignment="Left"
-                                    Width="150"
+                                    Width="165"
                                     DefaultText="[[CaseVariable]]"
                                     Text="{Binding ModelItem.Result,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                    ToolTip="{x:Static help:HelpTextResources.FindToolTipInFields}"
+                                    ToolTip="{x:Static help:HelpTextResources.SwitchFlowCriteriaToolTip}"
                                     attachedProperties:FocusSetter.IsFocused="{Binding IsFieldsToSearchFocused, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                     Style="{StaticResource ActivityMapppingIntellisenseTextBoxStyle}"
                                     AutomationProperties.AutomationId="{Binding ModelItem.AutomationID, StringFormat=UI_{0}_FieldsToSearchtxt_AutoID}">
@@ -116,7 +113,7 @@
 
 
 
-                <DockPanel Grid.Row="1" Grid.Column="3"  Grid.ColumnSpan="4" Height="30" HorizontalAlignment="Right" >
+                <DockPanel Grid.Row="1" Grid.Column="1"  Height="30" HorizontalAlignment="Left" >
                     <Button Content="Done" VerticalContentAlignment="Center" AutomationProperties.AutomationId="UI_OKButton_AutoID" Click="Button_OK_Click" Command="{Binding Path=OkCommand}" MaxHeight="25" MinWidth="75" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5,0,5,0"/>
                     <Button Content="Canel" AutomationProperties.AutomationId="UI_OKButton_AutoID" Click="Button_OK_Click" Command="{Binding Path=CancelCommand}" MaxHeight="25" MinWidth="75" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5,0,0,0"/>
                 </DockPanel>

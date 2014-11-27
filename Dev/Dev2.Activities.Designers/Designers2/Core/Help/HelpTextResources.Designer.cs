@@ -1760,6 +1760,51 @@ namespace Dev2.Activities.Designers2.Core.Help {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Set up the decision criteria for this decision.
+        /// </summary>
+        public static string DecisionCriteriaToolTip {
+            get {
+                return ResourceManager.GetString("DecisionCriteriaToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Set the tool identifier display text.
+        /// </summary>
+        public static string DecisionDisplayTextToolTip {
+            get {
+                return ResourceManager.GetString("DecisionDisplayTextToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Set the identifier text for the false arm of this decision.
+        /// </summary>
+        public static string DecisionFalseTextToolTip {
+            get {
+                return ResourceManager.GetString("DecisionFalseTextToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Require all decision parameters in this tool to be true to make this decision true.
+        /// </summary>
+        public static string DecisionRequireAllToBeTrueToolTip {
+            get {
+                return ResourceManager.GetString("DecisionRequireAllToBeTrueToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Set the identifier text for the true arm of this decision.
+        /// </summary>
+        public static string DecisionTrueTextToolTip {
+            get {
+                return ResourceManager.GetString("DecisionTrueTextToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to To delay execution or pause the workflow, select the time part you want to pause by and then the amount of time. 
         ///E.g. 6 minutes. 
         ///A blank Time field will default to 0 and not cause any delay.
@@ -4854,6 +4899,33 @@ namespace Dev2.Activities.Designers2.Core.Help {
         public static string String1SQLBulkInsertHelpFiretriggers {
             get {
                 return ResourceManager.GetString("String1SQLBulkInsertHelpFiretriggers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Set the name of the variable to be compared with the switch variable .
+        /// </summary>
+        public static string SwitchFlowCriteriaToolTip {
+            get {
+                return ResourceManager.GetString("SwitchFlowCriteriaToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Set the tool identifier display text.
+        /// </summary>
+        public static string SwitchFlowDisplayTextToolTip {
+            get {
+                return ResourceManager.GetString("SwitchFlowDisplayTextToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Set the name of the variable that the switch tool uses to switch on .
+        /// </summary>
+        public static string SwitchFlowVariableToolTip {
+            get {
+                return ResourceManager.GetString("SwitchFlowVariableToolTip", resourceCulture);
             }
         }
         

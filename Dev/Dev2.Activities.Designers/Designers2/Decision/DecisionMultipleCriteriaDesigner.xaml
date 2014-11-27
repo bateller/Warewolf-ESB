@@ -98,9 +98,9 @@
             </Grid.RowDefinitions>
 
 
-            <Label Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" Height="25" VerticalContentAlignment="Center"
-                   Content="Evaluates a statement to True or False"  
-                   Style="{StaticResource ActivityMapppingLabelStyle}" />
+            <Label Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" Height="25"
+                   Content="Evaluates a statement to True or False"   
+                   Style="{StaticResource ActivityLabelStyle}" />
 
             
             <controls:Dev2DataGrid Grid.Row="2"
@@ -109,6 +109,7 @@
                                x:Name="LargeDataGrid"
                                ItemsSource="{Binding ModelItem.DecisionStack, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                Style="{StaticResource ActivityMapppingDataGridStyle}"
+                               ToolTip="{x:Static help:HelpTextResources.DecisionCriteriaToolTip}"
                                Margin="0,3">
                 <i:Interaction.Behaviors>
                     <behaviors2:DataGridWatermarkModifier WatermarkPropertyName="WatermarkTextVariable">
@@ -274,9 +275,9 @@
 
             </controls:Dev2DataGrid>
 
-            <Label Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Height="25" VerticalContentAlignment="Center"
+            <Label Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Height="25" 
                    Content="Display text"
-                   Style="{StaticResource ActivityMapppingLabelStyle}" />
+                   Style="{StaticResource ActivityLabelStyle}" />
 
             <ui:IntellisenseTextBox Grid.Row="3" Grid.Column="1"
                                     x:Name="DirplayElement"
@@ -290,9 +291,9 @@
                                     VerticalScrollBarVisibility="Disabled"
                                     HorizontalAlignment="Left"
                                     Width="150"
-                                    DefaultText="[Decision"
+                                    DefaultText="[[Decision]]"
                                     Text="{Binding ModelItem.Result,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                    ToolTip="{x:Static help:HelpTextResources.FindToolTipInFields}"
+                                    ToolTip="{x:Static help:HelpTextResources.DecisionDisplayTextToolTip}"
                                     attachedProperties:FocusSetter.IsFocused="{Binding IsFieldsToSearchFocused, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                     Style="{StaticResource ActivityMapppingIntellisenseTextBoxStyle}"
                                     AutomationProperties.AutomationId="{Binding ModelItem.AutomationID, StringFormat=UI_{0}_FieldsToSearchtxt_AutoID}">
@@ -306,9 +307,9 @@
                 </i:Interaction.Behaviors>
             </ui:IntellisenseTextBox>
 
-            <Label Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Height="25" VerticalContentAlignment="Center"
+            <Label Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Height="25" 
                    Content="True arm text"
-                   Style="{StaticResource ActivityMapppingLabelStyle}" />
+                   Style="{StaticResource ActivityLabelStyle}" />
 
             <ui:IntellisenseTextBox Grid.Row="4" Grid.Column="1"
                                     x:Name="TrueElement"
@@ -324,7 +325,7 @@
                                     Width="150"
                                     DefaultText="True"
                                     Text="{Binding ModelItem.Result,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                    ToolTip="{x:Static help:HelpTextResources.FindToolTipInFields}"
+                                    ToolTip="{x:Static help:HelpTextResources.DecisionTrueTextToolTip}"
                                     attachedProperties:FocusSetter.IsFocused="{Binding IsFieldsToSearchFocused, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                     Style="{StaticResource ActivityMapppingIntellisenseTextBoxStyle}"
                                     AutomationProperties.AutomationId="{Binding ModelItem.AutomationID, StringFormat=UI_{0}_FieldsToSearchtxt_AutoID}">
@@ -338,9 +339,9 @@
                 </i:Interaction.Behaviors>
             </ui:IntellisenseTextBox>
 
-            <Label Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Height="25" VerticalContentAlignment="Center"
+            <Label Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Height="25" 
                    Content="False arm text"
-                   Style="{StaticResource ActivityMapppingLabelStyle}" />
+                   Style="{StaticResource ActivityLabelStyle}" />
 
             <ui:IntellisenseTextBox Grid.Row="5" Grid.Column="1"
                                     x:Name="FalseElement"
@@ -356,7 +357,7 @@
                                     Width="150"
                                     DefaultText="False"
                                    Text="{Binding ModelItem.Result,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                    ToolTip="{x:Static help:HelpTextResources.FindToolTipInFields}"
+                                    ToolTip="{x:Static help:HelpTextResources.DecisionFalseTextToolTip}"
                                     attachedProperties:FocusSetter.IsFocused="{Binding IsFieldsToSearchFocused, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                     Style="{StaticResource ActivityMapppingIntellisenseTextBoxStyle}"
                                     AutomationProperties.AutomationId="{Binding ModelItem.AutomationID, StringFormat=UI_{0}_FieldsToSearchtxt_AutoID}">
@@ -374,7 +375,8 @@
                   Grid.ColumnSpan="3" 
                   Content="Require All decisions To Be True"
                   IsChecked="{Binding ModelItem.RequireAllTrue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                  ToolTip="{x:Static help:HelpTextResources.FindToolTipRequireAllMatchesToBeTrue}"
+                  ToolTip="{x:Static help:HelpTextResources.DecisionRequireAllToBeTrueToolTip}"
+               
                   AutomationProperties.AutomationId="{Binding ModelItem.AutomationID, StringFormat=UI_{0}_RequireAllTrue_AutoID}">
                 <i:Interaction.Behaviors>
                     <help:HelpSetter Text="{x:Static help:HelpTextResources.FindHelpRequireAllMatchesToBeTrue}"

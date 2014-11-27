@@ -17,7 +17,7 @@
                                xmlns:findRecordsMultipleCriteria="clr-namespace:Dev2.Activities.Designers2.FindRecordsMultipleCriteria"
                                xmlns:decisionMultipleCriteria="clr-namespace:Dev2.Activities.Designers2.DecisionMultipleCriteria"
                                
-                               Width="464"
+                               Width="317"
                                Height="155"
                                ResizeMode="NoResize"
                                WindowStartupLocation="CenterScreen"
@@ -48,8 +48,8 @@
                 <ColumnDefinition Width="7" />
                 <ColumnDefinition Width="13" />
                 <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="13" />
-                <ColumnDefinition Width="7" />
+                
+                
             </Grid.ColumnDefinitions>
 
             <Grid.RowDefinitions>
@@ -62,20 +62,18 @@
 
 
             <DockPanel Grid.Row="0" Grid.Column="0"  MouseDown="UIElement_OnMouseDown" Grid.ColumnSpan="3" Height="22" HorizontalAlignment="Left" Background="#C1C3C5" Margin="0,0,0,6" Grid.RowSpan="2" Width="21">
-                <Image  MouseDown="UIElement_OnMouseDown" Margin="2,2,2,3" Height="16" Width="16" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="1" Source="pack://application:,,,/Warewolf Studio;component/Images/ToolDecision-32.png" />
+                <Image  MouseDown="UIElement_OnMouseDown" Margin="2,2,2,3" Height="16" Width="16" Source="pack://application:,,,/Warewolf Studio;component/Images/ToolDecision-32.png" />
             </DockPanel>
 
-            <Label Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="3" Height="22" VerticalContentAlignment="Center" Padding="3"  Margin="0,0,0,6"
+            <Label Grid.Row="0" Grid.Column="2" Height="22" VerticalContentAlignment="Center" Padding="3"  Margin="0,0,0,6"
                    Content="Switch Flow"  Background="#C1C3C5" MouseDown="UIElement_OnMouseDown"
                    Style="{StaticResource ActivityMapppingLabelStyle}" Grid.RowSpan="2" />
 
-            <DockPanel  Grid.Row="0" Grid.Column="3"  Grid.ColumnSpan="2" MouseDown="UIElement_OnMouseDown"  Height="22" HorizontalAlignment="Left" Background="#C1C3C5" Margin="0,0,0,6" Grid.RowSpan="2" Width="21">
-                <Image  Visibility="Hidden"  MouseDown="UIElement_OnMouseDown" Margin="2,2,2,3" Height="16" Width="16" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="1" Source="pack://application:,,,/Warewolf Studio;component/Images/ServiceHelp-32.png" />
-            </DockPanel>            
 
-            <Grid Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" Grid.RowSpan="2"  >
+            <Grid Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="2"  >
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="130" />
+                    <ColumnDefinition Width="120" />
+                    <ColumnDefinition Width="13" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
@@ -88,15 +86,15 @@
                 </Grid.RowDefinitions>
 
 
-                <Label Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" Height="25" VerticalContentAlignment="Center"
-                   Content="Checks a variable and then switches the excecution if it finds a matching case."  
-                   Style="{StaticResource ActivityMapppingLabelStyle}" />
+                <Label Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Height="25" VerticalContentAlignment="Center"
+                   Content="Checks a variable and then switches on a matching case"  
+                   Style="{StaticResource ActivityLabelStyle}" />
 
                 <Label Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Height="25" VerticalContentAlignment="Center"
-                   Content="Variable to Switch on :"
-                   Style="{StaticResource ActivityMapppingLabelStyle}" />
+                   Content="Variable to switch on"
+                   Style="{StaticResource ActivityLabelStyle}" />
 
-                <ui:IntellisenseTextBox Grid.Row="2" Grid.Column="1"
+                <ui:IntellisenseTextBox Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2"
                                     x:Name="TrueElement"
                                     AllowMultilinePaste="False"
                                     AcceptsReturn="True"
@@ -107,10 +105,10 @@
                                     VerticalContentAlignment="Center"
                                     VerticalScrollBarVisibility="Disabled"
                                     HorizontalAlignment="Left"
-                                    Width="150"
+                                    Width="177"
                                     DefaultText="[[CaseVariable]]"
                                     Text="{Binding ModelItem.Result,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                    ToolTip="{x:Static help:HelpTextResources.FindToolTipInFields}"
+                                    ToolTip="{x:Static help:HelpTextResources.SwitchFlowVariableToolTip}"
                                     attachedProperties:FocusSetter.IsFocused="{Binding IsFieldsToSearchFocused, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                     Style="{StaticResource ActivityMapppingIntellisenseTextBoxStyle}"
                                     AutomationProperties.AutomationId="{Binding ModelItem.AutomationID, StringFormat=UI_{0}_FieldsToSearchtxt_AutoID}">
@@ -125,10 +123,10 @@
                 </ui:IntellisenseTextBox>
 
                 <Label Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Height="25" VerticalContentAlignment="Center"
-                   Content="Display Text :"
-                   Style="{StaticResource ActivityMapppingLabelStyle}" />
+                   Content="Display text"
+                   Style="{StaticResource ActivityLabelStyle}" />
 
-                <ui:IntellisenseTextBox Grid.Row="3" Grid.Column="1"
+                <ui:IntellisenseTextBox Grid.Row="3" Grid.Column="1"  Grid.ColumnSpan="2"
                                     x:Name="FalseElement"
                                     AllowMultilinePaste="False"
                                     AcceptsReturn="True"
@@ -139,10 +137,10 @@
                                     VerticalContentAlignment="Center"
                                     VerticalScrollBarVisibility="Disabled"
                                     HorizontalAlignment="Left"
-                                    Width="150"
+                                    Width="177"
                                     DefaultText="Switch"
                                    Text="{Binding ModelItem.Result,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                    ToolTip="{x:Static help:HelpTextResources.FindToolTipInFields}"
+                                    ToolTip="{x:Static help:HelpTextResources.SwitchFlowDisplayTextToolTip}"
                                     attachedProperties:FocusSetter.IsFocused="{Binding IsFieldsToSearchFocused, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                     Style="{StaticResource ActivityMapppingIntellisenseTextBoxStyle}"
                                     AutomationProperties.AutomationId="{Binding ModelItem.AutomationID, StringFormat=UI_{0}_FieldsToSearchtxt_AutoID}">
@@ -157,7 +155,7 @@
                 </ui:IntellisenseTextBox>
 
 
-                <DockPanel Grid.Row="4" Grid.Column="0"  Grid.ColumnSpan="4" Height="30" HorizontalAlignment="Right" >
+                <DockPanel Grid.Row="4" Grid.Column="2" Height="30" HorizontalAlignment="Left" >
                     <Button Content="Done" VerticalContentAlignment="Center" AutomationProperties.AutomationId="UI_OKButton_AutoID" Click="Button_OK_Click" Command="{Binding Path=OkCommand}" MaxHeight="25" MinWidth="75" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5,5,5,0"/>
                     <Button Content="Canel" AutomationProperties.AutomationId="UI_OKButton_AutoID" Click="Button_OK_Click" Command="{Binding Path=CancelCommand}" MaxHeight="25" MinWidth="75" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5,5,0,0"/>
                 </DockPanel>

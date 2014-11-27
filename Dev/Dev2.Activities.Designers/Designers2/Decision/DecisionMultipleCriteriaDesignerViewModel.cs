@@ -94,8 +94,20 @@ namespace Dev2.Activities.Designers2.DecisionMultipleCriteria
         }
 
         public override string CollectionName { get { return "DecisionStack"; } }
-
-
+        public object CancelCommand
+        {
+            get
+            {
+                return null;
+            }
+        }
+        public object OkCommand
+        {
+            get
+            {
+                return null;
+            }
+        }
 
         protected override IEnumerable<IActionableErrorInfo> ValidateThis()
         {
