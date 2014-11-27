@@ -1,11 +1,15 @@
 ![warewolf logo](http://www.warewolf.io/images/warewolf-logo.png)
 
+<<<<<<< HEAD
 <<<<<<< Robins_Branch
 Warewolf-ESB
 ============
 =======
 **What is Warewolf ESB all about?**
 >>>>>>> local
+=======
+**What is Warewolf ESB all about?**
+>>>>>>> ef76f0905d752d99c9e282aad2471ee4427d0b41
 
 Tired of complicated ESBs? Join the pack! 
 

@@ -9,7 +9,6 @@
 *  @license GNU Affero General Public License <http://www.gnu.org/licenses/agpl-3.0.html>
 */
 
-
 using System;
 using System.Collections.Concurrent;
 using System.Security.Claims;
@@ -114,6 +113,7 @@ namespace Dev2.Runtime.Security
                 case WebServerRequestType.HubConnect:
                     result = IsAuthorizedToConnect(request.User);
                     break;
+                case WebServerRequestType.WebExecuteGetLogFile:
                 case WebServerRequestType.EsbSendMemo:
                 case WebServerRequestType.EsbAddDebugWriter:
                 case WebServerRequestType.EsbExecuteCommand:
