@@ -1,6 +1,6 @@
 /*
 *  Warewolf - The Easy Service Bus
-*  Copyright 2014 by Warewolf Ltd <alpha@warewolf.io>
+*  Copyright 2015 by Warewolf Ltd <alpha@warewolf.io>
 *  Licensed under GNU Affero General Public License 3.0 or later. 
 *  Some rights reserved.
 *  Visit our website for more information <http://warewolf.io/>
@@ -27,6 +27,25 @@ namespace Dev2.CustomControls.Converters
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             var val = (GridLength) value;
+            return val.Value;
+        }
+    }
+
+    /// <summary>
+    /// This Converter is used to calculate the height if a vertical scrollbar button for the Warewolf Luna theme
+    /// </summary>
+    public class VerticalGridLengthConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            var val = (double)value;
+            var gridLength = new GridLength(val);
+            return gridLength;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            var val = (GridLength)value;
             return val.Value;
         }
     }

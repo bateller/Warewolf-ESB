@@ -1,7 +1,7 @@
 
 /*
 *  Warewolf - The Easy Service Bus
-*  Copyright 2014 by Warewolf Ltd <alpha@warewolf.io>
+*  Copyright 2015 by Warewolf Ltd <alpha@warewolf.io>
 *  Licensed under GNU Affero General Public License 3.0 or later. 
 *  Some rights reserved.
 *  Visit our website for more information <http://warewolf.io/>
@@ -53,7 +53,7 @@ namespace Dev2.Runtime.ESB.Management.Services
             }
             Dev2Logger.Log.Info("Find Resource By Id. "+guidCsv);
             // BUG 7850 - TWR - 2013.03.11 - ResourceCatalog refactor
-            var resources = ResourceCatalog.Instance.GetResourceList(theWorkspace.ID, guidCsv, type);
+            var resources = ResourceCatalog.Instance.GetResourceList(GlobalConstants.ServerWorkspaceID, guidCsv, type);
 
             IList<SerializableResource> resourceList = resources.Select(new FindResourceHelper().SerializeResourceForStudio).ToList();
 
@@ -83,3 +83,4 @@ namespace Dev2.Runtime.ESB.Management.Services
         }
     }
 }
+

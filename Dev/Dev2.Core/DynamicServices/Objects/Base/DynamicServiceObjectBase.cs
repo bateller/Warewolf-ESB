@@ -1,6 +1,6 @@
 /*
 *  Warewolf - The Easy Service Bus
-*  Copyright 2014 by Warewolf Ltd <alpha@warewolf.io>
+*  Copyright 2015 by Warewolf Ltd <alpha@warewolf.io>
 *  Licensed under GNU Affero General Public License 3.0 or later. 
 *  Some rights reserved.
 *  Visit our website for more information <http://warewolf.io/>
@@ -89,7 +89,7 @@ namespace Dev2.DynamicServices.Objects.Base
             if (string.IsNullOrEmpty(Name))
             {
                 string objectName = GetType().Name;
-                _errorMsg = string.Format(Resources.CompilerError_MissingName, objectName, objectName);
+                _errorMsg = string.Format(Warewolf.Studio.Resources.Languages.Services.CompilerError_MissingName, objectName, objectName);
                 WriteCompileError(_errorMsg);
             }
 

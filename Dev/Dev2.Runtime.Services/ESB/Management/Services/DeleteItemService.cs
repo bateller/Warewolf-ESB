@@ -1,7 +1,7 @@
 
 /*
 *  Warewolf - The Easy Service Bus
-*  Copyright 2014 by Warewolf Ltd <alpha@warewolf.io>
+*  Copyright 2015 by Warewolf Ltd <alpha@warewolf.io>
 *  Licensed under GNU Affero General Public License 3.0 or later. 
 *  Some rights reserved.
 *  Visit our website for more information <http://warewolf.io/>
@@ -49,9 +49,9 @@ namespace Dev2.Runtime.ESB.Management.Services
                 {
                     throw new ArgumentException("itemToDelete value not supplied.");
                 }
-                var itemToDelete = serializer.Deserialize<ServerExplorerItem>(itemBeingDeleted);
+                var itemToDelete = Guid.Parse(itemBeingDeleted.ToString());
                 Dev2Logger.Log.Info("Delete Item Service."+itemToDelete);
-                item = ServerExplorerRepo.DeleteItem(itemToDelete, GlobalConstants.ServerWorkspaceID);
+                item = ServerExplorerRepo.DeleteItem(ServerExplorerRepo.Find(itemToDelete), GlobalConstants.ServerWorkspaceID);
             }
             catch(Exception e)
             {

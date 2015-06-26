@@ -1,0 +1,1044 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Environments_Directory" xml:space="preserve">
+    <value>Environments</value>
+  </data>
+  <data name="Error_Connect_Failed" xml:space="preserve">
+    <value>Connection Failed</value>
+  </data>
+  <data name="Error_DSF_Name_Not_Provided" xml:space="preserve">
+    <value>Name not provided</value>
+  </data>
+  <data name="Pack_Uri_Application_Image_Home" xml:space="preserve">
+    <value>pack://application:,,,/Warewolf Studio;component/images/StartPage-16.png</value>
+  </data>
+  <data name="ErrorMessageDuplicateValue" xml:space="preserve">
+    <value>Variable names must be unique.</value>
+  </data>
+  <data name="ErrorMessageDuplicateVariable" xml:space="preserve">
+    <value>This variable name is a duplicate of an existing variable. Variable names must be unique.</value>
+  </data>
+  <data name="ErrorMessageDuplicateRecordset" xml:space="preserve">
+    <value>The recordset name is a duplicate of an existing recordset. Recordset names must be unique.</value>
+  </data>
+  <data name="ErrorMessageInvalidChar" xml:space="preserve">
+    <value>Variable name contains invalid character(s).</value>
+  </data>
+  <data name="About_Content" xml:space="preserve">
+    <value>Studio: Version {0}
+Server: Version {1}
+
+Sofware development by: www.dev2.co.za
+</value>
+  </data>
+  <data name="About_Header_Text" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="App_Data_Directory" xml:space="preserve">
+    <value>Warewolf</value>
+  </data>
+  <data name="About_Description_Header" xml:space="preserve">
+    <value>About Server and Studio</value>
+  </data>
+  <data name="Warewolf_Logo" xml:space="preserve">
+    <value>pack://application:,,,/Warewolf Studio;component/images/WarewolfLogoMedRes.png</value>
+  </data>
+  <data name="SplashImage" xml:space="preserve">
+    <value>Images\SplashImage_New_2014.jpg</value>
+  </data>
+  <data name="ErrorMessageEmptyRecordSet" xml:space="preserve">
+    <value>Recordset must contain one or more field(s).</value>
+  </data>
+  <data name="DefaultEnvironmentName" xml:space="preserve">
+    <value>localhost</value>
+  </data>
+  <data name="Feedback_Recordings_Directory" xml:space="preserve">
+    <value>Feedback</value>
+    <comment>The directory name in which feedback recordings are placed. This should not be a full or relative path, only a directory name.</comment>
+  </data>
+  <data name="Navigation_Category_Unassigned" xml:space="preserve">
+    <value>Unassigned</value>
+  </data>
+  <data name="NewWorkflowBaseName" xml:space="preserve">
+    <value>Unsaved</value>
+  </data>
+  <data name="DialogBody_NotSaved" xml:space="preserve">
+    <value>The workflow '{0}' that you are closing is not saved.
+Would you like to save the workflow?
+-------------------------------------------------------------------
+Yes - Save the workflow.
+No - Discard your changes.
+Cancel - Returns you to the workflow.</value>
+  </data>
+  <data name="DialogTitle_NotSaved" xml:space="preserve">
+    <value>Workflow not saved...</value>
+  </data>
+  <data name="DialogBody_ConfirmDelete" xml:space="preserve">
+    <value>Are you sure you wish to delete the {0} {1}?
+
+Version History will also be deleted.</value>
+  </data>
+  <data name="DialogBody_ConfirmFolderDelete" xml:space="preserve">
+    <value>Are you sure you wish to delete {0} folder and all its contents?</value>
+  </data>
+  <data name="DialogBody_HasDependencies" xml:space="preserve">
+    <value>The {0} {1} cannot be deleted because something depends on it.</value>
+  </data>
+  <data name="DialogBody_HasDuplicateName" xml:space="preserve">
+    <value>The {0} {1} cannot be renamed because a resource with that name already exists on the same server.</value>
+  </data>
+  <data name="DialogTitle_ConfirmDelete" xml:space="preserve">
+    <value>Confirm delete.</value>
+  </data>
+  <data name="DialogTitle_HasDependencies" xml:space="preserve">
+    <value>{0} has dependants</value>
+  </data>
+  <data name="DialogTitle_HasDuplicateName" xml:space="preserve">
+    <value>{0} exists</value>
+  </data>
+  <data name="Pack_Uri_Debug_Image" xml:space="preserve">
+    <value>pack://application:,,,/Warewolf Studio;component/Images/ExecuteDebugStart-32.png</value>
+  </data>
+  <data name="Pack_Uri_Stop_Image" xml:space="preserve">
+    <value>pack://application:,,,/Warewolf Studio;component/Images/ExecuteDebugStop-32.png</value>
+  </data>
+  <data name="Ribbon_Debug" xml:space="preserve">
+    <value>Debug</value>
+  </data>
+  <data name="Ribbon_StopExecution" xml:space="preserve">
+    <value>Stop</value>
+  </data>
+  <data name="Uri_Community_HomePage" xml:space="preserve">
+    <value>http://community.warewolf.io/</value>
+  </data>
+  <data name="Pack_Uri_Application_Image_Community" xml:space="preserve">
+    <value>pack://application:,,,/Warewolf Studio;component/images/HelpCommunity-32.png</value>
+  </data>
+  <data name="Warewolf_Homepage_Start" xml:space="preserve">
+    <value>http://warewolf.io/start.html</value>
+  </data>
+  <data name="Uri_Studio_PageMissing" xml:space="preserve">
+    <value>Help\PageMissing.htm</value>
+  </data>
+  <data name="XmlOriginalLayout" xml:space="preserve">
+    <value>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;xamDockManager version="12.1.20121.2107"&gt;
+  &lt;contentPanes&gt;
+    &lt;contentPane name="OutputPane" location="DockedRight" lastFloatingSize="1000,200" lastFloatingWindowRect="625,541,1016,234" lastFloatingLocation="625,541" lastActivatedTime="2013-06-10T07:30:08.998685Z" /&gt;
+    &lt;contentPane name="Variables" location="DockedRight" lastFloatingSize="300,706" lastFloatingWindowRect="1475,482,316,740" lastFloatingLocation="1475,482" lastActivatedTime="2013-06-10T07:30:02.882685Z" /&gt;
+    &lt;contentPane name="Toolbox" location="DockedLeft" lastFloatingSize="300,706" lastFloatingWindowRect="89,514,316,740" lastFloatingLocation="89,514" lastActivatedTime="2013-06-10T07:29:57.299685Z" /&gt;
+    &lt;contentPane name="Explorer" location="DockedLeft" lastFloatingSize="300,706" lastFloatingWindowRect="-130,482,316,740" lastFloatingLocation="-130,482" lastActivatedTime="2013-06-10T07:29:13.960685Z" /&gt;
+  &lt;/contentPanes&gt;
+  &lt;panes&gt;
+    &lt;splitPane name="Z746a647dd6004001a7df7a7ca0ac65d1" splitterOrientation="Vertical" location="DockedRight" extent="300"&gt;
+      &lt;splitPane name="Z96bb9badc4b148518ea4eff80920f8d9" splitterOrientation="Horizontal" relativeSize="100,100"&gt;
+        &lt;contentPane name="Variables" /&gt;
+        &lt;contentPane name="OutputPane" /&gt;
+      &lt;/splitPane&gt;
+    &lt;/splitPane&gt;
+    &lt;splitPane name="Zc30a7af8e0c54bb5bccfbea116f8ab0d" splitterOrientation="Vertical" location="DockedLeft" extent="300"&gt;
+      &lt;splitPane name="Zf1166e575b5d43bb89f15f346eccb7b1" splitterOrientation="Horizontal" relativeSize="100,100"&gt;
+        &lt;tabGroup name="Z3d0e8544bdbd4fbc8b0369ecfce4e928" selectedIndex="0"&gt;
+          &lt;contentPane name="Explorer" /&gt;
+        &lt;/tabGroup&gt;
+        &lt;contentPane name="Toolbox" /&gt;
+      &lt;/splitPane&gt;
+    &lt;/splitPane&gt;
+    &lt;splitPane name="DockBottom" splitterOrientation="Vertical" location="DockedBottom" extent="200" /&gt;
+    &lt;splitPane name="DockLeft" splitterOrientation="Vertical" location="DockedLeft" extent="300" /&gt;
+    &lt;splitPane name="Z4941c2c791034fd0a4f92f09e5ed1db1" splitterOrientation="Vertical" location="Floating" floatingLocation="-130,482" floatingSize="300,706"&gt;
+      &lt;tabGroup name="Z56347a81a64f4f8890cfac6f17b09b3f" selectedIndex="-1" relativeSize="100,100"&gt;
+        &lt;contentPane name="Explorer" /&gt;
+      &lt;/tabGroup&gt;
+    &lt;/splitPane&gt;
+    &lt;splitPane name="Ze1b8ac25c55d4bedbe213f6fb0e90c40" splitterOrientation="Vertical" location="Floating" floatingLocation="89,514" floatingSize="300,706"&gt;
+      &lt;contentPane name="Toolbox" /&gt;
+    &lt;/splitPane&gt;
+    &lt;splitPane name="Z631d72f44f5f48389b0cf39ff416f725" splitterOrientation="Vertical" location="Floating" floatingLocation="1475,482" floatingSize="300,706"&gt;
+      &lt;contentPane name="Variables" /&gt;
+    &lt;/splitPane&gt;
+    &lt;splitPane name="Zb26fc73622a14daa84dd6e1a66477e05" splitterOrientation="Vertical" location="Floating" floatingLocation="625,541" floatingSize="1000,200"&gt;
+      &lt;tabGroup name="Z25d0da356c7740e3b66c30867a4b22cc" selectedIndex="-1" relativeSize="100,100"&gt;
+        &lt;contentPane name="OutputPane" /&gt;
+      &lt;/tabGroup&gt;
+    &lt;/splitPane&gt;
+  &lt;/panes&gt;
+&lt;/xamDockManager&gt;</value>
+  </data>
+  <data name="EULA_Link" xml:space="preserve">
+    <value>http://warewolf.io/eula/</value>
+  </data>
+  <data name="EULA_Text" xml:space="preserve">
+    <value>Warewolf EULA</value>
+  </data>
+  <data name="FeedbackEmail" xml:space="preserve">
+    <value>feedback@warewolf.io</value>
+  </data>
+  <data name="IntellisenseErrorMisMacthingBrackets" xml:space="preserve">
+    <value>Invalid expression: Opening and closing brackets dont match.</value>
+  </data>
+  <data name="CriticalExceptionMessage" xml:space="preserve">
+    <value>Critical : Warewolf Must Restart. All open tabs will be saved. Please take the time to report this error to the community.</value>
+  </data>
+  <data name="ErrorPrefix" xml:space="preserve">
+    <value>Error : </value>
+  </data>
+  <data name="ErrorTitle" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="CritErrorTitle" xml:space="preserve">
+    <value>Critical Error</value>
+  </data>
+  <data name="xmlServiceDefinition" xml:space="preserve">
+    <value>&lt;Service Name="GetCars"&gt;
+  &lt;Actions&gt;
+	&lt;Action Name="GetCarsByReg" Type="InvokeStoredProc" SourceName="CarsDatabase" SourceMethod="proc_GetCarsByReg"&gt;
+		&lt;Inputs&gt;
+			&lt;Input Name="reg" Source="" DefaultValue="NUD2347"&gt;
+				&lt;Validator Type="Required" /&gt;				
+			&lt;/Input&gt;
+			&lt;Input Name="asdfsad" Source="registration223" DefaultValue="w3rt24324"&gt;
+				&lt;Validator Type="Required" /&gt;				
+			&lt;/Input&gt;			
+			&lt;Input Name="number" Source="" DefaultValue=""/&gt;
+		&lt;/Inputs&gt;
+		&lt;Outputs&gt;
+			&lt;Output Name="vehicleVin" MapsTo="VIN" Value=""/&gt;
+			&lt;Output Name="vehicleColor" MapsTo="VehicleColor" Value=""/&gt;
+			&lt;Output Name="speed" MapsTo="speed" Recordset="Fines" Value=""/&gt;
+			&lt;Output Name="date" MapsTo="date" Recordset="Fines" Value="Fines.Date"/&gt;
+			&lt;Output Name="location" MapsTo="location" Recordset="Fines" Value=""/&gt;
+		&lt;/Outputs&gt;
+	&lt;/Action&gt;
+  &lt;/Actions&gt;
+  &lt;AuthorRoles&gt;Schema Admins,Enterprise Admins,Domain Admins,Domain Users,Windows SBS Remote Web Workplace Users,Windows SBS Fax Users,Windows SBS Fax Administrators,Windows SBS Virtual Private Network Users,All Users,Windows SBS Administrators,Windows SBS SharePoint_OwnersGroup,Windows SBS Link Users,Windows SBS Admin Tools Group,Company Users,Business Design Studio Developers,&lt;/AuthorRoles&gt;
+  &lt;Comment&gt;This service is responsible for copying files between file system locations or FTP locations&lt;/Comment&gt;
+  &lt;Category&gt;Build Acceptance Testing&lt;/Category&gt;
+  &lt;HelpLink&gt;http://d&lt;/HelpLink&gt;
+  &lt;Tags&gt;&lt;/Tags&gt;
+  &lt;UnitTestTargetWorkflowService&gt;&lt;/UnitTestTargetWorkflowService&gt;
+  &lt;BizRule /&gt;
+  &lt;WorkflowActivityDef /&gt;
+  &lt;Source /&gt;
+  &lt;XamlDefinition /&gt;
+  &lt;DisplayName&gt;Service&lt;/DisplayName&gt;
+&lt;/Service&gt;</value>
+  </data>
+  <data name="xmlNullSourceMethodServiceDef" xml:space="preserve">
+    <value>&lt;Service Name="GetCars"&gt;
+  &lt;Actions&gt;
+	&lt;Action Name="GetCarsByReg" Type="InvokeStoredProc" SourceName="CarsDatabase"&gt;
+		&lt;Inputs&gt;
+			&lt;Input Name="reg" Source="" DefaultValue="NUD2347"&gt;
+				&lt;Validator Type="Required" /&gt;				
+			&lt;/Input&gt;
+			&lt;Input Name="asdfsad" Source="registration223" DefaultValue="w3rt24324"&gt;
+				&lt;Validator Type="Required" /&gt;				
+			&lt;/Input&gt;			
+			&lt;Input Name="number" Source="" DefaultValue=""/&gt;
+		&lt;/Inputs&gt;
+		&lt;Outputs&gt;
+			&lt;Output Name="vehicleVin" MapsTo="VIN" Value=""/&gt;
+			&lt;Output Name="vehicleColor" MapsTo="VehicleColor" Value=""/&gt;
+			&lt;Output Name="speed" MapsTo="speed" Recordset="Fines" Value=""/&gt;
+			&lt;Output Name="date" MapsTo="date" Recordset="Fines" Value="Fines.Date"/&gt;
+			&lt;Output Name="location" MapsTo="location" Recordset="Fines" Value=""/&gt;
+		&lt;/Outputs&gt;
+	&lt;/Action&gt;
+  &lt;/Actions&gt;
+  &lt;AuthorRoles&gt;Schema Admins,Enterprise Admins,Domain Admins,Domain Users,Windows SBS Remote Web Workplace Users,Windows SBS Fax Users,Windows SBS Fax Administrators,Windows SBS Virtual Private Network Users,All Users,Windows SBS Administrators,Windows SBS SharePoint_OwnersGroup,Windows SBS Link Users,Windows SBS Admin Tools Group,Company Users,Business Design Studio Developers,&lt;/AuthorRoles&gt;
+  &lt;Comment&gt;This service is responsible for copying files between file system locations or FTP locations&lt;/Comment&gt;
+  &lt;Category&gt;Build Acceptance Testing&lt;/Category&gt;
+  &lt;HelpLink&gt;http://d&lt;/HelpLink&gt;
+  &lt;Tags&gt;&lt;/Tags&gt;
+  &lt;UnitTestTargetWorkflowService&gt;&lt;/UnitTestTargetWorkflowService&gt;
+  &lt;BizRule /&gt;
+  &lt;WorkflowActivityDef /&gt;
+  &lt;Source /&gt;
+  &lt;XamlDefinition /&gt;
+  &lt;DisplayName&gt;Service&lt;/DisplayName&gt;
+&lt;/Service&gt;</value>
+  </data>
+  <data name="Uri_Studio_Language_Reference_Document" xml:space="preserve">
+    <value>Help\Warewolf Language.htm</value>
+  </data>
+  <data name="ExampleWorkflowNotFound" xml:space="preserve">
+    <value>The {0} example cannot be found. 
+ Please re-install or upgrade to the latest version to resolve this issue</value>
+  </data>
+  <data name="DialogBody_FolderContentsHaveDependencies" xml:space="preserve">
+    <value>This folder cannot be deleted because it contains resources with dependants.</value>
+  </data>
+  <data name="DialogTitle_FolderHasDependencies" xml:space="preserve">
+    <value>Folder has dependants</value>
+  </data>
+  <data name="Resource_ID_must_be_a_Guid" xml:space="preserve">
+    <value>Resource ID must be a Guid</value>
+  </data>
+  <data name="Pack_Uri_DatabaseService_Image" xml:space="preserve">
+    <value>pack://application:,,,/Warewolf Studio;component/images/DatabaseService-32.png</value>
+  </data>
+  <data name="Pack_Uri_EmailSource_Image" xml:space="preserve">
+    <value>pack://application:,,,/Warewolf Studio;component/images/ToolSendEmail-32.png</value>
+  </data>
+  <data name="Pack_Uri_PluginService_Image" xml:space="preserve">
+    <value>pack://application:,,,/Warewolf Studio;component/images/PluginService-32.png</value>
+  </data>
+  <data name="Pack_Uri_WebService_Image" xml:space="preserve">
+    <value>pack://application:,,,/Warewolf Studio;component/images/WebService-32.png</value>
+  </data>
+  <data name="Pack_Uri_WorkflowService_Image" xml:space="preserve">
+    <value>pack://application:,,,/Warewolf Studio;component/images/Workflow-32.png</value>
+  </data>
+  <data name="Pack_Uri_Server_Image" xml:space="preserve">
+    <value>pack://application:,,,/Warewolf Studio;component/images/ExplorerWarewolfConnection-32.png</value>
+  </data>
+  <data name="Uri_Studio_PageRestrictedAccess" xml:space="preserve">
+    <value>Help\PageRestrictedAccess.htm</value>
+  </data>
+  <data name="Uri_Studio_PageNotAvailable" xml:space="preserve">
+    <value>Help\PageNotAvailable.htm</value>
+  </data>
+  <data name="SaveSettingErrorPrefix" xml:space="preserve">
+    <value>Error while saving</value>
+  </data>
+  <data name="SaveSettingsNotReachableErrorMsg" xml:space="preserve">
+    <value>Error while saving: Server unreachable.</value>
+  </data>
+  <data name="SaveSettingsPermissionsErrorMsg" xml:space="preserve">
+    <value>Error while saving: You don't have permission to change settings on this server.
+You need Administrator permission.</value>
+  </data>
+  <data name="SaveSettingsDuplicateResourcePermissions" xml:space="preserve">
+    <value>There are duplicate permissions for a resource, 
+    i.e. one resource has permissions set twice with the same group. 
+    Please clear the duplicates before saving.</value>
+  </data>
+  <data name="SaveSettingsDuplicateServerPermissions" xml:space="preserve">
+    <value>There are duplicate server permissions, 
+    i.e Server permissions have been setup up with the same group twice. 
+    Please clear the duplicates before saving.</value>
+  </data>
+  <data name="DragRemoteNotSupported" xml:space="preserve">
+    <value>You are not allowed to drag remote workflows onto a remote service designer.</value>
+  </data>
+  <data name="DragRemoteNotSupportedHeader" xml:space="preserve">
+    <value>Invalid Designer Operation</value>
+  </data>
+  <data name="DeleteConfirmation" xml:space="preserve">
+    <value>Are you sure you want to delete {0}?</value>
+  </data>
+  <data name="DeleteVersionMessage" xml:space="preserve">
+    <value>"Are you sure you want to delete {0}?"</value>
+  </data>
+  <data name="DeleteVersionMessageHeader" xml:space="preserve">
+    <value>Delete Version</value>
+  </data>
+  <data name="DidYouKnow" xml:space="preserve">
+    <value>Did you know?</value>
+  </data>
+  <data name="GenericConfirmation" xml:space="preserve">
+    <value>Are you sure?</value>
+  </data>
+  <data name="InputVariablesTip" xml:space="preserve">
+    <value>You can pass variables into your workflow{0}by selecting the Input checkbox{0}in the Variables window.</value>
+  </data>
+  <data name="InvalidTextHeader" xml:space="preserve">
+    <value>"Invalid text"</value>
+  </data>
+  <data name="InvalidTextMessage" xml:space="preserve">
+    <value>"{0} is invalid. Warewolf only supports latin characters"</value>
+  </data>
+  <data name="InvalidPermissionHeader" xml:space="preserve">
+    <value>"Invalid text"</value>
+  </data>
+  <data name="InvalidPermissionMessage" xml:space="preserve">
+    <value>"{0} is invalid. Warewolf only supports latin characters"</value>
+  </data>
+  <data name="RenameConflictDescription" xml:space="preserve">
+    <value>The following task has been renamed {0} -&gt; {1}. You will lose the history for the old task.{2} Would you like to save the new name?{2}-------------------------------------------------------------------" + "Yes - Save with the new name.{2}No - Save with the old name.{2}Cancel - Returns you to Scheduler.</value>
+  </data>
+  <data name="RenameConflictHeader" xml:space="preserve">
+    <value>Rename conflict</value>
+  </data>
+  <data name="RollbackHeader" xml:space="preserve">
+    <value>Make current version</value>
+  </data>
+  <data name="RollbackMessage" xml:space="preserve">
+    <value>"{0} will become the current version.{1}Do you want to proceed ?"</value>
+  </data>
+  <data name="SaveErrorHeader" xml:space="preserve">
+    <value>Saving Error</value>
+  </data>
+  <data name="SaveErrorMessage" xml:space="preserve">
+    <value>The following error occurred on save:</value>
+  </data>
+  <data name="SchedulerChangesDescription" xml:space="preserve">
+    <value>Scheduler Task has not been saved.{0}Would you like to save the Task? {0}-------------------------------------------------------------------Yes - Save the Task.{0}No - Discard your changes.{0}Cancel - Returns you to Scheduler.</value>
+  </data>
+  <data name="SchedulerChangesHeader" xml:space="preserve">
+    <value>Scheduler Task has changes</value>
+  </data>
+  <data name="ServerSourceNotConnected" xml:space="preserve">
+    <value>Server is not connected</value>
+  </data>
+  <data name="ServerSourceNotConnectedSettingsDescription" xml:space="preserve">
+    <value>You can not change the settings for a server that is offline.</value>
+  </data>
+  <data name="ServerSourceUnreachableErrorHeader" xml:space="preserve">
+    <value>Server is unreachable</value>
+  </data>
+  <data name="ServerSourceUnreachableHeaderMessage" xml:space="preserve">
+    <value>Unable to reach {0}: Connection timed out.{1} Make sure the remote computer is powered on.{1}{1} Would you like to re-try? {1}</value>
+  </data>
+  <data name="SettingsChangedDescription" xml:space="preserve">
+    <value>"Settings have not been saved.{0}Would you like to save the settings? {0}-------------------------------------------------------------------Yes - Save the settings.{0}No - Discard your changes.{0}Cancel - Returns you to settings.</value>
+  </data>
+  <data name="SettingsChangedHeader" xml:space="preserve">
+    <value>Settings have changed</value>
+  </data>
+  <data name="ServerSourceDialogAddressLabel" xml:space="preserve">
+    <value>Address:</value>
+  </data>
+  <data name="AuthenticationTypeLabel" xml:space="preserve">
+    <value>Authentication Type:</value>
+  </data>
+  <data name="ServerSourceDialogNoAddressErrorMessage" xml:space="preserve">
+    <value>The server address cannot be empty</value>
+  </data>
+  <data name="ServerSourceDialogNoTestMessage" xml:space="preserve">
+    <value>The server connection must be tested with a valid address before you can save</value>
+  </data>
+  <data name="PasswordLabel" xml:space="preserve">
+    <value>Password:</value>
+  </data>
+  <data name="TestConnectionLabel" xml:space="preserve">
+    <value>Test Connection</value>
+  </data>
+  <data name="UserNameLabel" xml:space="preserve">
+    <value>User Name:</value>
+  </data>
+  <data name="DefaultQueryLabel" xml:space="preserve">
+    <value>Default Query:</value>
+  </data>
+  <data name="TestDefaultLabel" xml:space="preserve">
+    <value>Test/Default:</value>
+  </data>
+  <data name="MenuDialogDatabaseLabel" xml:space="preserve">
+    <value>Database</value>
+  </data>
+  <data name="MenuDialogDebugLabel" xml:space="preserve">
+    <value>Debug</value>
+  </data>
+  <data name="MenuDialogDeployLabel" xml:space="preserve">
+    <value>Deploy</value>
+  </data>
+  <data name="MenuDialogDLLLabel" xml:space="preserve">
+    <value>DLL</value>
+  </data>
+  <data name="MenuDialogForumsLabel" xml:space="preserve">
+    <value>Forums</value>
+  </data>
+  <data name="MenuDialogLockLabel" xml:space="preserve">
+    <value>Lock Menu</value>
+  </data>
+  <data name="MenuDialogNewLabel" xml:space="preserve">
+    <value>New</value>
+  </data>
+  <data name="MenuDialogNewVersionLabel" xml:space="preserve">
+    <value>New Version</value>
+  </data>
+  <data name="MenuDialogSaveLabel" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="MenuDialogSettingsLabel" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="MenuDialogSupportLabel" xml:space="preserve">
+    <value>Support</value>
+  </data>
+  <data name="MenuDialogTaskLabel" xml:space="preserve">
+    <value>Task</value>
+  </data>
+  <data name="MenuDialogToursLabel" xml:space="preserve">
+    <value>Tours</value>
+  </data>
+  <data name="MenuDialogUnLockLabel" xml:space="preserve">
+    <value>Unlock Menu</value>
+  </data>
+  <data name="MenuDialogWebLabel" xml:space="preserve">
+    <value>Web</value>
+  </data>
+  <data name="ConnectControlConnectionsToolTip" xml:space="preserve">
+    <value>Select the Warewolf server you want to use or add a new one</value>
+  </data>
+  <data name="ConnectControlEditConnectionToolTip" xml:space="preserve">
+    <value>Edit the selected server</value>
+  </data>
+  <data name="ConnectControlToggleConnectionToolTip" xml:space="preserve">
+    <value>Connect / disconnect the selected server</value>
+  </data>
+  <data name="DebugToolTip" xml:space="preserve">
+    <value>Run and debug your workflow service</value>
+  </data>
+  <data name="EnvironmentExplorerRefreshToolTip" xml:space="preserve">
+    <value>EnvironmentExplorerRefreshToolTip</value>
+  </data>
+  <data name="ExplorerItemEditToolTip" xml:space="preserve">
+    <value>You have view permission on this item. Click to open</value>
+  </data>
+  <data name="ExplorerItemExecuteToolTip" xml:space="preserve">
+    <value>You have execute permission on this item. Click to execute</value>
+  </data>
+  <data name="ExplorerRefreshToolTip" xml:space="preserve">
+    <value>Refresh the connected resources</value>
+  </data>
+  <data name="ExplorerSearchToolTip" xml:space="preserve">
+    <value>Filter the connected resources</value>
+  </data>
+  <data name="MenuDatabaseToolTip" xml:space="preserve">
+    <value>Create a new database connector</value>
+  </data>
+  <data name="MenuDeployToolTip" xml:space="preserve">
+    <value>Move resources between Warewolf servers</value>
+  </data>
+  <data name="MenuDownloadToolTip" xml:space="preserve">
+    <value>A new version of Warewolf is available for download</value>
+  </data>
+  <data name="MenuHelpToolTip" xml:space="preserve">
+    <value>Get some help from the community and other resources</value>
+  </data>
+  <data name="MenuLockToolTip" xml:space="preserve">
+    <value>Lock / unlock the menu</value>
+  </data>
+  <data name="MenuNewServiceToolTip" xml:space="preserve">
+    <value>Create a new service</value>
+  </data>
+  <data name="MenuPluginToolTip" xml:space="preserve">
+    <value>Create a new plugin connector</value>
+  </data>
+  <data name="MenuSaveToolTip" xml:space="preserve">
+    <value>Save this tab</value>
+  </data>
+  <data name="MenuSchedulerToolTip" xml:space="preserve">
+    <value>Schedule a service to run</value>
+  </data>
+  <data name="MenuSettingsToolTip" xml:space="preserve">
+    <value>Configure settings</value>
+  </data>
+  <data name="MenuWebServiceToolTip" xml:space="preserve">
+    <value>Create a new web service</value>
+  </data>
+  <data name="ServerSourceDialogAddressPortTip" xml:space="preserve">
+    <value>Enter the port on the server</value>
+  </data>
+  <data name="ServerSourceDialogAddressSaveTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ServerSourceDialogAddressToolTip" xml:space="preserve">
+    <value>Enter the IP address, domain name or computer name of the server you want to connect to</value>
+  </data>
+  <data name="UserAuthenticationToolTip" xml:space="preserve">
+    <value>Connect using a specific account</value>
+  </data>
+  <data name="PasswordToolTip" xml:space="preserve">
+    <value>Enter the corresponding password</value>
+  </data>
+  <data name="ServerSourceDialogProtocolToolTip" xml:space="preserve">
+    <value>Select the protocol you want to connect on</value>
+  </data>
+  <data name="ServerSourceDialogPublicToolTip" xml:space="preserve">
+    <value>Connect using Public credentials only</value>
+  </data>
+  <data name="ServerSourceDialogsTestToolTip" xml:space="preserve">
+    <value>Test the connection to the server using these credentials</value>
+  </data>
+  <data name="UserNameToolTip" xml:space="preserve">
+    <value>Enter the user name you want to connect with</value>
+  </data>
+  <data name="WindowsAuthenticationToolTip" xml:space="preserve">
+    <value>Connect using the logged on users credentials</value>
+  </data>
+  <data name="ToolDescriptor_ToolDescriptor_Tool_guids_are_not_allowed_to_be_the_empty_guid" xml:space="preserve">
+    <value>Tool guids are not allowed to be the empty guid</value>
+  </data>
+  <data name="DatabaseSourceDatabaseLabel" xml:space="preserve">
+    <value>Database:</value>
+  </data>
+  <data name="DatabaseSourceDatabaseToolTip" xml:space="preserve">
+    <value>Select the database this source will use</value>
+  </data>
+  <data name="DatabaseSourceServerLabel" xml:space="preserve">
+    <value>Server:</value>
+  </data>
+  <data name="DatabaseSourceServerNewHeaderLabel" xml:space="preserve">
+    <value>New Database Source</value>
+  </data>
+  <data name="PluginSourceNewHeaderLabel" xml:space="preserve">
+    <value>New Plugin Source</value>
+  </data>
+  <data name="PluginSourceEditHeaderLabel" xml:space="preserve">
+    <value>Edit Plugin Source - </value>
+  </data>
+  <data name="PluginServiceNewHeaderLabel" xml:space="preserve">
+    <value>New Plugin Connector</value>
+  </data>
+  <data name="PluginSserviceEditHeaderLabel" xml:space="preserve">
+    <value>Edit Plugin Connector - </value>
+  </data>
+  <data name="DatabaseSourceServerEditHeaderLabel" xml:space="preserve">
+    <value>Edit Database Source - </value>
+  </data>
+  <data name="DatabaseWebserviceLabel" xml:space="preserve">
+    <value>Address:</value>
+  </data>
+  <data name="WebserviceNewHeaderLabel" xml:space="preserve">
+    <value>New Web Service Source</value>
+  </data>
+  <data name="WebserviceEditHeaderLabel" xml:space="preserve">
+    <value>Edit Web Service Source - </value>
+  </data>
+  <data name="DatabaseSourceServerToolTip" xml:space="preserve">
+    <value>Select the database source you want to use</value>
+  </data>
+  <data name="DatabaseSourceTypeLabel" xml:space="preserve">
+    <value>Type:</value>
+  </data>
+  <data name="DatabaseSourceTypeToolTip" xml:space="preserve">
+    <value>Select the type of database you want to connect to</value>
+  </data>
+  <data name="WebserviceTabHeader" xml:space="preserve">
+    <value>New Web Service Connector</value>
+  </data>
+  <data name="WebserviceHeader" xml:space="preserve">
+    <value>Select Request Method and Source</value>
+  </data>
+  <data name="WebserviceHeadersHeader" xml:space="preserve">
+    <value>Header</value>
+  </data>
+  <data name="WebserviceRequestHeader" xml:space="preserve">
+    <value>Request</value>
+  </data>
+  <data name="WebserviceVariablesHeader" xml:space="preserve">
+    <value>Variables</value>
+  </data>
+  <data name="WebserviceResponseHeader" xml:space="preserve">
+    <value>Response</value>
+  </data>
+  <data name="WebserviceRequestURLHeader" xml:space="preserve">
+    <value>URL</value>
+  </data>
+  <data name="WebserviceRequestBodyHeader" xml:space="preserve">
+    <value>Body</value>
+  </data>
+  <data name="DefaultMappings" xml:space="preserve">
+    <value>Defaults and Mapping</value>
+  </data>
+  <data name="CancelTest" xml:space="preserve">
+    <value>Cancel Test</value>
+  </data>
+  <data name="DatabaseSourceServerTypesHelp" xml:space="preserve">
+    <value>&lt;body&gt;&lt;p&gt;DatabaseSourceServerTypesHelp&lt;/p&gt;&lt;/body&gt;</value>
+  </data>
+  <data name="DatabaseSourceDatabasesHelp" xml:space="preserve">
+    <value>&lt;body&gt;&lt;p&gt;DatabaseSourceDatabasesHelp&lt;/p&gt;&lt;/body&gt;</value>
+  </data>
+  <data name="DatabaseSourceSaveHelp" xml:space="preserve">
+    <value>&lt;body&gt;&lt;p&gt;DatabaseSourceSaveHelp&lt;/p&gt;&lt;/body&gt;</value>
+  </data>
+  <data name="DatabaseSourceServerHelp" xml:space="preserve">
+    <value>&lt;body&gt;&lt;p&gt;DatabaseSourceServerHelp&lt;/p&gt;&lt;/body&gt;</value>
+  </data>
+  <data name="DatabaseSourceTestConnectionHelp" xml:space="preserve">
+    <value>&lt;body&gt;&lt;p&gt;DatabaseSourceTestConnectionHelp&lt;/p&gt;&lt;/body&gt;</value>
+  </data>
+  <data name="DatabaseSourceCancelHelp" xml:space="preserve">
+    <value>&lt;body&gt;&lt;p&gt;DatabaseSourceCancelHelp&lt;/p&gt;&lt;/body&gt;</value>
+  </data>
+  <data name="DatabaseServiceSourceTypesHelp" xml:space="preserve">
+    <value>&lt;body&gt;&lt;p&gt;DatabaseServiceSourceTypesHelp&lt;/p&gt;&lt;/body&gt;</value>
+  </data>
+  <data name="DatabaseServiceEditSourceHelp" xml:space="preserve">
+    <value>&lt;body&gt;&lt;p&gt;DatabaseServiceEditSourceHelp&lt;/p&gt;&lt;/body&gt;</value>
+  </data>
+  <data name="DatabaseServiceNewSourceHelp" xml:space="preserve">
+    <value>&lt;body&gt;&lt;p&gt;DatabaseServiceNewSourceHelp&lt;/p&gt;&lt;/body&gt;</value>
+  </data>
+  <data name="DatabaseServiceSelectActionHelp" xml:space="preserve">
+    <value>&lt;body&gt;&lt;p&gt;DatabaseServiceSelectActionHelp&lt;/p&gt;&lt;/body&gt;</value>
+  </data>
+  <data name="DatabaseServiceRefreshHelp" xml:space="preserve">
+    <value>&lt;body&gt;&lt;p&gt;DatabaseServiceRefreshHelp&lt;/p&gt;&lt;/body&gt;</value>
+  </data>
+  <data name="DatabaseServiceInputsHelp" xml:space="preserve">
+    <value>&lt;body&gt;&lt;p&gt;DatabaseServiceInputsHelp&lt;/p&gt;&lt;/body&gt;</value>
+  </data>
+  <data name="DatabaseServiceTestHelp" xml:space="preserve">
+    <value>&lt;body&gt;&lt;p&gt;DatabaseServiceTestHelp&lt;/p&gt;&lt;/body&gt;</value>
+  </data>
+  <data name="DatabaseServiceSaveHelp" xml:space="preserve">
+    <value>&lt;body&gt;&lt;p&gt;DatabaseServiceSaveHelp&lt;/p&gt;&lt;/body&gt;</value>
+  </data>
+  <data name="WebServiceWebRequestHelp" xml:space="preserve">
+    <value>&lt;body&gt;&lt;p&gt;WebServiceWebRequestHelp&lt;/p&gt;&lt;/body&gt;</value>
+  </data>
+  <data name="WebServiceSourcesHelp" xml:space="preserve">
+    <value>&lt;body&gt;&lt;p&gt;WebServiceSourcesHelp&lt;/p&gt;&lt;/body&gt;</value>
+  </data>
+  <data name="WebServiceSelectedSourceHelp" xml:space="preserve">
+    <value>&lt;body&gt;&lt;p&gt;WebServiceSelectedSourceHelp&lt;/p&gt;&lt;/body&gt;</value>
+  </data>
+  <data name="WebServiceNewWebSourceHelp" xml:space="preserve">
+    <value>&lt;body&gt;&lt;p&gt;WebServiceNewWebSourceHelp&lt;/p&gt;&lt;/body&gt;</value>
+  </data>
+  <data name="WebServiceRequestBodyHelp" xml:space="preserve">
+    <value>&lt;body&gt;&lt;p&gt;WebServiceRequestBodyHelp&lt;/p&gt;&lt;/body&gt;</value>
+  </data>
+  <data name="WebServiceRequestUrlHelp" xml:space="preserve">
+    <value>&lt;body&gt;&lt;p&gt;WebServiceRequestUrlHelp&lt;/p&gt;&lt;/body&gt;</value>
+  </data>
+  <data name="WebServiceTestCommandHelp" xml:space="preserve">
+    <value>&lt;body&gt;&lt;p&gt;WebServiceTestCommandHelp&lt;/p&gt;&lt;/body&gt;</value>
+  </data>
+  <data name="WebServicePasteHelp" xml:space="preserve">
+    <value>&lt;body&gt;&lt;p&gt;WebServicePasteHelp&lt;/p&gt;&lt;/body&gt;</value>
+  </data>
+  <data name="WebServiceSaveCommandHelp" xml:space="preserve">
+    <value>&lt;body&gt;&lt;p&gt;WebServiceSaveCommandHelp&lt;/p&gt;&lt;/body&gt;</value>
+  </data>
+  <data name="WebServiceCancelCommandHelp" xml:space="preserve">
+    <value>&lt;body&gt;&lt;p&gt;WebServiceCancelCommandHelp&lt;/p&gt;&lt;/body&gt;</value>
+  </data>
+  <data name="WebServicePasteInputHelp" xml:space="preserve">
+    <value>&lt;body&gt;&lt;p&gt;WebServicePasteInputHelp&lt;/p&gt;&lt;/body&gt;</value>
+  </data>
+  <data name="WebServicePasteSaveCommandHelp" xml:space="preserve">
+    <value>&lt;body&gt;&lt;p&gt;WebServicePasteSaveCommandHelp&lt;/p&gt;&lt;/body&gt;</value>
+  </data>
+  <data name="WebServicePasteCancelCommandHelp" xml:space="preserve">
+    <value>&lt;body&gt;&lt;p&gt;WebServicePasteCancelCommandHelp&lt;/p&gt;&lt;/body&gt;</value>
+  </data>
+  <data name="PluginSourceClearSearchHelp" xml:space="preserve">
+    <value>&lt;body&gt;&lt;p&gt;PluginSourceClearSearchHelp&lt;/p&gt;&lt;/body&gt;</value>
+  </data>
+  <data name="PluginSourceRefreshCommandHelp" xml:space="preserve">
+    <value>&lt;body&gt;&lt;p&gt;PluginSourceRefreshCommandHelp&lt;/p&gt;&lt;/body&gt;</value>
+  </data>
+  <data name="PluginSourceDllFullNameHelp" xml:space="preserve">
+    <value>&lt;body&gt;&lt;p&gt;PluginSourceDllFullNameHelp&lt;/p&gt;&lt;/body&gt;</value>
+  </data>
+  <data name="PluginSourceOkCommandHelp" xml:space="preserve">
+    <value>&lt;body&gt;&lt;p&gt;PluginSourceOkCommandHelp&lt;/p&gt;&lt;/body&gt;</value>
+  </data>
+  <data name="PluginSourceCancelCommandHelp" xml:space="preserve">
+    <value>&lt;body&gt;&lt;p&gt;PluginSourceCancelCommandHelp&lt;/p&gt;&lt;/body&gt;</value>
+  </data>
+  <data name="PluginServiceSourcesHelp" xml:space="preserve">
+    <value>&lt;body&gt;&lt;p&gt;PluginServiceSourcesHelp&lt;/p&gt;&lt;/body&gt;</value>
+  </data>
+  <data name="PluginServiceEditSourceHelp" xml:space="preserve">
+    <value>&lt;body&gt;&lt;p&gt;PluginServiceEditSourceHelp&lt;/p&gt;&lt;/body&gt;</value>
+  </data>
+  <data name="PluginServiceNewSourceHelp" xml:space="preserve">
+    <value>&lt;body&gt;&lt;p&gt;PluginServiceNewSourceHelp&lt;/p&gt;&lt;/body&gt;</value>
+  </data>
+  <data name="PluginServiceNamespaceHelp" xml:space="preserve">
+    <value>&lt;body&gt;&lt;p&gt;PluginServiceNamespaceHelp&lt;/p&gt;&lt;/body&gt;</value>
+  </data>
+  <data name="PluginServiceSelectActionHelp" xml:space="preserve">
+    <value>&lt;body&gt;&lt;p&gt;PluginServiceSelectActionHelp&lt;/p&gt;&lt;/body&gt;</value>
+  </data>
+  <data name="PluginServiceRefreshHelp" xml:space="preserve">
+    <value>&lt;body&gt;&lt;p&gt;PluginServiceRefreshHelp&lt;/p&gt;&lt;/body&gt;</value>
+  </data>
+  <data name="PluginServiceTestInputHelp" xml:space="preserve">
+    <value>&lt;body&gt;&lt;p&gt;PluginServiceTestInputHelp&lt;/p&gt;&lt;/body&gt;</value>
+  </data>
+  <data name="PluginServiceTestResultsHelp" xml:space="preserve">
+    <value>&lt;body&gt;&lt;p&gt;PluginServiceTestResultsHelp&lt;/p&gt;&lt;/body&gt;</value>
+  </data>
+  <data name="PluginServiceSaveCommandHelp" xml:space="preserve">
+    <value>&lt;body&gt;&lt;p&gt;PluginServiceSaveCommandHelp&lt;/p&gt;&lt;/body&gt;</value>
+  </data>
+  <data name="PluginServiceCancelCommandHelp" xml:space="preserve">
+    <value>&lt;body&gt;&lt;p&gt;PluginServiceCancelCommandHelp&lt;/p&gt;&lt;/body&gt;</value>
+  </data>
+  <data name="EmailSourceNewHeaderLabel" xml:space="preserve">
+    <value>New Email Source</value>
+  </data>
+  <data name="EmailSourceEditHeaderLabel" xml:space="preserve">
+    <value>Edit Email Source - </value>
+  </data>
+  <data name="HostNameLabel" xml:space="preserve">
+    <value>Host</value>
+  </data>
+  <data name="EmailSourceEnableSslLabel" xml:space="preserve">
+    <value>Enable SSL</value>
+  </data>
+  <data name="PortLabel" xml:space="preserve">
+    <value>Port</value>
+  </data>
+  <data name="EmailSourceTimeoutLabel" xml:space="preserve">
+    <value>Timeout</value>
+  </data>
+  <data name="EmailSourceEmailFromLabel" xml:space="preserve">
+    <value>From</value>
+  </data>
+  <data name="EmailSourceEmailToLabel" xml:space="preserve">
+    <value>To</value>
+  </data>
+  <data name="EmailSourceHostNameHelp" xml:space="preserve">
+    <value>&lt;body&gt;&lt;p&gt;EmailSourceHostNameHelp&lt;/p&gt;&lt;/body&gt;</value>
+  </data>
+  <data name="EmailSourceEnableSslHelp" xml:space="preserve">
+    <value>&lt;body&gt;&lt;p&gt;EmailSourceEnableSslHelp&lt;/p&gt;&lt;/body&gt;</value>
+  </data>
+  <data name="EmailSourcePortHelp" xml:space="preserve">
+    <value>&lt;body&gt;&lt;p&gt;EmailSourcePortHelp&lt;/p&gt;&lt;/body&gt;</value>
+  </data>
+  <data name="EmailSourceTimeoutHelp" xml:space="preserve">
+    <value>&lt;body&gt;&lt;p&gt;EmailSourceTimeoutHelp&lt;/p&gt;&lt;/body&gt;</value>
+  </data>
+  <data name="EmailSourceEmailFromHelp" xml:space="preserve">
+    <value>&lt;body&gt;&lt;p&gt;EmailSourceEmailFromHelp&lt;/p&gt;&lt;/body&gt;</value>
+  </data>
+  <data name="EmailSourceEmailToHelp" xml:space="preserve">
+    <value>&lt;body&gt;&lt;p&gt;EmailSourceEmailToHelp&lt;/p&gt;&lt;/body&gt;</value>
+  </data>
+  <data name="EmailSourceTestHelp" xml:space="preserve">
+    <value>&lt;body&gt;&lt;p&gt;EmailSourceTestHelp&lt;/p&gt;&lt;/body&gt;</value>
+  </data>
+  <data name="EmailSourceSaveHelp" xml:space="preserve">
+    <value>&lt;body&gt;&lt;p&gt;EmailSourceSaveHelp&lt;/p&gt;&lt;/body&gt;</value>
+  </data>
+  <data name="EmailSourceCancelHelp" xml:space="preserve">
+    <value>&lt;body&gt;&lt;p&gt;EmailSourceCancelHelp&lt;/p&gt;&lt;/body&gt;</value>
+  </data>
+  <data name="MappingsRecordsetNameHelp" xml:space="preserve">
+    <value>&lt;body&gt;&lt;p&gt;MappingsRecordsetNameHelp&lt;/p&gt;&lt;/body&gt;</value>
+  </data>
+  <data name="ServerProtocolHelp" xml:space="preserve">
+    <value>&lt;body&gt;&lt;p&gt;ServerProtocolHelp&lt;/p&gt;&lt;/body&gt;</value>
+  </data>
+  <data name="ServerAddressHelp" xml:space="preserve">
+    <value>&lt;body&gt;&lt;p&gt;ServerAddressHelp&lt;/p&gt;&lt;/body&gt;</value>
+  </data>
+  <data name="ServerSelectWindowsHelp" xml:space="preserve">
+    <value>&lt;body&gt;&lt;p&gt;ServerSelectWindowsHelp&lt;/p&gt;&lt;/body&gt;</value>
+  </data>
+  <data name="ServerSelectUserHelp" xml:space="preserve">
+    <value>&lt;body&gt;&lt;p&gt;ServerSelectUserHelp&lt;/p&gt;&lt;/body&gt;</value>
+  </data>
+  <data name="ServerSelectPublicHelp" xml:space="preserve">
+    <value>&lt;body&gt;&lt;p&gt;ServerSelectPublicHelp&lt;/p&gt;&lt;/body&gt;</value>
+  </data>
+  <data name="ServerSelectPortHelp" xml:space="preserve">
+    <value>&lt;body&gt;&lt;p&gt;ServerSelectPortHelp&lt;/p&gt;&lt;/body&gt;</value>
+  </data>
+  <data name="ServerTestConnectionHelp" xml:space="preserve">
+    <value>&lt;body&gt;&lt;p&gt;ServerTestConnectionHelp&lt;/p&gt;&lt;/body&gt;</value>
+  </data>
+  <data name="ServerSaveHelp" xml:space="preserve">
+    <value>&lt;body&gt;&lt;p&gt;ServerSaveHelp&lt;/p&gt;&lt;/body&gt;</value>
+  </data>
+  <data name="PasswordAuthenticationHelp" xml:space="preserve">
+    <value>&lt;body&gt;&lt;p&gt;PasswordAuthenticationHelp&lt;/p&gt;&lt;/body&gt;</value>
+  </data>
+  <data name="UserAuthenticationHelp" xml:space="preserve">
+    <value>&lt;body&gt;&lt;p&gt;UserAuthenticationHelp&lt;/p&gt;&lt;/body&gt;</value>
+  </data>
+  <data name="UserNameAuthenticationHelp" xml:space="preserve">
+    <value>&lt;body&gt;&lt;p&gt;UserNameAuthenticationHelp&lt;/p&gt;&lt;/body&gt;</value>
+  </data>
+  <data name="WindowsAuthenticationHelp" xml:space="preserve">
+    <value>&lt;body&gt;&lt;p&gt;WindowsAuthenticationHelp&lt;/p&gt;&lt;/body&gt;</value>
+  </data>
+  <data name="ConnectControlViewSelectHelp" xml:space="preserve">
+    <value>&lt;body&gt;&lt;p&gt;ConnectControlViewSelectHelp&lt;/p&gt;&lt;/body&gt;</value>
+  </data>
+  <data name="ConnectControlViewEditHelp" xml:space="preserve">
+    <value>&lt;body&gt;&lt;p&gt;ConnectControlViewEditHelp&lt;/p&gt;&lt;/body&gt;</value>
+  </data>
+  <data name="ConnectControlViewToggleConnectionHelp" xml:space="preserve">
+    <value>&lt;body&gt;&lt;p&gt;ConnectControlViewToggleConnectionHelp&lt;/p&gt;&lt;/body&gt;</value>
+  </data>
+  <data name="ExplorerViewFilterSearchHelp" xml:space="preserve">
+    <value>&lt;body&gt;&lt;p&gt;ExplorerViewFilterSearchHelp&lt;/p&gt;&lt;/body&gt;</value>
+  </data>
+  <data name="ExplorerViewRefreshHelp" xml:space="preserve">
+    <value>&lt;body&gt;&lt;p&gt;ExplorerViewRefreshHelp&lt;/p&gt;&lt;/body&gt;</value>
+  </data>
+  <data name="DatabaseServiceActionHeader" xml:space="preserve">
+    <value>Select an Action</value>
+  </data>
+  <data name="DatabaseServiceDBSourceHeader" xml:space="preserve">
+    <value>Data Source</value>
+  </data>
+  <data name="DatabaseServiceDBSourceTabHeader" xml:space="preserve">
+    <value>New DB Connector</value>
+  </data>
+  <data name="DatabaseServiceDBSourceEditTabHeader" xml:space="preserve">
+    <value>Edit:</value>
+  </data>
+  <data name="DatabaseServiceInputsHeader" xml:space="preserve">
+    <value>Inputs</value>
+  </data>
+  <data name="DatabaseServiceInspectHeader" xml:space="preserve">
+    <value>Inspect Data Connector</value>
+  </data>
+  <data name="DatabaseServiceMappingsHeader" xml:space="preserve">
+    <value>Edit Defaults and Mapping Names</value>
+  </data>
+  <data name="DatabaseServiceMappingsNameHeader" xml:space="preserve">
+    <value>h</value>
+  </data>
+  <data name="DatabaseServiceOutputsLabel" xml:space="preserve">
+    <value>Outputs</value>
+  </data>
+  <data name="DatabaseServiceTestHeader" xml:space="preserve">
+    <value>Test Connector and Calculate Outputs</value>
+  </data>
+  <data name="New" xml:space="preserve">
+    <value>New</value>
+  </data>
+  <data name="AnonymousAuthenticationToolTip" xml:space="preserve">
+    <value>Connect using anonymous</value>
+  </data>
+  <data name="ViewInBrowserLabel" xml:space="preserve">
+    <value>View Results In Browser</value>
+  </data>
+
+  <data name="DevUrl" xml:space="preserve">
+    <value>http://dev2.co.za/</value>
+  </data>
+  <data name="WarewolfUrl" xml:space="preserve">
+    <value>http://warewolf.io/</value>
+  </data>
+  <data name="ContributorsUrl" xml:space="preserve">
+    <value>http://warewolf.io/contributors.php</value>
+  </data>
+  <data name="CommunityUrl" xml:space="preserve">
+    <value>http://community.warewolf.io/</value>
+  </data>
+  <data name="ExpertHelpUrl" xml:space="preserve">
+    <value>http://warewolf.io/knowledge-base/</value>
+  </data>
+
+</root>

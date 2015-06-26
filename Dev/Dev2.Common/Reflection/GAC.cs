@@ -1,6 +1,6 @@
 /*
 *  Warewolf - The Easy Service Bus
-*  Copyright 2014 by Warewolf Ltd <alpha@warewolf.io>
+*  Copyright 2015 by Warewolf Ltd <alpha@warewolf.io>
 *  Licensed under GNU Affero General Public License 3.0 or later. 
 *  Some rights reserved.
 *  Visit our website for more information <http://warewolf.io/>
@@ -138,10 +138,8 @@ namespace Dev2.Common.Reflection
         QUERYASMINFO_FLAG_GETSIZE = 2
     }
 
-#pragma warning disable 1584,1711,1572,1581,1580
-#pragma warning restore 1584,1711,1572,1581,1580
     /// <summary>
-    ///     <see cref="IAssemblyChance.InstallAssembly" />
+    ///     <see cref="IAssemblyCache.InstallAssembly" />
     /// </summary>
     public enum IASSEMBLYCACHE_INSTALL_FLAG
     {

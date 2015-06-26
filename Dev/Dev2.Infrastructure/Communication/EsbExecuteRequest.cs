@@ -1,7 +1,7 @@
 
 /*
 *  Warewolf - The Easy Service Bus
-*  Copyright 2014 by Warewolf Ltd <alpha@warewolf.io>
+*  Copyright 2015 by Warewolf Ltd <alpha@warewolf.io>
 *  Licensed under GNU Affero General Public License 3.0 or later. 
 *  Some rights reserved.
 *  Visit our website for more information <http://warewolf.io/>
@@ -11,14 +11,14 @@
 
 using System.Collections.Generic;
 using System.Text;
+using Dev2.Common.Interfaces;
 
 namespace Dev2.Communication
 {
-
     /// <summary>
     /// Internal Service Request Object - Used mainly by the studio, but server can send request if service is web based
     /// </summary>
-    public class EsbExecuteRequest
+    public class EsbExecuteRequest : IEsbExecuteRequest
     {
         public string ServiceName { get; set; }
 

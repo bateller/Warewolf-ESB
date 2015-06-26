@@ -1,7 +1,7 @@
 
 /*
 *  Warewolf - The Easy Service Bus
-*  Copyright 2014 by Warewolf Ltd <alpha@warewolf.io>
+*  Copyright 2015 by Warewolf Ltd <alpha@warewolf.io>
 *  Licensed under GNU Affero General Public License 3.0 or later. 
 *  Some rights reserved.
 *  Visit our website for more information <http://warewolf.io/>
@@ -70,7 +70,7 @@ namespace Dev2.Tests
         public void GenerateWithGuidExpectedValidGuid()
         {
             var result = _dev2Random.GetRandom(enRandomType.Guid, -1, -1, -1);
-            var tryParse = new Guid();
+            Guid tryParse;
             Assert.IsTrue(Guid.TryParse(result, out tryParse), "Did not generate a valid guid");
             Assert.AreNotEqual(Guid.Empty, tryParse, "Generated an empty Guid");
         }

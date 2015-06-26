@@ -1,7 +1,7 @@
 
 /*
 *  Warewolf - The Easy Service Bus
-*  Copyright 2014 by Warewolf Ltd <alpha@warewolf.io>
+*  Copyright 2015 by Warewolf Ltd <alpha@warewolf.io>
 *  Licensed under GNU Affero General Public License 3.0 or later. 
 *  Some rights reserved.
 *  Visit our website for more information <http://warewolf.io/>
@@ -18,7 +18,6 @@ namespace Dev2.Data.Interfaces
 {
     public interface IDev2ReplaceOperation
     {
-
         /// <summary>
         /// Replaces a value in and entry with a new value.
         /// </summary>
@@ -30,6 +29,7 @@ namespace Dev2.Data.Interfaces
         /// <param name="payloadBuilder">The payload builder.</param>
         /// <param name="errors">The errors.</param>
         /// <param name="ReplaceCount">The replace count.</param>
+        /// <param name="entryToReplaceIn"></param>
         /// <returns></returns>
         IDev2DataListUpsertPayloadBuilder<string> Replace(Guid exIdx,
             string expression,

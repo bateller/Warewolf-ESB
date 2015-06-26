@@ -17,12 +17,13 @@ using System.Security.Claims;
 using System.Windows;
 using System.Windows.Input;
 using Caliburn.Micro;
-using Dev2.AppResources.Repositories;
 using Dev2.Common;
 using Dev2.Common.ExtMethods;
 using Dev2.Common.Interfaces;
+using Dev2.Common.Interfaces.Services.Security;
 using Dev2.Common.Interfaces.Studio;
 using Dev2.Common.Interfaces.Studio.Controller;
+using Dev2.Common.Interfaces.Threading;
 using Dev2.ConnectionHelpers;
 using Dev2.CustomControls.Connections;
 using Dev2.Data.ServiceModel;
@@ -53,8 +54,6 @@ using Dev2.Studio.Core.ViewModels.Base;
 using Dev2.Studio.Core.Workspaces;
 using Dev2.Studio.Enums;
 using Dev2.Studio.Factory;
-using Dev2.Studio.Feedback;
-using Dev2.Studio.Feedback.Actions;
 using Dev2.Studio.ViewModels.DependencyVisualization;
 using Dev2.Studio.ViewModels.Explorer;
 using Dev2.Studio.ViewModels.Help;
@@ -129,17 +128,11 @@ namespace Dev2.Studio.ViewModels
 
         public IEnvironmentRepository EnvironmentRepository { get; private set; }
 
-        public IFeedbackInvoker FeedbackInvoker { get; set; }
-
-        public IFeedBackRecorder FeedBackRecorder { get; set; }
-
         public IFrameworkRepository<UserInterfaceLayoutModel> UserInterfaceLayoutRepository { get; set; }
 
         #endregion imports
 
         public bool CloseCurrent { get; set; }
-
-        public static bool IsBusy { get; set; }
 
         public ExplorerViewModel ExplorerViewModel
         {
@@ -384,7 +377,7 @@ namespace Dev2.Studio.ViewModels
 
         public MainViewModel(IEventAggregator eventPublisher, IAsyncWorker asyncWorker, IEnvironmentRepository environmentRepository,
             IVersionChecker versionChecker, bool createDesigners = true, IBrowserPopupController browserPopupController = null,
-            IPopupController popupController = null, IWindowManager windowManager = null, IWebController webController = null, IFeedbackInvoker feedbackInvoker = null, IStudioResourceRepository studioResourceRepository = null, IConnectControlSingleton connectControlSingleton = null, IConnectControlViewModel connectControlViewModel = null)
+            IPopupController popupController = null, IWindowManager windowManager = null, IWebController webController = null, IStudioResourceRepository studioResourceRepository = null, IConnectControlSingleton connectControlSingleton = null, Dev2.CustomControls.Connections.IConnectControlViewModel connectControlViewModel = null)
             : base(eventPublisher)
         {
             if(environmentRepository == null)
@@ -406,7 +399,6 @@ namespace Dev2.Studio.ViewModels
             PopupProvider = popupController ?? new PopupController();
             WindowManager = windowManager ?? new WindowManager();
             WebController = webController ?? new WebController();
-            FeedbackInvoker = feedbackInvoker ?? new FeedbackInvoker();
             EnvironmentRepository = environmentRepository;
             FlowController = new FlowController(PopupProvider);
 
@@ -608,7 +600,7 @@ namespace Dev2.Studio.ViewModels
             tempResource.ResourceName = newWorflowName;
             tempResource.DisplayName = newWorflowName;
             tempResource.IsNewWorkflow = true;
-            StudioResourceRepository.AddResouceItem(tempResource);
+           // StudioResourceRepository.AddResouceItem(tempResource);
 
             AddAndActivateWorkSurface(WorkSurfaceContextFactory.CreateResourceViewModel(tempResource));
             AddWorkspaceItem(tempResource);
@@ -639,7 +631,7 @@ namespace Dev2.Studio.ViewModels
         // Write CodedUI Test Because of Silly Chicken affect ;)
         private bool ShowRemovePopup(IWorkflowDesignerViewModel workflowVm)
         {
-            var result = PopupProvider.Show(string.Format(StringResources.DialogBody_NotSaved, workflowVm.ResourceModel.ResourceName), StringResources.DialogTitle_NotSaved,
+            var result = PopupProvider.Show(string.Format(Warewolf.Studio.Resources.Languages.Core.DialogBody_NotSaved, workflowVm.ResourceModel.ResourceName), Warewolf.Studio.Resources.Languages.Core.DialogTitle_NotSaved,
                                             MessageBoxButton.YesNoCancel, MessageBoxImage.Question, null);
 
             switch(result)
@@ -796,7 +788,7 @@ namespace Dev2.Studio.ViewModels
 
         public void ShowCommunityPage()
         {
-            BrowserPopupController.ShowPopup(StringResources.Uri_Community_HomePage);
+            BrowserPopupController.ShowPopup(Warewolf.Studio.Resources.Languages.Core.Uri_Community_HomePage);
         }
 
         #region Overrides of ViewAware
@@ -902,7 +894,7 @@ namespace Dev2.Studio.ViewModels
 
         public async void AddLanguageHelpWorkSurface()
         {
-            var path = FileHelper.GetFullPath(StringResources.Uri_Studio_Language_Reference_Document);
+            var path = FileHelper.GetFullPath(Warewolf.Studio.Resources.Languages.Core.Uri_Studio_Language_Reference_Document);
             ActivateOrCreateUniqueWorkSurface<HelpViewModel>(WorkSurfaceContext.LanguageHelp
                                                              , new[] { new Tuple<string, object>("Uri", path) });
             WorkSurfaceContextViewModel workSurfaceContextViewModel = Items.FirstOrDefault(c => c.WorkSurfaceViewModel.DisplayName == "Language Help" && c.WorkSurfaceViewModel.GetType() == typeof(HelpViewModel));
@@ -910,11 +902,6 @@ namespace Dev2.Studio.ViewModels
             {
                 await ((HelpViewModel)workSurfaceContextViewModel.WorkSurfaceViewModel).LoadBrowserUri(path);
             }
-        }
-
-        public void StartFeedback()
-        {
-            FeedbackInvoker.InvokeFeedback(new EmailFeedbackAction(new Dictionary<string, string>(), ActiveEnvironment), new RecorderFeedbackAction());
         }
 
         #endregion
@@ -1095,9 +1082,9 @@ namespace Dev2.Studio.ViewModels
                             deletionName = contextualResourceModel.ResourceName;
                             description = contextualResourceModel.ResourceType.GetDescription();
                         }
-                        var deletePrompt = String.Format(StringResources.DialogBody_ConfirmDelete, deletionName,
+                        var deletePrompt = String.Format(Warewolf.Studio.Resources.Languages.Core.DialogBody_ConfirmDelete, deletionName,
                             description);
-                        var deleteAnswer = PopupProvider.Show(deletePrompt, StringResources.DialogTitle_ConfirmDelete,
+                        var deleteAnswer = PopupProvider.Show(deletePrompt, Warewolf.Studio.Resources.Languages.Core.DialogTitle_ConfirmDelete,
                             MessageBoxButton.YesNo, MessageBoxImage.Warning, null);
 
                         var shouldDelete = deleteAnswer == MessageBoxResult.Yes;
@@ -1110,8 +1097,8 @@ namespace Dev2.Studio.ViewModels
 
         static bool ShowDeleteDialogForFolder(string folderBeingDeleted, IPopupController result)
         {
-            var deletePrompt = String.Format(StringResources.DialogBody_ConfirmFolderDelete, folderBeingDeleted);
-            var deleteAnswer = result.Show(deletePrompt, StringResources.DialogTitle_ConfirmDelete, MessageBoxButton.YesNo, MessageBoxImage.Warning, null);
+            var deletePrompt = String.Format(Warewolf.Studio.Resources.Languages.Core.DialogBody_ConfirmFolderDelete, folderBeingDeleted);
+            var deleteAnswer = result.Show(deletePrompt, Warewolf.Studio.Resources.Languages.Core.DialogTitle_ConfirmDelete, MessageBoxButton.YesNo, MessageBoxImage.Warning, null);
             var confirmDelete = deleteAnswer == MessageBoxResult.Yes;
             return confirmDelete;
         }

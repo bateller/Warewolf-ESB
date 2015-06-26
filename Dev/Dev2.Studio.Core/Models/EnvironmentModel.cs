@@ -13,6 +13,9 @@ using System;
 using System.Network;
 using Dev2.AppResources.Repositories;
 using Dev2.Common;
+using Dev2.Common.Interfaces;
+using Dev2.Common.Interfaces.Services.Security;
+using Dev2.Common.Interfaces.Studio.Core;
 using Dev2.Security;
 using Dev2.Services.Security;
 using Dev2.Studio.Core.AppResources.Repositories;
@@ -81,10 +84,7 @@ namespace Dev2.Studio.Core.Models
 
         public IAuthorizationService AuthorizationService
         {
-            get
-            {
-                return _authorizationService;
-            }
+            get { return _authorizationService ?? (_authorizationService = CreateAuthorizationService(Connection)); }
             private set
             {
                 _authorizationService = value;
@@ -167,7 +167,7 @@ namespace Dev2.Studio.Core.Models
             }
             if(string.IsNullOrEmpty(Name))
             {
-                throw new ArgumentException(string.Format(StringResources.Error_Connect_Failed, StringResources.Error_DSF_Name_Not_Provided));
+                throw new ArgumentException(string.Format(Warewolf.Studio.Resources.Languages.Core.Error_Connect_Failed, Warewolf.Studio.Resources.Languages.Core.Error_DSF_Name_Not_Provided));
             }
 
             Dev2Logger.Log.Debug("Attempting to connect to [ " + Connection.AppServerUri + " ] ");
@@ -260,7 +260,7 @@ namespace Dev2.Studio.Core.Models
 
         void OnNetworkStateChanged(object sender, NetworkStateEventArgs e)
         {
-            RaiseNetworkStateChanged(e.ToState == NetworkState.Online || e.ToState == NetworkState.Connecting);
+            
             if(e.ToState == NetworkState.Connecting || e.ToState == NetworkState.Offline)
             {
                 _studioRepo.Disconnect(ID);
@@ -278,6 +278,7 @@ namespace Dev2.Studio.Core.Models
                     OnAuthorizationServicePermissionsChanged(null, new EventArgs());
                 }
             }
+            RaiseNetworkStateChanged(e.ToState == NetworkState.Online || e.ToState == NetworkState.Connecting);
         }
 
         void RaiseNetworkStateChanged(bool isOnline)

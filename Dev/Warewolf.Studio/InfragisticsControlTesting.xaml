@@ -1,0 +1,322 @@
+﻿<Window x:Class="Warewolf.Studio.InfragisticsControlTesting"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:core="clr-namespace:Warewolf.Studio.Core;assembly=Warewolf.Studio.Core"
+        xmlns:ig="http://schemas.infragistics.com/xaml"
+        xmlns:igPrim="http://schemas.infragistics.com/xaml/primitives"
+        xmlns:customControls="clr-namespace:Warewolf.Studio.CustomControls;assembly=Warewolf.Studio.CustomControls"
+        xmlns:xamGridEx="clr-namespace:Warewolf.Studio.Views.XamGridEx;assembly=Warewolf.Studio.Views"
+        Title="InfragisticsControlTesting" Height="600" Width="800">
+    <Window.Resources>
+        <Style x:Key="FillerColHeader" TargetType="{x:Type igPrim:HeaderCellControl}">
+            <Setter Property="Visibility" Value="Collapsed"/>
+            <!--<Setter Property="Control.Template">
+            <Setter.Value>
+                <ControlTemplate>
+                          <Border>
+                              <Rectangle Margin="4" SnapsToDevicePixels="true" 
+                              Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" 
+                              StrokeThickness="0" StrokeDashArray="1 2" />
+                          </Border>
+                      </ControlTemplate>
+            </Setter.Value>			
+        </Setter>-->
+        </Style>
+
+        <Style x:Key="FillerColCellStyle"   TargetType="ig:CellControl">
+            <Setter Property="Visibility" Value="Collapsed"/>
+            <!--<Setter Property="BorderBrush" Value="Transparent"/>
+		<Setter Property="BorderThickness" Value="0"/>-->
+        </Style>
+
+        <Style x:Key="AddRowStyling" TargetType="igPrim:AddNewRowCellControl">
+            <Setter Property="FontSize" Value="11" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="Background">
+                <Setter.Value>
+                    <LinearGradientBrush StartPoint="0,1" EndPoint="0,0">
+                        <LinearGradientBrush.GradientStops>
+                            <GradientStopCollection>
+                                <GradientStop Offset="0" Color="#FFFFFFFF"/>
+                                <GradientStop Offset="1" Color="#FFC3C3C3"/>
+                            </GradientStopCollection>
+                        </LinearGradientBrush.GradientStops>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="BorderBrush" Value="#FF666666"/>
+            <Setter Property="BorderThickness" Value="0,2,0,2"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="Padding" Value="5"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="igPrim:AddNewRowCellControl">
+                        <Border x:Name="AddNewRowElem" Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}">
+                            <Grid>
+                                <VisualStateManager.VisualStateGroups>
+                                    <VisualStateGroup x:Name="CommonStates">
+                                        <VisualState x:Name="Normal" />
+                                        <VisualState x:Name="MouseOver"/>
+                                        <VisualState x:Name="Alternate" />
+                                    </VisualStateGroup>
+                                    <VisualStateGroup x:Name="SelectedStates">
+                                        <VisualState x:Name="NotSelected"/>
+                                        <VisualState x:Name="Selected"/>
+                                    </VisualStateGroup>
+                                    <VisualStateGroup x:Name="ActiveStates"/>
+                                    <VisualStateGroup x:Name="FixedStates">
+                                        <VisualState x:Name="Fixed"/>
+                                        <VisualState x:Name="Unfixed"/>
+                                    </VisualStateGroup>
+                                </VisualStateManager.VisualStateGroups>
+                                <Rectangle Fill="#99FFFFFF" Height="1" VerticalAlignment="Top"/>
+                                <Border BorderThickness="0,0,1,0" BorderBrush="#FFC9CACA"/>
+                                <ContentPresenter   VerticalAlignment="{TemplateBinding VerticalContentAlignment}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}"/>
+                            </Grid>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <WrapPanel Orientation="Vertical" Margin="{StaticResource ContainerBorder}">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <ig:XamGrid x:Name="HeadersGrid" 
+                                    AutoGenerateColumns="False"
+                                    Grid.Row="0" 
+                                    Height="Auto"
+                                    Grid.Column="0" 
+                                    MaxWidth="600"
+                                    ColumnWidth="*" 
+                                    MaxHeight="180">
+                <ig:XamGrid.Columns>
+                    <ig:DateColumn Key="Date" HeaderText="Date" EditorDisplayBehavior="Always">
+                        <!--<ig:DateColumn.AddNewRowEditorTemplate>
+                            <DataTemplate>
+                                <TextBox Text="" Margin="0">
+                                    <customControls:WatermarkTextBox.Watermark>
+                                        <Label Style="{StaticResource WatermarkLabelStyle}">Default Value</Label>
+                                    </customControls:WatermarkTextBox.Watermark>
+                                </TextBox>
+                            </DataTemplate>
+                        </ig:DateColumn.AddNewRowEditorTemplate>-->
+                    </ig:DateColumn>
+                    <ig:TextColumn Key="Name" HeaderText="Input" MinimumWidth="100" IsReadOnly="True">
+                        <ig:TextColumn.AddNewRowEditorTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="test"></TextBlock>
+                            </DataTemplate>
+                        </ig:TextColumn.AddNewRowEditorTemplate>
+                    </ig:TextColumn>
+                    <ig:TextColumn Key="DefaultValue" HeaderText="Default Value"  MinimumWidth="100">
+                        <ig:TextColumn.AddNewRowEditorTemplate>
+                            <DataTemplate>
+                                <TextBox Text="" Margin="0">
+                                    <customControls:WatermarkTextBox.Watermark>
+                                        <Label Style="{StaticResource WatermarkLabelStyle}">Default Value</Label>
+                                    </customControls:WatermarkTextBox.Watermark>
+                                </TextBox>
+                            </DataTemplate>
+                        </ig:TextColumn.AddNewRowEditorTemplate>
+                    </ig:TextColumn>
+                    <ig:CheckBoxColumn Key="RequiredField" HeaderText="Required" MinimumWidth="100">
+                        <ig:CheckBoxColumn.AddNewRowEditorTemplate>
+                            <DataTemplate>
+                                <CheckBox HorizontalAlignment="Center"></CheckBox>
+                            </DataTemplate>
+                        </ig:CheckBoxColumn.AddNewRowEditorTemplate>
+                    </ig:CheckBoxColumn>
+                    <ig:CheckBoxColumn Key="EmptyIsNull" HeaderText="Empty Is Null" MinimumWidth="100" IsResizable="False">
+                        <ig:CheckBoxColumn.AddNewRowEditorTemplate>
+                            <DataTemplate>
+                                <CheckBox HorizontalAlignment="Center"></CheckBox>
+                            </DataTemplate>
+                        </ig:CheckBoxColumn.AddNewRowEditorTemplate>
+                    </ig:CheckBoxColumn>
+                </ig:XamGrid.Columns>
+                <ig:XamGrid.AddNewRowSettings>
+                    <ig:AddNewRowSettings AllowAddNewRow="Top" 
+                                                      IsMouseActionEditingEnabled="SingleClick"
+                                                      IsEnterKeyEditingEnabled="True" 
+                                                      IsF2EditingEnabled="True" 
+                                                      IsOnCellActiveEditingEnabled="True"
+                                                      />
+                </ig:XamGrid.AddNewRowSettings>
+                <ig:XamGrid.SortingSettings>
+                    <ig:SortingSettings AllowSorting="False" AllowMultipleColumnSorting="False" ShowSortIndicator="False"/>
+                </ig:XamGrid.SortingSettings>
+                <ig:XamGrid.EditingSettings>
+                    <ig:EditingSettings AllowEditing="Cell"
+                                                    IsMouseActionEditingEnabled="SingleClick"
+                                                    IsEnterKeyEditingEnabled="True" 
+                                                    IsF2EditingEnabled="True" 
+                                                    IsOnCellActiveEditingEnabled="True" />
+                </ig:XamGrid.EditingSettings>
+                <ig:XamGrid.ColumnLayoutHeaderVisibility>
+                    <ig:ColumnLayoutHeaderVisibility>Never</ig:ColumnLayoutHeaderVisibility>
+                </ig:XamGrid.ColumnLayoutHeaderVisibility>
+            </ig:XamGrid>
+
+            <ig:XamComboEditor x:Name="ComboEditor"
+                               Grid.Row="1"
+                               ItemsSource="{Binding DataItem.Cities}"
+                               IsEditable="True"
+                               AllowFiltering="True"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Left"
+                               DisplayMemberPath="Company"
+                               Height="30" Width="300" />
+
+            <AdornerDecorator Grid.Row="2">
+                <TextBox x:Name="SearchTextBox">
+                    <customControls:WatermarkTextBox.Watermark>
+                        <Label Style="{StaticResource WatermarkLabelStyle}">Type here to search text</Label>
+                    </customControls:WatermarkTextBox.Watermark>
+                </TextBox>
+            </AdornerDecorator>
+
+            <xamGridEx:XamGridEx x:Name="TestInputGrid" 
+                                 Grid.Row="3"
+                                 Style="{StaticResource XamGridStyle}"
+                                 AutoGenerateColumns="False"
+                                 IsAlternateRowsEnabled="False"
+                                 ColumnLayoutHeaderVisibility="Never"
+                                 DeleteKeyAction="DeleteRowOfActiveCell"
+                                 ScrollViewer.VerticalScrollBarVisibility="Auto"
+                                 ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                                 ColumnWidth="*" >
+                <ig:XamGrid.Columns>
+                    <ig:TextColumn Key="Name" HeaderText="Name" MinimumWidth="100">
+                        <ig:TextColumn.AddNewRowEditorTemplate>
+                            <DataTemplate>
+                                <TextBox Style="{StaticResource XamGridTextBoxStyle}" 
+                                                             Text="{Binding Path=Name, Mode=TwoWay, NotifyOnValidationError=True, ValidatesOnDataErrors=True}" >
+                                    <customControls:WatermarkTextBox.Watermark>
+                                        <Label Style="{StaticResource WatermarkLabelStyle}">Header</Label>
+                                    </customControls:WatermarkTextBox.Watermark>
+                                </TextBox>
+                            </DataTemplate>
+                        </ig:TextColumn.AddNewRowEditorTemplate>
+                    </ig:TextColumn>
+                    <!--<xamGridEx:TextColumnEx Key="Value" HeaderText="Value" MinimumWidth="100" IsResizable="False" EditorDisplayBehavior="Always">
+                        <xamGridEx:TextColumnEx.AddNewRowEditorTemplate>
+                            <DataTemplate>
+                                <TextBox Style="{StaticResource NoBorderTextBoxStyle}" 
+                                                             Text="{Binding Path=Value, Mode=TwoWay, NotifyOnValidationError=True, ValidatesOnDataErrors=True}" >
+                                    <customControls:WatermarkTextBox.Watermark>
+                                        <Label Style="{StaticResource WatermarkLabelStyle}">Value</Label>
+                                    </customControls:WatermarkTextBox.Watermark>
+                                </TextBox>
+                            </DataTemplate>
+                        </xamGridEx:TextColumnEx.AddNewRowEditorTemplate>
+                    </xamGridEx:TextColumnEx>-->
+                </ig:XamGrid.Columns>
+                <ig:XamGrid.SortingSettings>
+                    <ig:SortingSettings AllowSorting="False" AllowMultipleColumnSorting="False" ShowSortIndicator="False"/>
+                </ig:XamGrid.SortingSettings>
+                <ig:XamGrid.EditingSettings>
+                    <ig:EditingSettings AllowEditing="Cell"
+                                                            IsMouseActionEditingEnabled="SingleClick"
+                                                            IsEnterKeyEditingEnabled="True" 
+                                                            IsF2EditingEnabled="True" 
+                                                            IsOnCellActiveEditingEnabled="True" />
+                </ig:XamGrid.EditingSettings>
+                <ig:XamGrid.ConditionalFormattingSettings>
+                    <ig:ConditionalFormattingSettings AllowConditionalFormatting="True"/>
+                </ig:XamGrid.ConditionalFormattingSettings>
+                <!--<xamGridEx:XamGridEx.ContextMenuSettings>
+                    <xamGridEx:ContextMenuSettings AllowContextMenu="True">
+                        <xamGridEx:ContextMenuSettings.ContextMenu>
+                            <ig:XamContextMenu >
+                                <ig:XamMenuItem Header="Insert Row" Command="{Binding  Path=AddRowCommand}">
+                                    <ig:XamMenuItem.Icon>
+                                        <Image Source="{x:Null}"/>
+                                    </ig:XamMenuItem.Icon>
+                                </ig:XamMenuItem>
+                                <ig:XamMenuItem Header="Delete Row"  Command="{Binding  Path=RemoveRowCommand}">
+                                    <ig:XamMenuItem.Icon>
+                                        <Image Source="{x:Null}"/>
+                                    </ig:XamMenuItem.Icon>
+                                </ig:XamMenuItem>
+                            </ig:XamContextMenu>
+                        </xamGridEx:ContextMenuSettings.ContextMenu>
+                    </xamGridEx:ContextMenuSettings>
+                </xamGridEx:XamGridEx.ContextMenuSettings>-->
+            </xamGridEx:XamGridEx>
+
+
+            <Grid Grid.Row="4" x:Name="LayoutRoot" Background="White">
+                <Grid.Resources>
+                    <!-- Styling -->
+                    <SolidColorBrush Color="#FF3AB5E9" x:Key="ForegroundColorFamily"/>
+                    <SolidColorBrush Color="#FF386A23" x:Key="ForegroundColorFriends"/>
+                    <SolidColorBrush Color="#FFc62d36" x:Key="ForegroundColorCoworkers"/>
+                    <Style x:Key="TxtBlockStyleNickName" TargetType="{x:Type TextBlock}">
+                        <Setter Property="HorizontalAlignment" Value="Center" />
+                        <Setter Property="VerticalAlignment" Value="Center" />
+                        <Setter Property="FontSize" Value="12" />
+                        <Setter Property="FontWeight" Value="Bold" />
+                        <Setter Property="Margin" Value="3,0,3,0" />
+                        <Setter Property="Width" Value="70" />
+                    </Style>
+                    <Style x:Key="TxtBlockStyle" TargetType="{x:Type TextBlock}">
+                        <Setter Property="Margin" Value="2" />
+                        <Setter Property="FontSize" Value="10" />
+                    </Style>
+
+                    <Style x:Key="EditingCellStyle" TargetType="{x:Type ig:CellControl}" 
+                           BasedOn="{StaticResource CellControlStyle}">
+                        <Setter Property="VerticalContentAlignment" Value="Center"/>
+                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                        <Setter Property="Padding" Value="10" />
+                    </Style>
+                </Grid.Resources>
+                <ig:XamGrid x:Name="dataGrid" 
+                    AutoGenerateColumns="False"
+                    ColumnWidth="*">
+                    <ig:XamGrid.Columns>
+                        <!--#BEGIN SNIPPET#-->
+                        <ig:TemplateColumn Key="ContactInfo"
+                                   IsReadOnly="True"
+                                   HeaderText="ContactDetails"
+                                   Width="300"/>
+                        <!--#END SNIPPET#-->
+                        <ig:CheckBoxColumn Key="Reminder"
+                                   HeaderText="BirthdayReminder"/>
+                        <ig:UnboundColumn HeaderText="SendMessage"
+                                  Key="UnboundColumn"
+                                  HorizontalContentAlignment="Center"
+                                  VerticalContentAlignment="Center">
+                            <ig:UnboundColumn.ItemTemplate>
+                                <DataTemplate>
+                                    <Image 
+                                   Height="16"
+                                   Width="16"/>
+                                </DataTemplate>
+                            </ig:UnboundColumn.ItemTemplate>
+                        </ig:UnboundColumn>
+                    </ig:XamGrid.Columns>
+                    <!-- Editing -->
+                    <ig:XamGrid.EditingSettings>
+                        <ig:EditingSettings AllowEditing="Cell" 
+                                    IsMouseActionEditingEnabled="SingleClick" />
+                    </ig:XamGrid.EditingSettings>
+                </ig:XamGrid>
+            </Grid>
+        </Grid>
+    </WrapPanel>
+</Window>

@@ -1,7 +1,7 @@
 
 /*
 *  Warewolf - The Easy Service Bus
-*  Copyright 2014 by Warewolf Ltd <alpha@warewolf.io>
+*  Copyright 2015 by Warewolf Ltd <alpha@warewolf.io>
 *  Licensed under GNU Affero General Public License 3.0 or later. 
 *  Some rights reserved.
 *  Visit our website for more information <http://warewolf.io/>
@@ -62,7 +62,7 @@ namespace Dev2.Runtime.ESB.Management.Services
             var res = new ExecuteMessage { HasError = false };
 
             List<DynamicServiceObjectBase> compiledResources = null;
-            var errorMessage = Resources.CompilerMessage_BuildFailed + " " + DateTime.Now;
+            var errorMessage = Warewolf.Studio.Resources.Languages.Services.CompilerMessage_BuildFailed + " " + DateTime.Now;
             try
             {
                 // Replace with proper object hydration and parsing ;)
@@ -79,7 +79,7 @@ namespace Dev2.Runtime.ESB.Management.Services
                         }
                     });
 
-                    res.SetMessage(Resources.CompilerMessage_BuildFailed + " " + DateTime.Now);
+                    res.SetMessage(Warewolf.Studio.Resources.Languages.Services.CompilerMessage_BuildFailed + " " + DateTime.Now);
                 }
             }
             catch(Exception err)

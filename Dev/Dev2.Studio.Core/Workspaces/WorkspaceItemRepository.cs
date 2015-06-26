@@ -99,8 +99,7 @@ namespace Dev2.Workspaces
                     _repositoryPath = Path.Combine(new[]
                     {
                         Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
-                        StringResources.App_Data_Directory,
-                        StringResources.User_Interface_Layouts_Directory,
+                        Warewolf.Studio.Resources.Languages.Core.App_Data_Directory,
                         "WorkspaceItems.xml"
                     });
                 }

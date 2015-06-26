@@ -1,7 +1,7 @@
 
 /*
 *  Warewolf - The Easy Service Bus
-*  Copyright 2014 by Warewolf Ltd <alpha@warewolf.io>
+*  Copyright 2015 by Warewolf Ltd <alpha@warewolf.io>
 *  Licensed under GNU Affero General Public License 3.0 or later. 
 *  Some rights reserved.
 *  Visit our website for more information <http://warewolf.io/>
@@ -87,12 +87,19 @@ namespace Dev2.Activities.Designers.Tests.CaseConvert
             var modelItem = ModelItemUtils.CreateModelItem(new DsfCaseConvertActivity());
             modelItem.SetProperty("DisplayName", displayName);
 
-            var modelItemCollection = modelItem.Properties["ConvertCollection"].Collection;
-            if(items != null)
+            var modelProperty = modelItem.Properties["ConvertCollection"];
+            if(modelProperty != null)
             {
-                foreach(var dto in items)
+                var modelItemCollection = modelProperty.Collection;
+                if(items != null)
                 {
-                    modelItemCollection.Add(dto);
+                    foreach(var dto in items)
+                    {
+                        if(modelItemCollection != null)
+                        {
+                            modelItemCollection.Add(dto);
+                        }
+                    }
                 }
             }
             return modelItem;

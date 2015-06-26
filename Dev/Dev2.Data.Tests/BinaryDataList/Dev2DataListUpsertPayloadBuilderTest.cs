@@ -1,7 +1,7 @@
 
 /*
 *  Warewolf - The Easy Service Bus
-*  Copyright 2014 by Warewolf Ltd <alpha@warewolf.io>
+*  Copyright 2015 by Warewolf Ltd <alpha@warewolf.io>
 *  Licensed under GNU Affero General Public License 3.0 or later. 
 *  Some rights reserved.
 *  Visit our website for more information <http://warewolf.io/>
@@ -60,15 +60,13 @@ namespace Dev2.Data.Tests.BinaryDataList
             builder.Add("[[rs(*).val]]", "aaa");
 
             var items = builder.FetchFrames(true);
-            int idx = 1;
             foreach (var itm in items)
             {
                 var exp = itm.FetchNextFrameItem().Expression;
-                const string expected = "rs(*).val";
+                const string Expected = "rs(*).val";
 
-                StringAssert.Contains(exp, expected, "Index substitution occurred when not active");
+                StringAssert.Contains(exp, Expected, "Index substitution occurred when not active");
 
-                idx++;
             }
         }
     }

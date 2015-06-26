@@ -1,7 +1,7 @@
 
 /*
 *  Warewolf - The Easy Service Bus
-*  Copyright 2014 by Warewolf Ltd <alpha@warewolf.io>
+*  Copyright 2015 by Warewolf Ltd <alpha@warewolf.io>
 *  Licensed under GNU Affero General Public License 3.0 or later. 
 *  Some rights reserved.
 *  Visit our website for more information <http://warewolf.io/>
@@ -13,7 +13,7 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 using Dev2.Activities;
-using Dev2.Enums;
+using Dev2.Common.Interfaces;
 using Dev2.Factories;
 using Dev2.Interfaces;
 using Dev2.Util;

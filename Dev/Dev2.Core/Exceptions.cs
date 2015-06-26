@@ -1,6 +1,6 @@
 /*
 *  Warewolf - The Easy Service Bus
-*  Copyright 2014 by Warewolf Ltd <alpha@warewolf.io>
+*  Copyright 2015 by Warewolf Ltd <alpha@warewolf.io>
 *  Licensed under GNU Affero General Public License 3.0 or later. 
 *  Some rights reserved.
 *  Visit our website for more information <http://warewolf.io/>
@@ -9,6 +9,8 @@
 */
 
 using System;
+using Warewolf.Studio.Resources.Languages;
+
 
 namespace Dev2
 {
@@ -18,7 +20,7 @@ namespace Dev2
         {
             if (objectValue == null)
             {
-                throw new ArgumentNullException(objectName, FrameworkResources.Exception_ArgumentCannotBeNull);
+                throw new ArgumentNullException(objectName, Framework.Exception_ArgumentCannotBeNull);
             }
         }
 
@@ -30,7 +32,7 @@ namespace Dev2
             {
                 if (string.IsNullOrEmpty(objectValue.ToString()))
                 {
-                    throw new ArgumentException(FrameworkResources.Exception_ArgumentCannotBeNullOrEmpty, objectName);
+                    throw new ArgumentException(Framework.Exception_ArgumentCannotBeNullOrEmpty, objectName);
                 }
             }
         }

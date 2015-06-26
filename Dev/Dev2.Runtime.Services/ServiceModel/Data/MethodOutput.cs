@@ -1,7 +1,7 @@
 
 /*
 *  Warewolf - The Easy Service Bus
-*  Copyright 2014 by Warewolf Ltd <alpha@warewolf.io>
+*  Copyright 2015 by Warewolf Ltd <alpha@warewolf.io>
 *  Licensed under GNU Affero General Public License 3.0 or later. 
 *  Some rights reserved.
 *  Visit our website for more information <http://warewolf.io/>
@@ -18,9 +18,26 @@ namespace Dev2.Runtime.ServiceModel.Data
     [Serializable]
     public class MethodOutput : IDev2Definition
     {
+        public MethodOutput(string name, string mapsTo, string value, bool isRecordSet, string recordSetName, bool isEvaluated, string defaultValue, bool isRequired, string rawValue, bool emptyToNull)
+        {
+            EmptyToNull = emptyToNull;
+            RawValue = rawValue;
+            IsRequired = isRequired;
+            DefaultValue = defaultValue;
+            IsEvaluated = isEvaluated;
+            RecordSetName = recordSetName;
+            IsRecordSet = isRecordSet;
+            Value = value;
+            MapsTo = mapsTo;
+            Name = name;
+        }
+        public MethodOutput()
+        {
+   
+        }
         #region Properties
 
-        // ReSharper disable UnusedAutoPropertyAccessor.Local
+      
 
         public string Name { get; private set; }
 
@@ -42,7 +59,7 @@ namespace Dev2.Runtime.ServiceModel.Data
 
         public bool EmptyToNull { get; private set; }
 
-        // ReSharper restore UnusedAutoPropertyAccessor.Local
+     
 
         #endregion
 

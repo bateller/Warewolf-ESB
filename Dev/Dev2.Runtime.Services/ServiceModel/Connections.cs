@@ -1,7 +1,7 @@
 
 /*
 *  Warewolf - The Easy Service Bus
-*  Copyright 2014 by Warewolf Ltd <alpha@warewolf.io>
+*  Copyright 2015 by Warewolf Ltd <alpha@warewolf.io>
 *  Licensed under GNU Affero General Public License 3.0 or later. 
 *  Some rights reserved.
 *  Visit our website for more information <http://warewolf.io/>
@@ -21,9 +21,9 @@ using System.Xml.Linq;
 using Dev2.Common;
 using Dev2.Common.Common;
 using Dev2.Common.Interfaces.Data;
+using Dev2.Common.Interfaces.Runtime.ServiceModel;
 using Dev2.Runtime.Diagnostics;
 using Dev2.Runtime.Hosting;
-using Dev2.Runtime.ServiceModel.Data;
 using Microsoft.AspNet.SignalR.Client;
 using Newtonsoft.Json;
 
@@ -135,6 +135,10 @@ namespace Dev2.Runtime.ServiceModel
             return JsonConvert.SerializeObject(results);
         }
 
+        public List<string> GetNames()
+        {
+            return _fetchComputers.Invoke();
+        } 
         #endregion
 
         #region Test
@@ -168,7 +172,7 @@ namespace Dev2.Runtime.ServiceModel
 
         #endregion
 
-        ValidationResult CanConnectToServer(Dev2.Data.ServiceModel.Connection connection)
+        public ValidationResult CanConnectToServer(Dev2.Data.ServiceModel.Connection connection)
         {
             var result = new ValidationResult
             {

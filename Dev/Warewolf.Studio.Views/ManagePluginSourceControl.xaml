@@ -1,0 +1,211 @@
+﻿<UserControl  x:Class="Warewolf.Studio.Views.ManagePluginSourceControl"
+                     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+                    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                    xmlns:views="clr-namespace:Warewolf.Studio.Views"
+                    xmlns:ig="http://schemas.infragistics.com/xaml"
+                    xmlns:fa="http://schemas.fontawesome.io/icons/"
+                    xmlns:customControls="clr-namespace:Warewolf.Studio.CustomControls;assembly=Warewolf.Studio.CustomControls"
+                    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+                    xmlns:interactivity="http://www.codeplex.com/prism"
+                    xmlns:dialogues="clr-namespace:Dev2.Common.Interfaces.Studio.ViewModels.Dialogues;assembly=Dev2.Common.Interfaces"
+                    xmlns:core="clr-namespace:Warewolf.Studio.Core;assembly=Warewolf.Studio.Core"
+                    xmlns:languages="clr-namespace:Warewolf.Studio.Resources.Languages;assembly=Warewolf.Studio.Resources"
+                    mc:Ignorable="d" 
+               d:DataContext="{d:DesignInstance Type=dialogues:IManagePluginSourceViewModel,
+                                              IsDesignTimeCreatable=False}"
+                     d:DesignHeight="450" d:DesignWidth="800" BorderBrush="White">
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+        <views:NotConverter x:Key="NotConverter" />
+    </UserControl.Resources>
+    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
+        <Grid MinWidth="600" Width="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ScrollViewer}}, Path=ActualWidth}">
+            <Grid Margin="{StaticResource ElementBorder}" x:Name="GridContainer">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <StackPanel Grid.Row="0" 
+                            Width="{Binding ElementName=GridContainer, Path=ActualWidth}"
+                            Background="{StaticResource WareWolfMenuBrush}" 
+                            HorizontalAlignment="Stretch" 
+                            Orientation="Horizontal">
+                    <TextBlock Margin="5" Text="{Binding HeaderText}" Style="{StaticResource SourceHeader}" />
+                </StackPanel>
+                <Grid  Grid.Row="1"
+                       Width="{Binding ElementName=GridContainer, Path=ActualWidth}"
+                       Margin="0,-1,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="29"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <customControls:SearchTextBox Grid.Row="0" 
+                                              Margin="{StaticResource ControlBorderTopRight}"
+                                              Grid.Column="0"
+                                              x:Name="SearchTextBox" 
+                                              Text="{Binding SearchTerm, Delay=300, UpdateSourceTrigger=PropertyChanged}"
+                                              Style="{StaticResource SearchTextboxStyle}"
+                                              LabelText="Filter"
+                                              ClearSearchCommand="{Binding ClearSearchTextCommand}"
+                                              HorizontalAlignment="Stretch" >
+                        <i:Interaction.Behaviors>
+                            <core:HelpSetter Text="{x:Static languages:Core.PluginSourceClearSearchHelp}"
+                                                         DataContext="{Binding}" />
+                        </i:Interaction.Behaviors>
+                    </customControls:SearchTextBox>
+                    <Button Grid.Row="0"
+                            Grid.Column="1"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Center"
+                            Margin="0,3,0,-1"
+                            Command="{Binding RefreshCommand}"
+                            Visibility="{Binding IsLoading,Converter={StaticResource NotConverter}}">
+                        <fa:FontAwesome TextOptions.TextFormattingMode="Display" 
+                                    FontSize="16" 
+                                    Icon="Refresh" 
+                                    VerticalAlignment="Center" 
+                                    HorizontalAlignment="Center"/>
+                        <i:Interaction.Behaviors>
+                            <core:HelpSetter Text="{x:Static languages:Core.PluginSourceRefreshCommandHelp}"
+                                                         DataContext="{Binding}" />
+                        </i:Interaction.Behaviors>
+                    </Button>
+                    <views:CircularProgressBar Grid.Row="0"
+                                               Grid.Column="1"
+                                               Visibility="{Binding IsLoading,Converter={StaticResource BoolToVisibilityConverter}}"
+                                               Width="25"
+                                               Height="25"
+                                               Padding="2.5" />
+                </Grid>
+                <Grid Grid.Row="2" DataContext="{Binding GacItem}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <ProgressBar HorizontalAlignment="Stretch"
+                                 Orientation="Horizontal"
+                                 Minimum="0"
+                                 Margin="{StaticResource ControlBorderTop}"
+                                 Value="{Binding Path=CurrentProgress, Mode=TwoWay}"
+                                 Maximum="100"
+                                 Visibility="{Binding Path=ProgressVisibility, 
+                                            Converter={StaticResource BoolToVisibilityConverter}, Mode=TwoWay}"></ProgressBar>
+                </Grid>
+
+            <Grid Grid.Row="3" 
+                      Margin="{StaticResource ControlBorderTop}"
+                      Width="{Binding RelativeSource={RelativeSource FindAncestor,
+                            AncestorType={x:Type Grid}},Path=ColumnDefinitions[0].ActualWidth}"
+                      MaxHeight="{Binding RelativeSource={RelativeSource FindAncestor,
+                                                         AncestorType={x:Type Grid}},Path=RowDefinitions[3].ActualHeight}">
+                <Grid Width="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Grid}}, Path=ActualWidth}">
+                    <ig:XamDataTree x:Name="ExplorerTree" 
+                                        ActiveDataItem="{Binding SelectedDll, Mode=TwoWay}"
+                                        ItemsSource="{Binding DllListings}"
+                                        IsSelectedMemberPath="IsSelected"
+                                        DisplayMemberPath="Name"
+                                        NodeExpansionChanging="ExplorerTree_OnNodeExpansionChanging"
+                                        NodeLineVisibility="Hidden" >
+                        <ig:XamDataTree.EditingSettings>
+                            <ig:TreeEditingSettings AllowDeletion="False"
+                                        AllowEditing="False"
+                                        IsEnterKeyEditingEnabled="False"
+                                        IsF2EditingEnabled="False"
+                                        IsMouseActionEditingEnabled="None"
+                                        IsOnNodeActiveEditingEnabled="False"
+                                        />
+                        </ig:XamDataTree.EditingSettings>
+                        <ig:XamDataTree.GlobalNodeLayouts>
+                            <ig:NodeLayout Key="Children"
+                                               DisplayMemberPath="Name"
+                                               IsExpandedMemberPath="IsExpanded"
+                                           IsSelectedMemberPath="IsSelected"
+                                               Visibility="{Binding Path=Data.IsVisible,                               
+                                                    Converter={StaticResource BoolToVisibilityConverter}}">
+                                <ig:NodeLayout.ItemTemplate>
+                                    <DataTemplate>
+                                        <!-- ADD NEW GRID LAYOUT TO ALIGN DATA TREE ITEMS -->
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                            </Grid.ColumnDefinitions>
+
+                                            <!-- ADD TEXT TRIMMING TO DISPLAY ECLIPSE ON VIEW WIDTH SETTING -->
+                                            <TextBlock x:Name="ResourceNameTextBlock"
+                                                           MinWidth="5"
+                                                           Height="20"
+                                                           Focusable="True"
+                                                           TextTrimming="CharacterEllipsis"
+                                                           VerticalAlignment="Center"
+                                                           HorizontalAlignment="Stretch"
+                                                           Text="{Binding Path=Data.Name}">
+                                            </TextBlock>
+                                        </Grid>
+                                    </DataTemplate>
+                                </ig:NodeLayout.ItemTemplate>
+                            </ig:NodeLayout>
+                        </ig:XamDataTree.GlobalNodeLayouts>
+                    </ig:XamDataTree>
+                </Grid>
+            </Grid>
+                <Grid Grid.Row="4" Margin="{StaticResource ControlBorderTop}"
+                      Width="{Binding ElementName=GridContainer, Path=ActualWidth}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="Assembly"></TextBlock>
+                    <TextBox Grid.Column="1" Text="{Binding SelectedDll.FullName}">
+                        <i:Interaction.Behaviors>
+                            <core:HelpSetter Text="{x:Static languages:Core.PluginSourceDllFullNameHelp}"
+                                                         DataContext="{Binding}" />
+                        </i:Interaction.Behaviors>
+                    </TextBox>
+                </Grid>
+                <Grid Grid.Row="5" Margin="{StaticResource ControlBorderTop}" 
+                      Width="{Binding ElementName=GridContainer, Path=ActualWidth}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Button Grid.Column="1"
+                            x:Name="SaveButton" 
+                            Margin="{StaticResource ControlBorderRight}"
+                            Width="60" 
+                            Height="30" 
+                            Command="{Binding OkCommand}" 
+                            Content="Save">
+                        <i:Interaction.Behaviors>
+                            <core:HelpSetter Text="{x:Static languages:Core.PluginSourceOkCommandHelp}"
+                                                         DataContext="{Binding}" />
+                        </i:Interaction.Behaviors>
+                    </Button>
+                    <Button Grid.Column="2"
+                            x:Name="CancelButton" 
+                            Width="60" 
+                            Height="30" 
+                            Command="{Binding}" 
+                            Content="Cancel">
+                        <i:Interaction.Behaviors>
+                            <core:HelpSetter Text="{x:Static languages:Core.PluginSourceCancelCommandHelp}"
+                                                         DataContext="{Binding}" />
+                        </i:Interaction.Behaviors>
+                    </Button>
+                </Grid>
+            </Grid>
+        </Grid>
+    </ScrollViewer>
+</UserControl>

@@ -1,7 +1,7 @@
 
 /*
 *  Warewolf - The Easy Service Bus
-*  Copyright 2014 by Warewolf Ltd <alpha@warewolf.io>
+*  Copyright 2015 by Warewolf Ltd <alpha@warewolf.io>
 *  Licensed under GNU Affero General Public License 3.0 or later. 
 *  Some rights reserved.
 *  Visit our website for more information <http://warewolf.io/>
@@ -51,9 +51,10 @@ namespace Dev2.Activities.Designers2.Core
             //This line is bad it causes the overall designer to not get focus when clicking on it
             //Please be very careful about putting this line in.
             //FocusManager.SetIsFocusScope(this , true);
+
             _helpAdorner = new HelpAdorner(this);
             _errorsAdorner = new ErrorsAdorner(this);
-
+            Resources.MergedDictionaries.Add(new ResourceDictionary{Source = new Uri("pack://application:,,,/Dev2.Activities.Designers;component/Themes/ActivityResources.xaml")});
             Loaded += OnRoutedEventHandler;
             Unloaded += ActivityDesignerUnloaded;
             AllowDrop = true;

@@ -1,7 +1,7 @@
 
 /*
 *  Warewolf - The Easy Service Bus
-*  Copyright 2014 by Warewolf Ltd <alpha@warewolf.io>
+*  Copyright 2015 by Warewolf Ltd <alpha@warewolf.io>
 *  Licensed under GNU Affero General Public License 3.0 or later. 
 *  Some rights reserved.
 *  Visit our website for more information <http://warewolf.io/>
@@ -623,8 +623,7 @@ namespace Dev2.Runtime.Hosting
                 path = path.Remove(0, 1);
             }
 
-            return path.Replace("\\\\", "\\")
-                 .Replace("\\\\", "\\");
+            return path.TrimEnd('\\');
         }
 
         #endregion
@@ -1767,10 +1766,13 @@ namespace Dev2.Runtime.Hosting
                 var hasError = false;
                 foreach(var resource in resourcesToUpdate)
                 {
-                    var resourceCatalogResult = UpdateResourcePath(workspaceID, resource, oldCategory, newCategory);
-                    if(resourceCatalogResult.Status != ExecStatus.Success)
+                    if(resource != null)
                     {
-                        hasError = true;
+                        var resourceCatalogResult = UpdateResourcePath(workspaceID, resource, oldCategory, newCategory);
+                        if(resourceCatalogResult.Status != ExecStatus.Success)
+                        {
+                            hasError = true;
+                        }
                     }
                 }
                 var failureResult = new ResourceCatalogResult

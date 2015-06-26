@@ -1,6 +1,6 @@
 /*
 *  Warewolf - The Easy Service Bus
-*  Copyright 2014 by Warewolf Ltd <alpha@warewolf.io>
+*  Copyright 2015 by Warewolf Ltd <alpha@warewolf.io>
 *  Licensed under GNU Affero General Public License 3.0 or later. 
 *  Some rights reserved.
 *  Visit our website for more information <http://warewolf.io/>
@@ -151,9 +151,6 @@ namespace Dev2.Common
         public const string CalculateTextConvertFormat = CalculateTextConvertPrefix + "{0}" + CalculateTextConvertSuffix;
 
         // Website constants
-        public const string MetaTagsHolder = @"<Dev2HTML Type=""Meta""/>";
-        public const string WebpageCellContainer = "Webpart";
-        public const string WebpartRenderError = "<Fragement>Error executing webpart's service</Fragment>";
         public const string WebserverReplaceTag = "[[Dev2WebServer]]";
 
         // JSON constants
@@ -307,6 +304,7 @@ or type_desc LIKE '%Procedure%'";
         // Server WorkspaceID
         public static readonly Guid ServerWorkspaceID = Guid.Empty;
 
+        public static readonly string DropBoxToolId = "e6b86ea3-6479-48a2-b8d4-54bd6cbbdbc5";
         public static readonly string NullPluginValue = "NULL";
 
         // Resource Catalog Constants

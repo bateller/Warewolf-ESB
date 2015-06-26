@@ -19,12 +19,9 @@ using Dev2.Common.Interfaces.Hosting;
 using Dev2.Common.Interfaces.Infrastructure;
 using Dev2.Common.Interfaces.Security;
 using Dev2.Communication;
-using Dev2.Data.ServiceModel;
 using Dev2.Explorer;
-using Dev2.Interfaces;
 using Dev2.Runtime.ESB.Management.Services;
 using Dev2.Runtime.Hosting;
-using Dev2.Services.Security;
 using Dev2.Workspaces;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
@@ -59,7 +56,7 @@ namespace Dev2.Tests.Runtime.Services
             //------------Setup for test--------------------------
             var createFolderService = new AddFolderService();
 
-            ServerExplorerItem item = new ServerExplorerItem("a", Guid.NewGuid(), ResourceType.Folder, null, Permissions.DeployFrom, "");
+            ServerExplorerItem item = new ServerExplorerItem("a", Guid.NewGuid(), ResourceType.Folder, null, Permissions.DeployFrom, "", "", "");
             var repo = new Mock<IExplorerServerResourceRepository>();
             var ws = new Mock<IWorkspace>();
             repo.Setup(a => a.AddItem(item, It.IsAny<Guid>())).Returns(new ExplorerRepositoryResult(ExecStatus.Fail, "noddy"));

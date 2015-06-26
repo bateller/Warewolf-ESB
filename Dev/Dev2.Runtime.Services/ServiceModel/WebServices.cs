@@ -1,7 +1,7 @@
 
 /*
 *  Warewolf - The Easy Service Bus
-*  Copyright 2014 by Warewolf Ltd <alpha@warewolf.io>
+*  Copyright 2015 by Warewolf Ltd <alpha@warewolf.io>
 *  Licensed under GNU Affero General Public License 3.0 or later. 
 *  Some rights reserved.
 *  Visit our website for more information <http://warewolf.io/>
@@ -27,7 +27,12 @@ using Newtonsoft.Json;
 namespace Dev2.Runtime.ServiceModel
 {
     // PBI 1220 - 2013.05.20 - TWR - Created
-    public class WebServices : Services
+    public interface IWebServices
+    {
+        void TestWebService(WebService service);
+    }
+
+    public class WebServices : Services, IWebServices
     {
         static readonly WebExecuteString DefaultWebExecute = WebSources.Execute;
         readonly WebExecuteString _webExecute = DefaultWebExecute;
@@ -75,49 +80,7 @@ namespace Dev2.Runtime.ServiceModel
             {
                 service = JsonConvert.DeserializeObject<WebService>(args);
 
-                if(string.IsNullOrEmpty(service.RequestResponse))
-                {
-                    ErrorResultTO errors;
-                    ExecuteRequest(service, true, out errors, _webExecute);
-                    ((WebSource)service.Source).DisposeClient();
-                }
-
-                var preTestRsData = service.Recordsets;
-                service.RequestMessage = string.Empty;
-                service.JsonPathResult = string.Empty;
-
-                if(service.RequestResponse.IsJSON() && String.IsNullOrEmpty(service.JsonPath))
-                {
-                    service.ApplyPath();
-                    // we need to timeout this request after 10 seconds due to nasty pathing issues ;)
-                    Thread jsonMapTaskThread = null;
-                    var jsonMapTask = new Task(() =>
-                    {
-                        jsonMapTaskThread = Thread.CurrentThread;
-                        service.Recordsets = FetchRecordset(service, true);
-                    });
-
-                    jsonMapTask.Start();
-                    jsonMapTask.Wait(10000);
-
-                    if(!jsonMapTask.IsCompleted)
-                    {
-                        if(jsonMapTaskThread != null)
-                        {
-                            jsonMapTaskThread.Abort();
-                        }
-
-                        service.Recordsets = preTestRsData;
-                        service.RequestMessage = GlobalConstants.WebServiceTimeoutMessage;
-                    }
-
-                    jsonMapTask.Dispose();
-                }
-                else
-                {
-                    service.Recordsets = FetchRecordset(service, true);
-                }
-
+                TestWebService(service);
             }
             catch(Exception ex)
             {
@@ -131,6 +94,52 @@ namespace Dev2.Runtime.ServiceModel
             }
 
             return service;
+        }
+
+        public void TestWebService(WebService service )
+        {
+            if(string.IsNullOrEmpty(service.RequestResponse))
+            {
+                ErrorResultTO errors;
+                ExecuteRequest(service, true, out errors, _webExecute);
+                ((WebSource)service.Source).DisposeClient();
+            }
+
+            var preTestRsData = service.Recordsets;
+            service.RequestMessage = string.Empty;
+            service.JsonPathResult = string.Empty;
+
+            if(service.RequestResponse.IsJSON() && String.IsNullOrEmpty(service.JsonPath))
+            {
+                service.ApplyPath();
+                // we need to timeout this request after 10 seconds due to nasty pathing issues ;)
+                Thread jsonMapTaskThread = null;
+                var jsonMapTask = new Task(() =>
+                {
+                    jsonMapTaskThread = Thread.CurrentThread;
+                    service.Recordsets = FetchRecordset(service, true);
+                });
+
+                jsonMapTask.Start();
+                jsonMapTask.Wait(10000);
+
+                if(!jsonMapTask.IsCompleted)
+                {
+                    if(jsonMapTaskThread != null)
+                    {
+                        jsonMapTaskThread.Abort();
+                    }
+
+                    service.Recordsets = preTestRsData;
+                    service.RequestMessage = GlobalConstants.WebServiceTimeoutMessage;
+                }
+
+                jsonMapTask.Dispose();
+            }
+            else
+            {
+                service.Recordsets = FetchRecordset(service, true);
+            }
         }
 
         public WebService ApplyPath(string args, Guid workspaceId, Guid dataListId)
@@ -173,11 +182,29 @@ namespace Dev2.Runtime.ServiceModel
         {
             var requestHeaders = SetParameters(service.Method.Parameters, service.RequestHeaders);
             var headers = string.IsNullOrEmpty(requestHeaders)
-                              ? new string[0]
-                              : requestHeaders.Split(new[] { '\n', '\r', ';' }, StringSplitOptions.RemoveEmptyEntries);
+                              ? new List<string>()
+                              : requestHeaders.Split(new[] { '\n', '\r', ';' }, StringSplitOptions.RemoveEmptyEntries).ToList();
+            if(service.Headers != null && service.Headers.Count > 0)
+            {
+                foreach(var nameValue in service.Headers)
+                {
+                    var header = service.Method.Parameters.FirstOrDefault(parameter => parameter.Name == nameValue.Name);
+                    if(header != null)
+                    {
+                        headers.Add(header.Value + ":" + nameValue.Value);
+                    }
+                    
+                    header = service.Method.Parameters.FirstOrDefault(parameter => parameter.Name == nameValue.Value);
+                    if(header != null)
+                    {
+                        headers.Add(nameValue.Name + ":" + header.Value);
+                        
+                    }
+                }
+            }
             var requestUrl = SetParameters(service.Method.Parameters, service.RequestUrl);
             var requestBody = SetParameters(service.Method.Parameters, service.RequestBody);
-            service.RequestResponse = webExecute(service.Source as WebSource, service.RequestMethod, requestUrl, requestBody, throwError, out errors, headers);
+            service.RequestResponse = webExecute(service.Source as WebSource, service.RequestMethod, requestUrl, requestBody, throwError, out errors, headers.ToArray());
             if(!String.IsNullOrEmpty(service.JsonPath))
             {
                 service.ApplyPath();
@@ -187,6 +214,8 @@ namespace Dev2.Runtime.ServiceModel
         #endregion
 
         #region SetParameters
+
+       
 
         static string SetParameters(IEnumerable<MethodParameter> parameters, string s)
         {

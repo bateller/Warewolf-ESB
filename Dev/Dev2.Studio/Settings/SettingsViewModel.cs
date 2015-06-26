@@ -17,7 +17,9 @@ using System.Windows.Forms;
 using System.Windows.Input;
 using Caliburn.Micro;
 using Dev2.Common;
+using Dev2.Common.Interfaces.Services.Security;
 using Dev2.Common.Interfaces.Studio.Controller;
+using Dev2.Common.Interfaces.Threading;
 using Dev2.CustomControls.Connections;
 using Dev2.Instrumentation;
 using Dev2.Interfaces;
@@ -474,7 +476,7 @@ namespace Dev2.Settings
                     {
                         IsSaved = false;
                         IsDirty = true;
-                        ShowError(StringResources.SaveSettingErrorPrefix, StringResources.SaveSettingsDuplicateResourcePermissions);
+                        ShowError(Warewolf.Studio.Resources.Languages.Core.SaveSettingErrorPrefix, Warewolf.Studio.Resources.Languages.Core.SaveSettingsDuplicateResourcePermissions);
                         return false;
                     }
 
@@ -482,7 +484,7 @@ namespace Dev2.Settings
                     {
                         IsSaved = false;
                         IsDirty = true;
-                        ShowError(StringResources.SaveSettingErrorPrefix, StringResources.SaveSettingsDuplicateServerPermissions);
+                        ShowError(Warewolf.Studio.Resources.Languages.Core.SaveSettingErrorPrefix, Warewolf.Studio.Resources.Languages.Core.SaveSettingsDuplicateServerPermissions);
                         return false;
                     }
                     SecurityViewModel.Save(Settings.Security);
@@ -506,10 +508,10 @@ namespace Dev2.Settings
                     return IsSaved;
                 }
 
-                ShowError(StringResources.SaveSettingErrorPrefix, StringResources.SaveSettingsPermissionsErrorMsg);
+                ShowError(Warewolf.Studio.Resources.Languages.Core.SaveSettingErrorPrefix, Warewolf.Studio.Resources.Languages.Core.SaveSettingsPermissionsErrorMsg);
                 return false;
             }
-            ShowError(StringResources.SaveSettingErrorPrefix, StringResources.SaveSettingsNotReachableErrorMsg);
+            ShowError(Warewolf.Studio.Resources.Languages.Core.SaveSettingErrorPrefix, Warewolf.Studio.Resources.Languages.Core.SaveSettingsNotReachableErrorMsg);
             return false;
         }
 

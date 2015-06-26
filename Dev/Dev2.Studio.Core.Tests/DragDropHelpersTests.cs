@@ -11,10 +11,9 @@
 
 using System;
 using System.Diagnostics.CodeAnalysis;
-using Dev2.AppResources.Repositories;
+using Dev2.Common.Interfaces;
 using Dev2.Common.Interfaces.Security;
 using Dev2.Common.Interfaces.Studio.Controller;
-using Dev2.ConnectionHelpers;
 using Dev2.Models;
 using Dev2.Studio.Core.Interfaces;
 using Dev2.Studio.Core.ViewModels;
@@ -27,6 +26,7 @@ namespace Dev2.Core.Tests
     [TestClass]
     [ExcludeFromCodeCoverage]
     // ReSharper disable InconsistentNaming
+    [Ignore] //TODO: Fix so not dependant on resource file or localize resource file to test project
     public class DragDropHelpersTests
     {
         [TestInitialize]

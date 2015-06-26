@@ -1,0 +1,489 @@
+﻿<UserControl x:Class="Warewolf.Studio.Views.ManageWebserviceControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:db="clr-namespace:Dev2.Common.Interfaces.DB;assembly=Dev2.Common.Interfaces"
+             xmlns:views="clr-namespace:Warewolf.Studio.Views"
+             xmlns:fa="http://schemas.fontawesome.io/icons/"
+             xmlns:dialogues="clr-namespace:Dev2.Common.Interfaces.Studio.ViewModels.Dialogues;assembly=Dev2.Common.Interfaces"
+             xmlns:ig="http://schemas.infragistics.com/xaml"
+             xmlns:igPrim="http://schemas.infragistics.com/xaml/primitives"
+             xmlns:customControls="clr-namespace:Warewolf.Studio.CustomControls;assembly=Warewolf.Studio.CustomControls"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:interactivity="http://www.codeplex.com/prism"
+             xmlns:xamGridEx="clr-namespace:Warewolf.Studio.Views.XamGridEx"
+             xmlns:core="clr-namespace:Warewolf.Studio.Core;assembly=Warewolf.Studio.Core"
+             xmlns:languages="clr-namespace:Warewolf.Studio.Resources.Languages;assembly=Warewolf.Studio.Resources"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800"
+             d:DataContext="{d:DesignInstance Type=dialogues:IManageWebServiceViewModel,
+                                              IsDesignTimeCreatable=False}">
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVis" />
+            <Style TargetType="ig:XamContextMenu">
+            <Setter Property="Background" Value="White"/>
+            </Style>
+    </UserControl.Resources>
+    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+        <Grid x:Name="GridMain"  MinWidth="600" Width="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ScrollViewer}}, Path=ActualWidth}">
+            <Grid Margin="{StaticResource ElementBorder}" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto" ></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto" ></RowDefinition>
+                    <RowDefinition Height="Auto" ></RowDefinition>
+                    <RowDefinition Height="Auto" ></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Row="0" HorizontalAlignment="Stretch" Margin="{StaticResource GridBorderBottom}" >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" ></RowDefinition>
+                        <RowDefinition Height="Auto" ></RowDefinition>
+                        <RowDefinition Height="7" ></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <StackPanel Grid.Row="0" 
+                             Grid.Column="0" 
+                             Background="{StaticResource WareWolfMenuBrush}" 
+                             HorizontalAlignment="Stretch" 
+                             Orientation="Horizontal">
+                        <TextBlock Text="1" 
+                               Style="{StaticResource TextBlockOrangeNumberStyle}"></TextBlock>
+                        <TextBlock Margin="5" 
+                               Text="{Binding SelectSourceHeader}" 
+                               Style="{StaticResource SourceHeader}"></TextBlock>
+                    </StackPanel>
+                    <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Horizontal" >
+                        <ComboBox x:Name="RequestTypes"
+                                  Width="80"
+                                  Focusable="True"
+                                  ItemsSource="{Binding WebRequestMethods}"
+                                  SelectedItem="{Binding SelectedWebRequestMethod}"
+                                  Padding="{StaticResource ComboBoxItemPadding}"
+                                  Margin="{StaticResource ElementBorderTop}">
+                            <i:Interaction.Behaviors>
+                                <core:HelpSetter Text="{x:Static languages:Core.DatabaseServiceSaveHelp}"
+                                 DataContext="{Binding}" />
+                            </i:Interaction.Behaviors>
+                        </ComboBox>
+                        <ComboBox x:Name="SourcesComboBox" 
+                                  DisplayMemberPath="Name" 
+                                  Width="250" 
+                                  ItemsSource="{Binding Sources}"
+                                  Padding="{StaticResource ComboBoxItemPadding}"
+                                  Focusable="True"
+                                  SelectedItem="{Binding SelectedSource}"
+                                  Margin="{StaticResource ElementBorderControlLeftTop}" >
+                            <i:Interaction.Behaviors>
+                                <core:HelpSetter Text="{x:Static languages:Core.WebServiceSourcesHelp}"
+                                 DataContext="{Binding}" />
+                            </i:Interaction.Behaviors>
+                        </ComboBox>
+                        <Button Width="25" 
+                                Command="{Binding SelectedSource}" 
+                                IsEnabled="{Binding HasChanged}" 
+                                Content=" ... " 
+                                Margin="{StaticResource ElementBorderControlLeftTop}">
+                            <i:Interaction.Behaviors>
+                                <core:HelpSetter Text="{x:Static languages:Core.WebServiceSelectedSourceHelp}"
+                                 DataContext="{Binding}" />
+                            </i:Interaction.Behaviors>
+                        </Button>
+                        <Button Content="New" 
+                            Margin="{StaticResource ElementBorderControlLeftTop}"
+                            Style="{StaticResource ButtonOrangeStyle}" 
+                            Command="{Binding NewWebSourceCommand}" 
+                            Width="100" >
+                            <i:Interaction.Behaviors>
+                                <core:HelpSetter Text="{x:Static languages:Core.WebServiceNewWebSourceHelp}"
+                                 DataContext="{Binding}" />
+                            </i:Interaction.Behaviors>
+                        </Button>
+                    </StackPanel>
+                </Grid>
+                <!-- REQUEST HEADERS -->
+                <Grid x:Name="RequestHeadersGrid" 
+                      Grid.Row="1" 
+                      Margin="{StaticResource GridBorderBottom}"
+                      Visibility="{Binding Path=CanEditHeadersAndUrl, Converter={StaticResource BoolToVis}}"
+                      Grid.Column="0" >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="7" ></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="50*"></ColumnDefinition>
+                        <ColumnDefinition Width="50*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Row="0" 
+                                Grid.Column="0" 
+                                Grid.ColumnSpan="2"
+                                Background="{StaticResource WareWolfMenuBrush}" 
+                                HorizontalAlignment="Stretch" 
+                                Orientation="Horizontal">
+                        <TextBlock Text="2" Style="{StaticResource TextBlockOrangeNumberStyle}"></TextBlock>
+                        <TextBlock Margin="5" Text="{Binding RequestHeader}" Style="{StaticResource SourceHeader}" ></TextBlock>
+                    </StackPanel>
+                    <!-- HEADER -->
+                    <Grid Grid.Column="0" 
+                          Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Row="0" 
+                                   Grid.Column="0"
+                                   Text="{Binding SelectHeadersHeader}" 
+                                   FontWeight="Bold"></TextBlock>
+                        <ScrollViewer Grid.Row="1" 
+                                      Grid.Column="0" 
+                                      HorizontalScrollBarVisibility="Auto" 
+                                      VerticalScrollBarVisibility="Auto"
+                                      MaxHeight="110">
+                            <Grid Width="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ScrollViewer}}, Path=ActualWidth}" 
+                                  MinWidth="400">
+                                <xamGridEx:XamGridEx x:Name="HeadersGrid" 
+                                                     Style="{StaticResource XamGridStyle}"
+                                            ItemsSource="{Binding Headers}" 
+                                            AutoGenerateColumns="False"
+                                            IsAlternateRowsEnabled="False"
+                                            ColumnLayoutHeaderVisibility="Never"
+                                            DeleteKeyAction="DeleteRowOfActiveCell"
+                                            ScrollViewer.VerticalScrollBarVisibility="Auto"
+                                            ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                                            ColumnWidth="*" >
+                                    <ig:XamGrid.Columns>
+                                        <xamGridEx:TextBoxColumn Key="Name" HeaderText="Name" MinimumWidth="100" Watermark="Header">
+                                        </xamGridEx:TextBoxColumn>
+                                        <xamGridEx:TextBoxColumn Key="Value" HeaderText="Value" MinimumWidth="100" IsResizable="False" Watermark="Value">
+                                        </xamGridEx:TextBoxColumn>
+                                    </ig:XamGrid.Columns>
+                                    <ig:XamGrid.SortingSettings>
+                                        <ig:SortingSettings AllowSorting="False" AllowMultipleColumnSorting="False" ShowSortIndicator="False"/>
+                                    </ig:XamGrid.SortingSettings>
+                                    <ig:XamGrid.EditingSettings>
+                                        <ig:EditingSettings AllowEditing="Cell"
+                                                    IsMouseActionEditingEnabled="SingleClick"
+                                                    IsEnterKeyEditingEnabled="True" 
+                                                    IsF2EditingEnabled="True" 
+                                                            IsOnCellActiveEditingEnabled="False" />
+                                    </ig:XamGrid.EditingSettings>
+                                    <ig:XamGrid.ConditionalFormattingSettings>
+                                        <ig:ConditionalFormattingSettings AllowConditionalFormatting="True"/>
+                                    </ig:XamGrid.ConditionalFormattingSettings>
+                                    <xamGridEx:XamGridEx.ContextMenuSettings>
+                                        <xamGridEx:ContextMenuSettings AllowContextMenu="True">
+                                            <xamGridEx:ContextMenuSettings.ContextMenu>
+                                                <ig:XamContextMenu >
+                                                    <ig:XamMenuItem Header="Insert Row" Command="{Binding  Path=AddRowCommand}">
+                                                        <ig:XamMenuItem.Icon>
+                                                            <Image Source="{x:Null}"/>
+                                                        </ig:XamMenuItem.Icon>
+                                                    </ig:XamMenuItem>
+                                                    <ig:XamMenuItem Header="Delete Row"  Command="{Binding  Path=RemoveRowCommand}">
+                                                        <ig:XamMenuItem.Icon>
+                                                            <Image Source="{x:Null}"/>
+                                                        </ig:XamMenuItem.Icon>
+                                                    </ig:XamMenuItem>
+                                                </ig:XamContextMenu>
+                                            </xamGridEx:ContextMenuSettings.ContextMenu>
+                                        </xamGridEx:ContextMenuSettings>
+                                    </xamGridEx:XamGridEx.ContextMenuSettings>
+                                </xamGridEx:XamGridEx>
+                            </Grid>
+                        </ScrollViewer>
+                    </Grid>
+                    <!-- BODY -->
+                    <Grid Grid.Column="1" 
+                          Grid.Row="1" 
+                          Margin="{StaticResource ControlBorderLeft}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <TextBlock Text="{Binding RequestBodyHeader}" 
+                                   Visibility="{Binding RequestBodyEnabled, Converter={StaticResource BoolToVis}}"
+                                   FontWeight="Bold"></TextBlock>
+                        <ScrollViewer Grid.Row="1" 
+                                      Grid.Column="0" 
+                                      HorizontalScrollBarVisibility="Auto" 
+                                      VerticalScrollBarVisibility="Auto"
+                                      MaxHeight="110">
+                            <Grid Width="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ScrollViewer}}, Path=ActualWidth}" 
+                                  MinWidth="400">
+                                <TextBox x:Name="RequestBody"
+                                         Height="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ig:XamGrid}}, Path=ActualHeight}"
+                                         AcceptsReturn="True"
+                                         TextWrapping="Wrap"
+                                         Text="{Binding RequestBody}"
+                                         Visibility="{Binding RequestBodyEnabled, Converter={StaticResource BoolToVis}}"
+                                         VerticalScrollBarVisibility="Auto"
+                                         VerticalContentAlignment="Stretch"
+                                         VerticalAlignment="Stretch"
+                                         HorizontalAlignment="Stretch" 
+                                         Padding="2,2,0,0" customControls:WatermarkTextBox.Watermark="Body">
+                                    <i:Interaction.Behaviors>
+                                        <core:HelpSetter Text="{x:Static languages:Core.WebServiceRequestBodyHelp}"
+                                                         DataContext="{Binding}" />
+                                    </i:Interaction.Behaviors>
+                                </TextBox>
+                            </Grid>
+                        </ScrollViewer>
+                    </Grid>
+                    <!-- URL -->
+                    <TextBlock Grid.Column="0" 
+                               Grid.Row="2" 
+                               Text="{Binding RequestUrlHeader}" 
+                               FontWeight="Bold"></TextBlock>
+                    <Grid Grid.Column="0"
+                          Grid.ColumnSpan="2"
+                          Grid.Row="3">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="50*" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0"
+                           Visibility="{Binding CanEditHeadersAndUrl, Converter={StaticResource BoolToVis}}"
+                               Text="{Binding SourceUrl}">
+                        </TextBlock>
+                        <TextBox x:Name="RequestUrl"
+                             HorizontalAlignment="Stretch"
+                             Text="{Binding RequestUrlQuery, UpdateSourceTrigger=PropertyChanged}"
+                             Grid.Column="1" customControls:WatermarkTextBox.Watermark="URL">
+                            <i:Interaction.Behaviors>
+                                <core:HelpSetter Text="{x:Static languages:Core.WebServiceRequestUrlHelp}"
+                                                         DataContext="{Binding}" />
+                            </i:Interaction.Behaviors>
+                        </TextBox>
+                    </Grid>
+                </Grid>
+                <!-- REQUEST VARIABLES -->
+                <Grid x:Name="RequestVarGrid" 
+                      Grid.Row="2" 
+                      Margin="{StaticResource GridBorderBottom}"
+                      Visibility="{Binding Path=CanEditHeadersAndUrl, Converter={StaticResource BoolToVis}}"
+                      Grid.Column="0" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="7" ></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <!-- VARIABLES HEADER -->
+                    <StackPanel Grid.Row="0" 
+                                Grid.Column="0" 
+                                Background="{StaticResource WareWolfMenuBrush}" 
+                                HorizontalAlignment="Stretch" 
+                                Orientation="Horizontal">
+                        <TextBlock Text="3" Style="{StaticResource TextBlockOrangeNumberStyle}"></TextBlock>
+                        <TextBlock Margin="5" Text="{Binding VariablesHeader}" Style="{StaticResource SourceHeader}"></TextBlock>
+                    </StackPanel>
+                    <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                        <StackPanel Width="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Grid}}, Path=ActualWidth}"
+                            MaxHeight="180" 
+                            Margin="{StaticResource ControlBorderTop}">
+                            <ig:XamGrid x:Name="VariablesGrid" 
+                                        ItemsSource="{Binding Variables}" 
+                                AutoGenerateColumns="False"
+                                        Margin="0,0,1,0"
+                                ColumnWidth="*" 
+                                IsAlternateRowsEnabled="False"
+                                BorderBrush="Transparent" >
+                                <ig:XamGrid.Columns>
+                                    <ig:TextColumn Key="Name" HeaderText="Name" IsReadOnly="True" MinimumWidth="300">
+                                        <ig:TextColumn.AddNewRowEditorTemplate>
+                                            <DataTemplate>
+                                                <TextBlock IsEnabled="False" Text="{Binding Path=Name, Mode=TwoWay, NotifyOnValidationError=True, ValidatesOnDataErrors=True}" />
+                                            </DataTemplate>
+                                        </ig:TextColumn.AddNewRowEditorTemplate>
+                                    </ig:TextColumn>
+                                    <xamGridEx:TextBoxColumn Key="Value" HeaderText="Value" MinimumWidth="300" IsResizable="False">
+                                        <!--<customControls:WatermarkTextBox.Watermark>
+                                                <Label Style="{StaticResource WatermarkLabelStyle}">Value</Label>
+                                            </customControls:WatermarkTextBox.Watermark>-->
+                                        <!--<ig:TextColumn.AddNewRowEditorTemplate>
+                                            <DataTemplate>
+                                                <TextBox Text="{Binding Path=Value, Mode=TwoWay, NotifyOnValidationError=True, ValidatesOnDataErrors=True}" />
+                                            </DataTemplate>
+                                        </ig:TextColumn.AddNewRowEditorTemplate>-->
+                                    </xamGridEx:TextBoxColumn>
+                                </ig:XamGrid.Columns>
+                                <ig:XamGrid.SortingSettings>
+                                    <ig:SortingSettings AllowSorting="False" AllowMultipleColumnSorting="False" ShowSortIndicator="False"/>
+                                </ig:XamGrid.SortingSettings>
+                                <ig:XamGrid.EditingSettings>
+                                    <ig:EditingSettings AllowEditing="Row"
+                                                    IsMouseActionEditingEnabled="DoubleClick"
+                                                    IsEnterKeyEditingEnabled="True" 
+                                                    IsF2EditingEnabled="True" 
+                                                    IsOnCellActiveEditingEnabled="False" />
+                                </ig:XamGrid.EditingSettings>
+                            </ig:XamGrid>
+                        </StackPanel>
+                    </ScrollViewer>
+                    <Grid Grid.Row="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Button x:Name="TestButton" 
+                                Grid.Column="0"
+                                Margin="{StaticResource ControlBorderTopRight}" 
+                                HorizontalAlignment="Left" 
+                                VerticalAlignment="Bottom" 
+                                Command="{Binding TestCommand}"
+                                Width="100">Test
+                            <i:Interaction.Behaviors>
+                                <core:HelpSetter Text="{x:Static languages:Core.WebServiceTestCommandHelp}"
+                                                         DataContext="{Binding}" />
+                            </i:Interaction.Behaviors>
+                        </Button>
+                        <views:CircularProgressBar Grid.Column="1"
+                                               Width="25"
+                                               HorizontalAlignment="Right" 
+                                               Height="25"
+                                               Padding="1.5"
+                                               Visibility="{Binding Path=IsTesting,Converter={StaticResource BoolToVis}}" />
+                    </Grid>
+                </Grid>
+                <!-- RESPONSE -->
+                <Grid x:Name="ResponseGrid" 
+                      Grid.Row="3" 
+                      Margin="{StaticResource GridBorderBottom}"
+                      Grid.Column="0" 
+                      Visibility="{Binding Path=CanEditResponse, Converter={StaticResource BoolToVis}}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="7" ></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <StackPanel Grid.Row="0" 
+                                Grid.Column="0" 
+                                Grid.ColumnSpan="2"
+                                Background="{StaticResource WareWolfMenuBrush}" 
+                                HorizontalAlignment="Stretch" 
+                                Orientation="Horizontal">
+                        <TextBlock Text="4" 
+                                   Style="{StaticResource TextBlockOrangeNumberStyle}"></TextBlock>
+                        <TextBlock Margin="5" 
+                                   Text="{Binding ResponseHeader}" 
+                                   Style="{StaticResource SourceHeader}" ></TextBlock>
+                    </StackPanel>
+                    <Button Width="25" 
+                            Height="25"
+                            Grid.Column="0"
+                            Grid.Row="1"
+                            Command="{Binding PasteResponseCommand}"
+                           
+                            Margin="{StaticResource ElementBorderTop}"
+                            VerticalAlignment="Top">
+                        <fa:FontAwesome TextOptions.TextFormattingMode="Display" 
+                                        FontSize="16" 
+                                        FontWeight="DemiBold" 
+                                        Icon="Pencil" 
+                                        VerticalAlignment="Top" 
+                                        HorizontalAlignment="Center"/>
+                        <i:Interaction.Behaviors>
+                            <core:HelpSetter Text="{x:Static languages:Core.WebServicePasteHelp}"
+                                                         DataContext="{Binding}" />
+                        </i:Interaction.Behaviors>
+                    </Button>
+                    <ScrollViewer Grid.Column="1" 
+                                  Grid.Row="1" 
+                                  MaxHeight="110"
+                                  VerticalScrollBarVisibility="Auto"
+                                  HorizontalScrollBarVisibility="Auto">
+                        <Grid Width="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ScrollViewer}}, Path=ActualWidth}" 
+                              MinWidth="400">
+                            <TextBlock x:Name="Response"
+                                       Margin="{StaticResource ControlBorderLeftTop}"
+                                       Text="{Binding Response}"
+                                       VerticalAlignment="Stretch"
+                                       TextWrapping="Wrap"
+                                       HorizontalAlignment="Stretch"></TextBlock>
+                        </Grid>
+                    </ScrollViewer>
+                </Grid>
+                <!-- MAPPINGS -->
+                <Grid x:Name="MappingsGrid" 
+                  Grid.Row="4" 
+                  Grid.Column="0" 
+                  Visibility="{Binding Path=CanEditMappings,Converter={StaticResource BoolToVis}}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <StackPanel Grid.Row="0" 
+                            Grid.Column="0" 
+                            Background="{StaticResource WareWolfMenuBrush}" 
+                            Orientation="Horizontal">
+                        <TextBlock Text="5" 
+                               Style="{StaticResource TextBlockOrangeNumberStyle}"></TextBlock>
+                        <TextBlock Margin="5" 
+                               Text="{Binding MappingsHeader}" 
+                               Style="{StaticResource SourceHeader}" ></TextBlock>
+                    </StackPanel>
+                    <views:MappingsView Grid.Row="1" ></views:MappingsView>
+                </Grid>
+                <Grid Grid.Row="5" Grid.Column="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" 
+                               Text="{Binding ErrorText}" 
+                               HorizontalAlignment="Left" 
+                               TextWrapping="WrapWithOverflow" 
+                               x:Name="ErrorTextBlock" ></TextBlock>
+                    <Button x:Name="SaveButton" 
+                            Grid.Column="2" 
+                            Margin="{StaticResource ControlBorderTopRight}" 
+                            HorizontalAlignment="Right" 
+                            VerticalAlignment="Bottom" 
+                            Command="{Binding SaveCommand}" 
+                            Width="100">Save
+                        <i:Interaction.Behaviors>
+                            <core:HelpSetter Text="{x:Static languages:Core.WebServiceSaveCommandHelp}"
+                                                         DataContext="{Binding}" />
+                        </i:Interaction.Behaviors>
+                    </Button>
+                    <Button x:Name="CancelButton" 
+                            Grid.Column="3" 
+                            Margin="{StaticResource ControlBorderTop}" 
+                            HorizontalAlignment="Right" 
+                            VerticalAlignment="Bottom" 
+                            Command="{Binding CancelCommand}"
+                            Width="100">Cancel
+                        <i:Interaction.Behaviors>
+                            <core:HelpSetter Text="{x:Static languages:Core.WebServiceCancelCommandHelp}"
+                                                         DataContext="{Binding}" />
+                        </i:Interaction.Behaviors>
+                    </Button>
+                </Grid>
+            </Grid>
+        </Grid>
+    </ScrollViewer>
+</UserControl>

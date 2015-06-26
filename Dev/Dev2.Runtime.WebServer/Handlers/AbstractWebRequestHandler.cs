@@ -22,6 +22,7 @@ using System.Threading;
 using System.Web;
 using Dev2.Common;
 using Dev2.Common.Interfaces.Data;
+using Dev2.Common.Interfaces.Services.Security;
 using Dev2.Communication;
 using Dev2.Data.Binary_Objects;
 using Dev2.Data.Util;
@@ -44,7 +45,6 @@ namespace Dev2.Runtime.WebServer.Handlers
     {
         protected readonly List<DataListFormat> PublicFormats = new DataListTranslatorFactory().FetchAllFormats().Where(c => c.ContentType != "").ToList();
         string _location;
-        static readonly object ExecutionObject = new object();
         public string Location { get { return _location ?? (_location = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)); } }
 
         public abstract void ProcessRequest(ICommunicationContext ctx);

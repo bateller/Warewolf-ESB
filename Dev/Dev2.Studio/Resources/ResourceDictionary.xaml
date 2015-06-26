@@ -309,7 +309,7 @@
     <Style x:Key="Dev2HeadingTextBlockStyle" TargetType="{x:Type TextBlock}">
         <Setter Property="FontStretch" Value="Medium" />
         <Setter Property="FontWeight" Value="Bold" />
-        <Setter Property="FontSize" Value="{StaticResource HeaderFontSize}" />
+        <Setter Property="FontSize" Value="{StaticResource FontSize-Larger}" />
         <Setter Property="Foreground" Value="{StaticResource ForegroundBrush}" />
     </Style>
 
@@ -401,7 +401,7 @@
                      Fill="Red">
                 <Ellipse.ToolTip>
                     <Border MaxWidth="350">
-                        <ContentControl FontSize="{StaticResource DefaultFontSize}"
+                        <ContentControl FontSize="{StaticResource FontSize-Normal}"
                                         Content="{Binding}" />
                     </Border>
                 </Ellipse.ToolTip>
@@ -429,9 +429,9 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TreeViewItem}">
                     <StackPanel x:Name="stackPanel">
-                        <i:Interaction.Behaviors>
+                        <!--<i:Interaction.Behaviors>
                             <local:PreventHorizontalScrollWhenFocusedTreeViewItemBehavior />
-                        </i:Interaction.Behaviors>
+                        </i:Interaction.Behaviors>-->
 
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="CommonStates" />
@@ -730,7 +730,7 @@
                     <Storyboard>
                         <DoubleAnimation Duration="0:0:0.2"
                                          Storyboard.TargetProperty="FontSize"
-                                         To="{StaticResource DefaultFontSize}" />
+                                         To="{StaticResource FontSize-Normal}" />
                     </Storyboard>
                 </BeginStoryboard>
             </EventTrigger>

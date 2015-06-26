@@ -1,7 +1,7 @@
 
 /*
 *  Warewolf - The Easy Service Bus
-*  Copyright 2014 by Warewolf Ltd <alpha@warewolf.io>
+*  Copyright 2015 by Warewolf Ltd <alpha@warewolf.io>
 *  Licensed under GNU Affero General Public License 3.0 or later. 
 *  Some rights reserved.
 *  Visit our website for more information <http://warewolf.io/>
@@ -11,6 +11,8 @@
 
 using System;
 using System.Collections.Generic;
+using System.Runtime.Versioning;
+using Dev2.Common.Interfaces;
 using Dev2.Common.Interfaces.Data;
 using Dev2.Common.Interfaces.Security;
 using Dev2.Common.Interfaces.Versioning;
@@ -22,11 +24,10 @@ using Newtonsoft.Json.Converters;
 namespace Dev2.Data.ServiceModel
 // ReSharper restore CheckNamespace
 {
-
     /// <summary>
     /// Light weight resource to ship to the studio ;)
     /// </summary>
-    public class SerializableResource
+    public class SerializableResource : IResourceDefinition
     {
         /// <summary>
         /// The resource ID that uniquely identifies the resource.
@@ -106,5 +107,10 @@ namespace Dev2.Data.ServiceModel
         /// Gets or sets the permissions of the resource
         /// </summary>
         public Permissions Permissions { get; set; }
+
+
+       
     }
+
+
 }

@@ -1,7 +1,7 @@
 
 /*
 *  Warewolf - The Easy Service Bus
-*  Copyright 2014 by Warewolf Ltd <alpha@warewolf.io>
+*  Copyright 2015 by Warewolf Ltd <alpha@warewolf.io>
 *  Licensed under GNU Affero General Public License 3.0 or later. 
 *  Some rights reserved.
 *  Visit our website for more information <http://warewolf.io/>
@@ -562,7 +562,7 @@ namespace Dev2.Tests.Activities.ActivityTests
             var remoteID = Guid.Empty;
             const bool HasError = true;
             const string ErrorMessage = "Error occurred..";
-            const StateType StateType = StateType.All;
+            const StateType StateType = Common.Interfaces.Diagnostics.Debug.StateType.All;
 
             var dataObj = new DsfDataObject(string.Empty, GlobalConstants.NullDataListID)
             {

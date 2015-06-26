@@ -1,6 +1,6 @@
 /*
 *  Warewolf - The Easy Service Bus
-*  Copyright 2014 by Warewolf Ltd <alpha@warewolf.io>
+*  Copyright 2015 by Warewolf Ltd <alpha@warewolf.io>
 *  Licensed under GNU Affero General Public License 3.0 or later. 
 *  Some rights reserved.
 *  Visit our website for more information <http://warewolf.io/>
@@ -34,17 +34,17 @@ namespace Dev2.DynamicServices
 
             if (string.IsNullOrEmpty(Name))
             {
-                WriteCompileError(Resources.CompilerError_MissingActivityName);
+                WriteCompileError(Warewolf.Studio.Resources.Languages.Services.CompilerError_MissingActivityName);
             }
 
             if (Service == null)
             {
-                WriteCompileError(Resources.CompilerError_ServiceNotFound);
+                WriteCompileError(Warewolf.Studio.Resources.Languages.Services.CompilerError_ServiceNotFound);
             }
 
             if (string.IsNullOrEmpty(IconPath))
             {
-                WriteCompileError(Resources.CompilerError_MissingIconPath);
+                WriteCompileError(Warewolf.Studio.Resources.Languages.Services.CompilerError_MissingIconPath);
             }
 
             return IsCompiled;

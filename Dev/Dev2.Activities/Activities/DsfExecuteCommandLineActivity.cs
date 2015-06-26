@@ -1,7 +1,7 @@
 
 /*
 *  Warewolf - The Easy Service Bus
-*  Copyright 2014 by Warewolf Ltd <alpha@warewolf.io>
+*  Copyright 2015 by Warewolf Ltd <alpha@warewolf.io>
 *  Licensed under GNU Affero General Public License 3.0 or later. 
 *  Some rights reserved.
 *  Visit our website for more information <http://warewolf.io/>
@@ -23,6 +23,7 @@ using Dev2.Activities.Debug;
 using Dev2.Common;
 using Dev2.Common.Interfaces.DataList.Contract;
 using Dev2.Common.Interfaces.Diagnostics.Debug;
+using Dev2.Common.Interfaces.Toolbox;
 using Dev2.Data.Factories;
 using Dev2.DataList.Contract;
 using Dev2.DataList.Contract.Binary_Objects;
@@ -33,9 +34,12 @@ using Dev2.Runtime.Execution;
 using Dev2.Util;
 using Unlimited.Applications.BusinessDesignStudio.Activities;
 using Unlimited.Applications.BusinessDesignStudio.Activities.Utilities;
+using Warewolf.Core;
 
 namespace Dev2.Activities
 {
+    [ToolDescriptorInfo("Scripting-CMDScript", "CMD Script", ToolType.Native, "8999E59A-38A3-43BB-A98F-6090C5C9EA1E", "Bob", "1.0.0.0", "c:\\", "Scripting", "/Warewolf.Studio.Themes.Luna;component/Images.xaml")]
+        
     public class DsfExecuteCommandLineActivity : DsfActivityAbstract<string>
     {
         #region Fields
@@ -250,11 +254,8 @@ namespace Dev2.Activities
                 _process.StartInfo = processStartInfo;
                 var processStarted = _process.Start();
 
-                //_process.BeginOutputReadLine();
 
                 StringBuilder reader = outputReader;
-                //DataReceivedEventHandler a = (sender, args) => reader.AppendLine(args.Data);
-                //_process.OutputDataReceived += a;
                 errorReader = _process.StandardError;
 
                 if (!ProcessHasStarted(processStarted, _process))
@@ -356,7 +357,6 @@ namespace Dev2.Activities
             }
 
             ProcessStartInfo psi;
-
             if(val.StartsWith("\""))
             {
                 // we have a quoted string for the cmd portion
@@ -439,8 +439,14 @@ namespace Dev2.Activities
             _fullPath = Path.Combine(Path.GetTempPath(), Path.GetTempFileName() + ".bat");
             File.Create(_fullPath).Close();
             File.WriteAllText(_fullPath, val);
-            var psi = new ProcessStartInfo("cmd.exe", "/Q /C " + _fullPath);
-            return psi;
+            if (File.Exists(_fullPath))
+            {
+                var psi = new ProcessStartInfo("cmd.exe", "/Q /C " + _fullPath);
+                return psi;
+            }
+            val = val.Replace(Environment.NewLine, " & ");
+            var commandPsi = new ProcessStartInfo("cmd.exe", "/Q /C " + val);
+            return commandPsi;
         }
 
         public override void UpdateForEachInputs(IList<Tuple<string, string>> updates, NativeActivityContext context)

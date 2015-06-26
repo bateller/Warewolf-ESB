@@ -1,7 +1,7 @@
 
 /*
 *  Warewolf - The Easy Service Bus
-*  Copyright 2014 by Warewolf Ltd <alpha@warewolf.io>
+*  Copyright 2015 by Warewolf Ltd <alpha@warewolf.io>
 *  Licensed under GNU Affero General Public License 3.0 or later. 
 *  Some rights reserved.
 *  Visit our website for more information <http://warewolf.io/>
@@ -15,6 +15,8 @@ using System.Net;
 using System.Text;
 using System.Xml.Linq;
 using Dev2.Common;
+using Dev2.Common.Interfaces;
+using Dev2.Common.Interfaces.Runtime.ServiceModel;
 using Dev2.Data.ServiceModel;
 using Dev2.DataList.Contract;
 using Dev2.Runtime.Diagnostics;
@@ -109,6 +111,19 @@ namespace Dev2.Runtime.ServiceModel
             try
             {
                 var source = JsonConvert.DeserializeObject<WebSource>(args);
+                return CanConnectServer(source);
+            }
+            catch(Exception ex)
+            {
+                RaiseError(ex);
+                return new ValidationResult { IsValid = false, ErrorMessage = ex.Message };
+            }
+        } 
+        
+        public ValidationResult Test(WebSource source)
+        {
+            try
+            {
                 return CanConnectServer(source);
             }
             catch(Exception ex)

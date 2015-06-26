@@ -1,7 +1,7 @@
 
 /*
 *  Warewolf - The Easy Service Bus
-*  Copyright 2014 by Warewolf Ltd <alpha@warewolf.io>
+*  Copyright 2015 by Warewolf Ltd <alpha@warewolf.io>
 *  Licensed under GNU Affero General Public License 3.0 or later. 
 *  Some rights reserved.
 *  Visit our website for more information <http://warewolf.io/>
@@ -372,6 +372,7 @@ namespace Dev2.Activities.Designers.Tests.Designers2.Core
             Assert.AreEqual(ExpectedItemCount + 1, viewModel.ItemCount);
             Assert.AreEqual(string.Format("Activity ({0})", ExpectedItemCount), viewModel.ModelItem.GetProperty("DisplayName"));
 
+            System.Diagnostics.Debug.Assert(mic != null, "mic != null");
             for(var i = 0; i < mic.Count; i++)
             {
                 var dto = (ActivityDTO)mic[i].GetCurrentValue();

@@ -1,7 +1,7 @@
 
 /*
 *  Warewolf - The Easy Service Bus
-*  Copyright 2014 by Warewolf Ltd <alpha@warewolf.io>
+*  Copyright 2015 by Warewolf Ltd <alpha@warewolf.io>
 *  Licensed under GNU Affero General Public License 3.0 or later. 
 *  Some rights reserved.
 *  Visit our website for more information <http://warewolf.io/>
@@ -36,10 +36,9 @@ namespace Dev2.Communication
             {
                 TypeNameHandling = TypeNameHandling.Objects
             };
-        public string Serialize<T>(T message)
+        public string Serialize<T>(T obj)
         {
-            VerifyArgument.IsNotNull("message", message);
-            return JsonConvert.SerializeObject(message, Formatting, _serializerSettings);
+            return JsonConvert.SerializeObject(obj, Formatting, _serializerSettings);
         }
 
         public T Deserialize<T>([NotNull] string message)

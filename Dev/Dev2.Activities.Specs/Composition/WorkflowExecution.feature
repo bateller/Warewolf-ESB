@@ -80,6 +80,20 @@ Scenario: Simple workflow executing against the server with a database service
 	 |               |
 	 | [[count]] = 9 |
 
+
+Scenario: Workflow Execution Asynchronous 
+     Given I have a workflow "TestWFWithDBService"
+
+
+
+
+
+
+
+
+
+
+
 Scenario: Workflow with an assign and webservice
 	 Given I have a workflow "TestWebServiceWF"
 	 And "TestWebServiceWF" contains an Assign "Inputs" as
@@ -446,6 +460,95 @@ Scenario: Workflow with Assigns and DataSplit executing against the server
 #     | 2  | a        | Text | Binary | 01100001     | Is Binary | YES    |
 #     | 3  | a        | Text | Hex    | 0x61         | Is Hex    | YES    |
 #     | 4  | 2013/01  | Text | Text   | 2013/01      | Is Date   | YES    |
+
+
+
+
+
+Scenario: Workflow with Assign and Decision tools executing against the server
+	  Given I have a workflow "WorkflowWithAssignandDecision12"
+	  And "WorkflowWithAssignandDecision" contains an Assign "Recordss" as
+	  | variable    | value |
+	  | [[rec().a]] | 1     |
+	  | [[rec().a]] | 1     |
+	  | [[rec().a]] | 1     |
+	  | [[rec().a]] | 1     |
+	  | [[rec().a]] | 1     |
+	  | [[rec().a]] | 1     |
+	  | [[rec().a]] | 1     |
+	  | [[rec().a]] | 1     |
+	  | [[rec().a]] | 1     |
+	  | [[rec().a]] | 1     |
+	  | [[rec().a]] | 1     |
+	  | [[rec().a]] | 1     |
+	  | [[rec().a]] | 1     |
+	  | [[rec().a]] | 1     |
+	  | [[rec().a]] | 1     |
+	  | [[a]]       | 2     |
+	 #And "WorkflowWithAssignandDecision" contains a Decision "Decision" as
+	 #| Statements   |   |   |
+	 #| [[rec(*).a]] | = | 1 |
+	 #| [[a]]        | = | 2 |
+	  When "WorkflowWithAssignandDecision12" is executed
+	  Then the workflow execution has "NO" error
+	  And the 'Recordss' in WorkFlow 'WorkflowWithAssignandDecision12' debug inputs as
+	  | #  | Variable      | New Value |
+	  | 1  | [[rec().a]] = | 1         |
+	  | 2  | [[rec().a]] = | 1         |
+	  | 3  | [[rec().a]] = | 1         |
+	  | 4  | [[rec().a]] = | 1         |
+	  | 5  | [[rec().a]] = | 1         |
+	  | 6  | [[rec().a]] = | 1         |
+	  | 7  | [[rec().a]] = | 1         |
+	  | 8  | [[rec().a]] = | 1         |
+	  | 9  | [[rec().a]] = | 1         |
+	  | 10 | [[rec().a]] = | 1         |
+	  | 11 | [[rec().a]] = | 1         |
+	  | 12 | [[rec().a]] = | 1         |
+	  | 13 | [[rec().a]] = | 1         |
+	  | 14 | [[rec().a]] = | 1         |
+	  | 15 | [[rec().a]] = | 1         |
+	  | 16 | [[a]]       = | 2         |
+      And the 'Recordss' in Workflow 'WorkflowWithAssignandDecision12' debug outputs as  
+	  | #  |                   |
+	  | 1  | [[rec(1).a]] = 1  |
+	  | 2  | [[rec(2).a]] = 1  |
+	  | 3  | [[rec(3).a]] = 1  |
+	  | 4  | [[rec(4).a]] = 1  |
+	  | 5  | [[rec(5).a]] = 1  |
+	  | 6  | [[rec(6).a]] = 1  |
+	  | 7  | [[rec(7).a]] = 1  |
+	  | 8  | [[rec(8).a]] = 1  |
+	  | 9  | [[rec(9).a]] = 1  |
+	  | 10 | [[rec(10).a]] = 1 |
+	  | 11 | [[rec(11).a]] = 1 |
+	  | 12 | [[rec(12).a]] = 1 |
+	  | 13 | [[rec(13).a]] = 1 |
+	  | 14 | [[rec(14).a]] = 1 |
+	  | 15 | [[rec(15).a]] = 1 |
+	  | 16 | [[a]]       = 2   |
+	#  And the 'Decision' in WorkFlow 'WorkflowWithAssignandDecision' debug inputs as
+	#  |                   | Statement | Require All decisions to be True |
+	#  | [[rec(1).a]] = 1  |           |                                  |
+	#  | [[rec(2).a]] = 1  |           |                                  |
+	#  | [[rec(3).a]] = 1  |           |                                  |
+	#  | [[rec(4).a]] = 1  |           |                                  |
+	#  | [[rec(5).a]] = 1  |           |                                  |
+	#  | [[rec(6).a]] = 1  |           |                                  |
+	#  | [[rec(7).a]] = 1  |           |                                  |
+	#  | [[rec(8).a]] = 1  |           |                                  |
+	#  | [[rec(9).a]] = 1  |           |                                  |
+	#  | [[rec(10).a]] = 1 |           |                                  |
+	#  | [[rec(11).a]] = 1 |           |                                  |
+	#  | [[rec(12).a]] = 1 |           |                                  |
+	#  | [[rec(13).a]] = 1 |           |                                  |
+	#  | [[rec(14).a]] = 1 |           |                                  |
+	#  | [[rec(15).a]] = 1 |           |                                  |
+	#  | [[a]] = 2         |           |                                  |
+	#  |                   | String    | YES                              |
+	#  And the 'Decision' in Workflow 'WorkflowWithAssignandDecision' debug outputs as  
+	#  |      |
+	#  | True |
 
 
 
@@ -2006,8 +2109,8 @@ Scenario: Executing 2 ForEach's inside a ForEach which contains Assign only
 	  |                         |
 	  | [[rec(1).a]] = Warewolf |
 	  | [[rec(2).a]] = Warewolf |
-
 	  | [[rec(3).a]] = 2        |
+
 
 
 Scenario: Workflow Assign and Find Record index tool with two variables in reult field expect error
@@ -2915,6 +3018,149 @@ Scenario: Workflow by using For Each with Raandom in it
 	And the 'Random' in step 5 for 'ForEachTest123' debug outputs as
          |                      |
          | [[rec(1).a]] = Int32 |
+#Wolf - 604
+Scenario: Workflow by using For Each in recordset with Raandom in it 
+      Given I have a workflow "WFWithForEachInrecordsetContainsRandomTool"
+	   And "WFWithForEachInrecordsetContainsRandomTool" contains an Assign "Recordset" as
+	  | variable    | value |
+	  | [[rec().a]] | 10    |
+	  | [[rec().a]] | 20    |
+	  And "WFWithForEachInrecordsetContainsRandomTool" contains a Foreach "ForE" as "in recordset" executions "[[rec(*)]]"
+	  And "ForE" contains Random "Randoms" as
+	    | Type    | From        | To  | Result     |
+	    | Numbers | [[rec().a]] | 100 | [[result]] |
+      When "WFWithForEachContainsRandom" is executed
+	  Then the workflow execution has "NO" error
+	    And the 'ForE' in WorkFlow 'WFWithForEachInrecordsetContainsRandomTool' debug inputs as
+	  | # | Variable      | New Value |
+	  | 1 | [[rs().a]] =  | 1         |
+	  | 2 | [[rec().a]] = | 2         |
+	  And the 'ForE' in Workflow 'WFWithForEachInrecordsetContainsRandomTool' debug outputs as  
+	  | # |                   |
+	  | 1 | [[rs(1).a]] = 10  |
+	  | 2 | [[rec(2).a]] = 20 |
+	  And the 'ForE' in WorkFlow 'WFWithForEachInrecordsetContainsRandomTool' debug inputs as 
+	   |              | Recordset         |
+	   | in Recordset | [[rec(1).a]] = 10 |
+	   |              | [[rec(2).a]] = 20 |
+      And the 'ForE' in WorkFlow 'WFWithForEachInrecordsetContainsRandomTool' has  "5" nested children 
+	  And the 'Randoms' in step 1 for 'ForE' debug inputs as
+	    | Random  | From              | To  |
+	    | Numbers | [[rec(1).a]] = 10 | 100 |
+	  And the 'Randoms' in step 1 for 'ForE' debug outputs as
+        |                      |
+	    | [[rec(1).a]] = Int32 |
+	  And the 'Randoms' in step 2 for 'ForE' debug inputs as
+        | Random  | From              | To  |
+        | Numbers | [[rec(2).a]] = 20 | 100 |
+	  And the 'Randoms' in step 2 for 'ForE' debug outputs as
+        |                      |
+	    | [[rec(1).a]] = Int32 |
+      
+	 
+#Wolf - 604
+Scenario: Workflow by using For Each with workflow in it
+      Given I have a workflow "WFWithForEachInrecordsetTesting"
+	  And "WFWithForEachInrecordsetTesting" contains an Assign "Recordset" as
+	  | variable    | value |
+	  | [[rec().a]] | 1     |
+	  | [[rec().a]] | 2     |
+	  And "WFWithForEachInrecordsetTesting" contains a Foreach "FEach" as "in recordset" executions "[[rec(*)]]"
+	  And "ForEachTest123" contains "SavedWFwithRandom Test" from server "localhost" with mapping as
+	  | Input to Service | From Variable | Output from Service | To Variable     |
+	  When "WFWithForEachInrecordsetTesting" is executed
+	  Then the workflow execution has "NO" error
+	  And the 'Recordset' in WorkFlow 'WFWithForEachInrecordsetTesting' debug inputs as
+	  | # | Variable      | New Value |
+	  | 1 | [[rs().a]] =  | 1         |
+	  | 2 | [[rec().a]] = | 2         |
+	  And the 'Recordset' in Workflow 'WFWithForEachInrecordsetTesting' debug outputs as  
+	  | # |                  |
+	  | 1 | [[rs(1).a]] = 1  |
+	  | 2 | [[rec(2).a]] = 2 |
+	  And the 'FEach' in WorkFlow 'WFWithForEachInrecordsetTesting' debug inputs as 
+	    |              | Recordset         |
+	    | in Recordset | [[rec(1).a]] = 1  |
+	    |              | [[rec(2).a]] = 10 |
+      And the 'FEach' in WorkFlow 'WFWithForEachInrecordsetTesting' has  "2" nested children 
+      And the 'Random' in step 1 for 'SavedWFwithRandom Test' debug inputs as
+	    | Random  | From             | To |
+	    | Numbers | [[rec(1).a]] = 1 | 5  |
+	  And the 'Random' in step 1 for 'SavedWFwithRandom Test' debug outputs as
+        |                      |
+        | [[res]] = Int32 |
+		And the 'Random' in step 2 for 'SavedWFwithRandom Test' debug inputs as
+	    | Random  | From              | To |
+	    | Numbers | [[rec(2).a]] = 10 | 5  |
+	  And the 'Random' in step 2 for 'SavedWFwithRandom Test' debug outputs as
+        |                 |
+        | [[res]] = Int32 |
+
+#Wolf - 604
+Scenario: Workflow by using For Each with workflow
+      Given I have a workflow "WFWithForEachInrecordsetUtilityRandomTesting"
+	  And "WFWithForEachInrecordsetUtilityRandomTesting" contains an Assign "Recordset1" as
+	  | variable    | value |
+	  | [[rec().a]] | 1     |
+	  | [[rec().a]] | 2     |
+	  And "WFWithForEachInrecordsetUtilityRandomTesting" contains a Foreach "FEach" as "in recordset" executions "[[rec(*)]]"
+	  And "ForEachTest123" contains "Utility - Random Test" from server "localhost" with mapping as
+	  | Input to Service | From Variable | Output from Service | To Variable     |
+	  When "WFWithForEachInrecordsetUtilityRandomTesting" is executed
+	  Then the workflow execution has "NO" error
+	  And the 'Recordset1' in WorkFlow 'WFWithForEachInrecordsetUtilityRandomTesting' debug inputs as
+	  | # | Variable      | New Value |
+	  | 1 | [[rec().a]] = | 1         |
+	  | 2 | [[rec().a]] = | 2         |
+	  And the 'Recordset1' in Workflow 'WFWithForEachInrecordsetUtilityRandomTesting' debug outputs as  
+	  | # |                  |
+	  | 1 | [[rs(1).a]] = 1  |
+	  | 2 | [[rec(2).a]] = 2 |
+	  And the 'FEach1' in WorkFlow 'WFWithForEachInrecordsetUtilityRandomTesting' debug inputs as 
+	    |              | Recordset         |
+	    | in Recordset | [[rec(1).a]] = 1  |
+	    |              | [[rec(2).a]] = 10 |
+      And the 'FEach1' in WorkFlow 'WFWithForEachInrecordsetUtilityRandomTesting' has  "2" nested children 
+	  And the 'Random1' in step 1 for 'Utility - Random Test' debug inputs as
+	  | Random  | From | To |
+	  | Numbers | 1    | 6  |
+	  And the 'Random1' in step 1 for 'Utility - Random Test' debug outputs as  
+	  |                      |
+	  | [[DiceRoll]] = Int32 |
+	   And the 'Random2' in step 1 for 'Utility - Random Test' debug inputs as
+	  | Random  | Length |
+	  | Letters | 7      |
+	  And the 'Random2' in step 1 for 'Utility - Random Test' debug outputs as     
+	  |                       |
+	  | [[Scrabble]] = String |
+	  And the 'Random3' in step 1 for 'Utility - Random Test' debug inputs as
+	  | Random |
+	  | GUID   | 
+	  And the 'Random3' in step 1 for 'Utility - Random Test' debug outputs as     
+	  |                      |
+	  | [[License]] = String |
+	  And the 'Random1' in step 2 for 'Utility - Random Test' debug inputs as
+	  | Random  | From | To |
+	  | Numbers | 1    | 6  |
+	  And the 'Random1' in step 2 for 'Utility - Random Test' debug outputs as  
+	  |                      |
+	  | [[DiceRoll]] = Int32 |
+	   And the 'Random2' in step 2 for 'Utility - Random Test' debug inputs as
+	  | Random  | Length |
+	  | Letters | 7      |
+	  And the 'Random2' in step 2 for 'Utility - Random Test' debug outputs as     
+	  |                       |
+	  | [[Scrabble]] = String |
+	  And the 'Random3' in step 2 for 'Utility - Random Test' debug inputs as
+	  | Random |
+	  | GUID   | 
+	  And the 'Random3' in step 2 for 'Utility - Random Test' debug outputs as     
+	  |                      |
+	  | [[License]] = String |
+
+
+
+
 
 
 #This should be passed after the bug 12021 is fixed (RECURSIVE EVALUATION)
@@ -3539,6 +3785,123 @@ Scenario: Workflow with Assigns Replace and testing variables that hasn't been a
 	  |              |
 	  | [[replac]] = |
 
+Scenario: Workflow with Replace Tool is replacing recordset values  
+      Given I have a workflow "UniqueNamessTest123"
+      And "UniqueNamessTest123" contains an Assign "Records1" as
+	  | variable            | value    |
+	  | [[emp().firstname]] | Smith    |
+	  | [[emp().lastname]]  | Gordan   |
+	  | [[emp().firstname]] | Nicholas |
+	  | [[emp().lastname]]  | Cage     |
+	  | [[emp().firstname]] | Cage     |
+	  | [[emp().lastname]]  | Nicholas |
+	  | [[emp().firstname]] | Cage     |
+	  | [[emp().lastname]]  | Nicholas |
+	  And "UniqueNamessTest123" contains Replace "Replacing123" into "[[replace]]" as	
+	  | In Fields            | Find | Replace With |
+	  | [[emp(*).firstname]] | i    | 1            |
+	  When "UniqueNamessTest123" is executed
+	  Then the workflow execution has "NO" error
+	  And the 'Records1' in WorkFlow 'UniqueNamessTest123' debug inputs as
+	  | # | Variable              | New Value |
+	  | 1 | [[emp().firstname]] = | Smith     |
+	  | 2 | [[emp().lastname]] =  | Gordan    |
+	  | 3 | [[emp().firstname]] = | Nicholas  |
+	  | 4 | [[emp().lastname]] =  | Cage      |
+	  | 5 | [[emp().firstname]] = | Cage      |
+	  | 6 | [[emp().lastname]] =  | Nicholas  |
+	  | 7 | [[emp().firstname]] = | Cage      |
+	  | 8 | [[emp().lastname]] =  | Nicholas  |
+	  And the 'Records1' in Workflow 'UniqueNamessTest123' debug outputs as  
+	  | # |                                  |
+	  | 1 | [[emp(1).firstname]] =  Smith    |
+	  | 2 | [[emp(1).lastname]] =  Gordan    |
+	  | 3 | [[emp(2).firstname]] =  Nicholas |
+	  | 4 | [[emp(2).lastname]] =  Cage      |
+	  | 5 | [[emp(3).firstname]] =  Cage     |
+	  | 6 | [[emp(3).lastname]] =  Nicholas  |
+	  | 7 | [[emp(4).firstname]] =  Cage     |
+	  | 8 | [[emp(4).lastname]] =  Nicholas  |
+	   And the 'Replacing123' in WorkFlow 'UniqueNamessTest123' debug inputs as 
+	  | In Field(s)                     | Find | Replace With |
+	  | [[emp(1).firstname]] = Smith    |      |              |
+	  | [[emp(2).firstname]] = Nicholas |      |              |
+	  | [[emp(3).firstname]] = Cage     |      |              |
+	  | [[emp(4).firstname]] = Cage     | i    | 1            | 	 	 
+	  And the 'Replacing123' in Workflow 'UniqueNamessTest123' debug outputs as
+	  |                                 |
+	  | [[emp(1).firstname]] = Sm1th    |
+	  | [[emp(2).firstname]] = N1cholas |
+	  | [[replace]] =2                  |      
+
+	  ##  And the 'Replacing' in WorkFlow 'Test1' debug inputs as 
+	  ##| In Field(s)             | Find | Replace With |
+	  ##| [[rec(1).a]] = test     |      |              |
+	  ##| [[rec(1).b]] = test     |      |              |
+	  ##| [[rec(2).a]] = warewolf |      |              |
+	  ##| [[rec(2).b]] = warewolf | e    | REPLACED     |
+	  ##And the 'Replacing' in Workflow 'Test1' debug outputs as
+	  ##|                                |
+	  ##| [[rec(1).a]] = tREPLACEDst     |
+	  ##| [[rec(1).b]] = tREPLACEDst     |
+	  ##| [[rec(2).a]] = warREPLACEDwolf |
+	  ##| [[rec(2).b]] = warREPLACEDwolf |
+	  ##| [[replaceResult]] = 4          |
+
+
+Scenario: Workflow with Replace Tool is replacing recordset numbers
+      Given I have a workflow "ReplaceNamessTest1Replace"
+      And "ReplaceNamessTest1Replace" contains an Assign "Records1" as
+	  | variable            | value      |
+	  | [[emp().firstname]] | 121        |
+	  | [[emp().lastname]]  | 685        |
+	  | [[emp().firstname]] | 98917      |
+	  | [[emp().lastname]]  | 25148      |
+	  | [[emp().firstname]] | 1947       |
+	  | [[emp().lastname]]  | 6512       |
+	  | [[emp().firstname]] | 9856145    |
+	  | [[emp().lastname]]  | 1154115698 |
+	  And "ReplaceNamessTest1Replace" contains Replace "Replacing123" into "[[replace]]" as	
+	  | In Fields            | Find | Replace With |
+	  | [[emp(*).firstname]] | 1    | a            |
+	  When "ReplaceNamessTest1Replace" is executed
+	  Then the workflow execution has "NO" error
+	  And the 'Records1' in WorkFlow 'ReplaceNamessTest1Replace' debug inputs as
+	  | # | Variable              | New Value  |
+	  | 1 | [[emp().firstname]] = | 121        |
+	  | 2 | [[emp().lastname]] =  | 685        |
+	  | 3 | [[emp().firstname]] = | 98917      |
+	  | 4 | [[emp().lastname]] =  | 25148      |
+	  | 5 | [[emp().firstname]] = | 1947       |
+	  | 6 | [[emp().lastname]] =  | 6512       |
+	  | 7 | [[emp().firstname]] = | 9856145    |
+	  | 8 | [[emp().lastname]] =  | 1154115698 |
+	  And the 'Records1' in Workflow 'ReplaceNamessTest1Replace' debug outputs as  
+	  | # |                                   |
+	  | 1 | [[emp(1).firstname]] = 121        |
+	  | 2 | [[emp(1).lastname]] =  685        |
+	  | 3 | [[emp(2).firstname]] = 98917      |
+	  | 4 | [[emp(2).lastname]] =  25148      |
+	  | 5 | [[emp(3).firstname]] = 1947       |
+	  | 6 | [[emp(3).lastname]] =  6512       |
+	  | 7 | [[emp(4).firstname]] = 9856145    |
+	  | 8 | [[emp(4).lastname]] =  1154115698 |
+	   And the 'Replacing123' in WorkFlow 'ReplaceNamessTest1Replace' debug inputs as 
+	  | In Field(s)                    | Find | Replace With |
+	  | [[emp(1).firstname]] = 121     |      |              |
+	  | [[emp(2).firstname]] = 98917   |      |              |
+	  | [[emp(3).firstname]] = 1947    |      |              |
+	  | [[emp(4).firstname]] = 9856145 | 1    | a            | 	 	 
+	  And the 'Replacing123' in Workflow 'ReplaceNamessTest1Replace' debug outputs as
+	  |                                |
+	  | [[emp(1).firstname]] = a2a     |
+	  | [[emp(2).firstname]] = 989a7   |
+	  | [[emp(3).firstname]] = a947    |
+	  | [[emp(4).firstname]] = 9856a45 |
+	  | [[replace]] = 5                |      
+
+
+
 #Scenario: Workflow with Assigns Replace and testing variables that hasn't been assigned2
 #      Given I have a workflow "workflowithAssignandReplaceTestingUnassignedvariablevalues2"
 #      And "workflowithAssignandReplaceTestingUnassignedvariablevalues2" contains an Assign "Assign34" as
@@ -3898,7 +4261,6 @@ Scenario: Workflow with Assign Unique Tool and testing variables in Returnfield 
 	  | # | Variable         | New Value |
 	  | 1 | [[rs(1).row]] =  | 10        |
 	  | 2 | [[rs(1).data]] = | 10        |
-
 	  And the 'Records1' in Workflow 'workflowithAssignUni' debug outputs as  
 	  | # |                      |
 	  | 1 | [[rs(1).row]] =  10  |
@@ -3910,7 +4272,50 @@ Scenario: Workflow with Assign Unique Tool and testing variables in Returnfield 
       And the 'Unrec' in Workflow 'workflowithAssignUni' debug outputs as  
        |                     |
        | [[rec(1).unique]] = |
-      
+
+	  #Make the spec passed 688
+ Scenario: Executing Asynchrounous testing workflow
+	  Given I have a workflow "Testing - Async Test Master Test"
+	  And "Testing - Async Test Master Test" contains "Testing - Async Test Master" from server "localhost" with mapping as
+	  | Input to Service | From Variable | Output from Service | To Variable      |
+	  When "Testing - Async Test Master Test" is executed
+	  Then the workflow execution has "NO" error
+	  And the 'Random' in WorkFlow 'Testing - Async Test Master' debug inputs as
+	  | Random |
+	  | GUID   | 
+	  And the 'Random' in Workflow 'Testing - Async Test Master' debug outputs as    
+	  |                   |
+	  | [[guid]] = String |
+	  And the 'Read File' in WorkFlow 'Testing - Async Test Master' debug inputs as
+	  | Input Path | Username | Password |
+	  | String     | ""       | ""       |  
+	  And the 'Read File' in Workflow 'Testing - Async Test Master' debug outputs as    
+	  |                    |
+	  | [[res]] = 1 |
+	   And the "Decision" in workflow 'Testing - Async Test Master' debug input as
+	   |                    | Statement | Require All decisions to be True |
+	   | [[Result]] = Int32 |           |                                  |
+	   |                    |           |                                  |
+	   |                    | String    | YES                              |
+	   And the "Decision" in workflow 'Testing - Async Test Master' debug output as 
+	   |      |
+	   | Pass |
+	    And the 'Assign' in WorkFlow 'Testing - Async Test Master' debug inputs as
+	  | # | Variable     | New Value |
+	  | 1 | [[Result]] = | Pass      |
+	  And the 'Assign' in Workflow 'Testing - Async Test Master' debug outputs as  
+	  | # |                      |
+	  | 1 | [[Result]] =  Pass   |
+	   And the 'Delete' in WorkFlow 'Testing - Async Test Master' debug inputs as
+	  | Input Path | Username | Password |
+	  | String     | ""       | ""       |  
+	  And the 'Delete' in Workflow 'Testing - Async Test Master' debug outputs as  
+	  |                      |
+	  | [[result]] = Success |
+
+
+
+	     
 
 Scenario: Executing Utility - Format Number example workflow
 	  Given I have a workflow "Utility - Format Number Test"
@@ -4463,6 +4868,96 @@ Scenario: Executing Control Flow - Switch example workflow
 	  Then the workflow execution has "NO" error
 
 
+##My category workflows
+Scenario: Executing My category diceroll example workflow
+	  Given I have a workflow "Dice Roll Test"
+	    | Input to Service | From Variable | Output from Service | To Variable     |
+	  When "Dice Rol Test" is executed
+	  Then the workflow execution has "NO" error
+	  And the 'Random' in WorkFlow 'Dice Roll' debug inputs as
+	   | Random  | From | To |
+	   | Numbers | 1    | 8  |
+	  And the 'Random' in Workflow 'Dice Roll' debug outputs as
+	  |                      |
+	  | [[DiceRoll]] = Int32 |
+
+##My category workflows
+Scenario: Executing My category Double Roll and Check  workflow
+	  Given I have a workflow "Double Roll and Check Test"
+	   | Input to Service | From Variable | Output from Service | To Variable     |
+	   |                  |               | IsDouble            | [[IsDouble]]    |
+	   |                  |               | DoubleValue         | [[DoubleValue]] |
+	  When "Double Roll and Check Test" is executed
+	  Then the workflow execution has "NO" error
+	  And the debug out put has 2 nested inputs and outputs
+	  And the 'Random' in WorkFlow 'Dice Roll' debug inputs as
+	   | Random  | From | To |
+	   | Numbers | 1    | 8  |
+	  And the 'Random' in Workflow 'Dice Roll' debug outputs as
+	   |                      |
+	   | [[DiceRoll]] = Int32 |
+	   And the 'Random' in WorkFlow 'Dice Roll' debug inputs as
+	   | Random  | From | To |
+	   | Numbers | 1    | 8  |
+	  And the 'Random' in Workflow 'Dice Roll' debug outputs as
+	   |                      |
+	   | [[DiceRoll]] = Int32 |
+	  And the "Decision" in workflow "Double Roll and Check" debug input as
+	   |                   | Statement | Require All decisions to be True |
+	   | [[Dice1]] = Int32 |           |                                  |
+	   | [[Dice1]] = Int32 |           |                                  |
+	   |                   | String    | YES                              |
+	   And the "Decision" in workflow "Double Roll and Check" debug output as 
+	   |    |
+	   | NO |
+	   And the 'Assign1' in WorkFlow 'Double Roll and Check' debug inputs as
+	   | # | Variable        | New Value |
+	   | 1 | [[IsDouble]] = | String    |
+	    And the 'Assign1' in Workflow 'Double Roll and Check' debug outputs as   
+	   | # |                               |
+	   | 1 | [[IsDouble]         =  String |
+	
+	
+##My category workflows   
+	   ##This Spec is not completed because the webservice used in this workflow is not working
+	   ## so I can't assume how the outputs needs to come.
+Scenario: Executing My category Roll Dice for Players  workflow
+	  Given I have a workflow "Roll Dice for Players Test"
+	  And "Roll Dice for Players" contains a "DBservice" service "FetchPlayersTest" with mappings
+	   | Input to Service | From Variable   | Output from Service | To Variable            |
+	   | pplCnt           | [[PlayerCount]] | People(*).ID        | [[Players().ID]]       |
+	   |                  |                 | People(*).Name      | [[Players().Name]]     |
+	   |                  |                 | People(*).Surname   | [[Players().Surname]]  |
+	   |                  |                 | People(*).Username  | [[Players().Username]] |
+	 And "Roll Dice for Players" contains a Foreach "ForEachTest" as "In Recordset" executions "[[Players()]]"
+	 And "ForEachTest" contains workflow "Double Roll and Check" with mapping as
+	   | Input to Service | From Variable | Output from Service | To Variable              |
+	   |                  |               | IsDouble            | [[Players(*).IsDouble]]  |
+	   |                  |               | DoubleValue         | [[Players(*).DiceValue]] |
+	 And "workflowithAssignandsortrec" contains an Sort "sortRec" as
+	  | Sort Field | Sort Order |
+	  | [[rs(*).a  | Forward    |
+	  When "Double Roll and Check Test" is executed
+	  Then the workflow execution has "NO" error
+
+
+	    And the 'Inputs' in WorkFlow 'FetchPlayers' debug inputs as
+	  | # | Variable          | New Value |
+	  | 1 | [[PlayerCount]] = |           |
+	  And the 'Outputs' in Workflow 'FetchPlayers' debug outputs as    
+	  | # |                         |
+	  | 1 | [[Players().ID]]      = |
+	  | 2 | [[Players().Name]]    = |
+	  | 3 | [[Players().Surname]] = |
+	  | 4 | [[Players().Username]]= |
+	  And the 'FEach' in WorkFlow 'WFWithForEachInrecordsetTesting' has  "2" nested children
+	   And the 'sortRec' in WorkFlow 'workflowithAssignandsortrec' debug inputs as
+	  | Sort Field       | Sort Order | 
+	  And the 'sortRec' in Workflow 'workflowithAssignandsortrec' debug outputs as
+	  |                  |
+	 
+
+
 #Scenario: Executing File and Folder - Create example workflow
 #	  Given I have a workflow "File and Folder - Create Test"
 #	  And "File and Folder - Create Test" contains "File and Folder - Create" from server "localhost" with mapping as
@@ -4857,3 +5352,48 @@ Scenario: Error from workflow service is expected to buble out
 	  | 2 | [[values(1).upper]] = HELLO |
 	  | 3 | [[values(1).lower]] = hello |	  	 
 	 
+
+
+#Wolf - 675
+#Scenario: Workflow with Assigns Decision and Delete to test decision with slash in it
+#      Given I have a workflow "workflocontainsDecisioninit"
+#      And "workflocontainsDecisioninit" contains an Assign "AssignVal" as
+#      | variable    | value |
+#      | [[a]]       | 1     |
+#      | [[rec().a]] | test  |
+#	  And "workflocontainsDecisioninit" contains an Decision "Decide" as
+#	  | statements |   |   |
+#	  | [[a]]      | = | \ |
+#	  And "workflocontainsDecisioninit" contains an Delete Record "Deletes" as
+#	  | Recordset | Result  |
+#	  | [[rec()]] | [[res]] |
+#	  When "workflocontainsDecisioninit" is executed
+#	  Then the workflow execution has "NO" error
+#	  And the 'AssignVal' in WorkFlow 'workflocontainsDecisioninit' debug inputs as
+#	  | # | Variable      | New Value |
+#	  | 1 | [[a]] =       | 1         |
+#	  | 2 | [[rec().a]] = | test      |
+#	   And the 'AssignVal' in Workflow 'workflocontainsDecisioninit' debug outputs as    
+#	  | # |                     |
+#	  | 1 | [[Val]] = test      |
+#	  | 2 | [[rec(1).a]] = test |
+#	 And the 'Decide' in WorkFlow 'workflocontainsDecisioninit' debug inputs as
+#	  |  | Statement | Require All decisions to be True |
+#	  |  | String    | YES                              |
+#	  And the 'Decide' in Workflow 'workflocontainsDecisioninit' debug outputs as  
+#	  | Output |
+#	  | False  |
+#	   And the 'Deletes' in WorkFlow 'workflocontainsDecisioninit' debug inputs as
+#	  | Records             |
+#	  | [[rec(1).a]] = test |
+#	  And the 'Deletes' in Workflow 'workflocontainsDecisioninit' debug outputs as    
+#	  |                   |
+#	  | [[res]] = Success |
+
+
+
+
+
+
+
+

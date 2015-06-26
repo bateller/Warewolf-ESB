@@ -13,6 +13,7 @@
     <adorners:AdornerControl.Resources>
         <ResourceDictionary x:Name="TheResources"
                             Source="pack://application:,,,/Dev2.Activities.Designers;component/Themes/ActivityResources.xaml" />
+        
     </adorners:AdornerControl.Resources>
  
     <Border Style="{StaticResource HelpAdornerBorderStyle}">

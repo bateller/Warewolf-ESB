@@ -1,7 +1,7 @@
 
 /*
 *  Warewolf - The Easy Service Bus
-*  Copyright 2014 by Warewolf Ltd <alpha@warewolf.io>
+*  Copyright 2015 by Warewolf Ltd <alpha@warewolf.io>
 *  Licensed under GNU Affero General Public License 3.0 or later. 
 *  Some rights reserved.
 *  Visit our website for more information <http://warewolf.io/>
@@ -10,7 +10,9 @@
 */
 
 using System;
+using Dev2.Common.Interfaces.Infrastructure;
 using Dev2.Common.Interfaces.Security;
+using Dev2.Common.Interfaces.Services.Security;
 
 namespace Dev2.Services.Security
 {
@@ -72,7 +74,7 @@ namespace Dev2.Services.Security
             return Permissions.None;
         }
 
-        public static bool Matches(this WindowsGroupPermission permission, string resource)
+        public static bool Matches(this IWindowsGroupPermission permission, string resource)
         {
             if(permission.IsServer)
             {

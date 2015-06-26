@@ -12,8 +12,8 @@
 using System;
 using System.ComponentModel;
 using System.Windows.Input;
+using Dev2.Common.Interfaces;
 using Dev2.Common.Interfaces.Data;
-using Dev2.Models;
 using Dev2.Runtime.Configuration.ViewModels.Base;
 using Dev2.Services.Events;
 using Dev2.Studio.Core;
@@ -61,11 +61,11 @@ namespace Dev2.Studio.ViewModels.Workflow
             {
                 case enDsfActivityType.Workflow:
                     ImageSource = "Workflow-32";
-                    Title = "Select A Workflow";
+                    Title = "Select A Service";
                     break;
                 case enDsfActivityType.Service:
                     ImageSource = "ToolService-32";
-                    Title = "Select A Service";
+                    Title = "Select A Data Connector";
                     break;
                 default:
                     ImageSource = "ExplorerWarewolfConnection-32";
@@ -85,8 +85,6 @@ namespace Dev2.Studio.ViewModels.Workflow
         public enDsfActivityType ActivityType { get; private set; }
 
         public INavigationViewModel NavigationViewModel { get; private set; }
-
-        public string SelectedResourceName { get; set; }
 
         public IContextualResourceModel SelectedResourceModel
         {
@@ -192,12 +190,12 @@ namespace Dev2.Studio.ViewModels.Workflow
             }
         }
 
-        public IExplorerItemModel SelectedExplorerItemModel { get; set; }
+        internal IExplorerItemModel SelectedExplorerItemModel { get; private set; }
 
         /// <summary>
         /// Used for canceling the drop of t    he design surface
         /// </summary>
-        public void Cancel()
+        void Cancel()
         {
             RequestClose(ViewModelDialogResults.Cancel);
         }

@@ -1,0 +1,42 @@
+﻿<ig:XamDialogWindow x:Class="Warewolf.Studio.Views.DbSyntaxEditor"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:views="clr-namespace:Warewolf.Studio.Views"
+             xmlns:ig="http://schemas.infragistics.com/xaml"
+                   CloseButtonVisibility="Collapsed"
+                    HeaderIconVisibility="Collapsed"
+                    MaximizeButtonVisibility="Collapsed"
+                    MinimizeButtonVisibility="Collapsed"
+                    IsResizable="True"
+                    
+             Style="{StaticResource XamDialogWindowStyle}"
+             mc:Ignorable="d" 
+                    Width="900"
+                    Height="420"
+             d:DesignHeight="600" d:DesignWidth="450">
+    <ig:XamDialogWindow.Resources>
+    </ig:XamDialogWindow.Resources>
+    <Grid Background="White" Margin="{StaticResource ContainerBorder}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="30"></RowDefinition>
+
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="191*"></ColumnDefinition>
+            <ColumnDefinition Width="683*"/>
+        </Grid.ColumnDefinitions>
+        <ig:XamSyntaxEditor x:Name="SyntaxEditor" Grid.Row="0" Grid.Column="0"
+            BorderBrush="{StaticResource WareWolfHeaderButtonBrush}"
+            SplitOptions="SplittingNotAllowed" ErrorDisplayMode="Never" BorderThickness="1" IsLineNumberMarginVisible="True" Grid.ColumnSpan="2"  >
+
+
+
+        </ig:XamSyntaxEditor>
+        <Grid  Grid.Row="1" Grid.Column="1" Margin="{StaticResource ElementBottomRightBorder}" >
+           <Button  HorizontalAlignment="Right" Width="60"  Height="30"  VerticalAlignment="Center"   Click="Button_Click">Close</Button>
+        </Grid>
+    </Grid>
+</ig:XamDialogWindow>

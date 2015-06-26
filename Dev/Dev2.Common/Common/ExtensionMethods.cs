@@ -1,6 +1,6 @@
 /*
 *  Warewolf - The Easy Service Bus
-*  Copyright 2014 by Warewolf Ltd <alpha@warewolf.io>
+*  Copyright 2015 by Warewolf Ltd <alpha@warewolf.io>
 *  Licensed under GNU Affero General Public License 3.0 or later. 
 *  Some rights reserved.
 *  Visit our website for more information <http://warewolf.io/>
@@ -348,6 +348,24 @@ namespace Dev2.Common.Common
             }
 
             return result.CleanEncodingHeaderForXmlSave();
+        }
+
+        public static string ExceptChars(this string str, IEnumerable<char> toExclude)
+        {
+            StringBuilder sb = new StringBuilder();
+            foreach (char c in str)
+            {
+                // ReSharper disable PossibleMultipleEnumeration
+                if (!toExclude.Contains(c))
+                    // ReSharper restore PossibleMultipleEnumeration
+                    sb.Append(c);
+            }
+            return sb.ToString();
+        }
+
+        public static bool SpaceCaseInsenstiveComparision(this string stringa, string stringb)
+        {
+            return (stringa == null && stringb == null) || (stringa != null && stringa.ToLower().ExceptChars(new[] { ' ', '\t', '\n', '\r' }).Equals(stringb.ToLower().ExceptChars(new[] { ' ', '\t', '\n', '\r' })));
         }
 
         public static bool IsEqual(this StringBuilder sb, StringBuilder that)

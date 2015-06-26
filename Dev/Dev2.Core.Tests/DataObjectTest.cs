@@ -1,7 +1,7 @@
 
 /*
 *  Warewolf - The Easy Service Bus
-*  Copyright 2014 by Warewolf Ltd <alpha@warewolf.io>
+*  Copyright 2015 by Warewolf Ltd <alpha@warewolf.io>
 *  Licensed under GNU Affero General Public License 3.0 or later. 
 *  Some rights reserved.
 *  Visit our website for more information <http://warewolf.io/>
@@ -170,7 +170,6 @@ namespace Dev2.Tests
             dataObject.IsDebug = true;
             dataObject.IsFromWebServer = true;
             dataObject.IsOnDemandSimulation = true;
-            dataObject.IsWebpage = false;
             dataObject.NumberOfSteps = 2;
             dataObject.OriginalInstanceID = Guid.NewGuid();
             dataObject.ParentInstanceID = "1211";
@@ -207,7 +206,7 @@ namespace Dev2.Tests
 
             // check counts, then check values
             var properties = typeof(IDSFDataObject).GetProperties();
-            Assert.AreEqual(51, properties.Length);
+            Assert.AreEqual(50, properties.Length);
 
             // now check each value to ensure it transfered
             Assert.AreEqual(dataObject.BookmarkExecutionCallbackID, clonedObject.BookmarkExecutionCallbackID);
@@ -235,7 +234,6 @@ namespace Dev2.Tests
             Assert.AreEqual(dataObject.IsOnDemandSimulation, clonedObject.IsOnDemandSimulation);
             Assert.AreEqual(dataObject.IsRemoteInvoke, clonedObject.IsRemoteInvoke);
             Assert.AreEqual(dataObject.IsRemoteInvokeOverridden, clonedObject.IsRemoteInvokeOverridden);
-            Assert.AreEqual(dataObject.IsWebpage, clonedObject.IsWebpage);
             Assert.AreEqual(dataObject.NumberOfSteps, clonedObject.NumberOfSteps);
             Assert.AreEqual(dataObject.OriginalInstanceID, clonedObject.OriginalInstanceID);
             Assert.AreEqual(dataObject.ParentInstanceID, clonedObject.ParentInstanceID);

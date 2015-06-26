@@ -1,7 +1,7 @@
 
 /*
 *  Warewolf - The Easy Service Bus
-*  Copyright 2014 by Warewolf Ltd <alpha@warewolf.io>
+*  Copyright 2015 by Warewolf Ltd <alpha@warewolf.io>
 *  Licensed under GNU Affero General Public License 3.0 or later. 
 *  Some rights reserved.
 *  Visit our website for more information <http://warewolf.io/>
@@ -10,6 +10,7 @@
 */
 
 using System;
+using System.Activities.Statements;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -22,6 +23,7 @@ using Dev2.Common.Interfaces.Runtime;
 using Dev2.Common.Interfaces.Versioning;
 using Dev2.Common.Interfaces.Wrappers;
 using Dev2.Common.Wrappers;
+using Dev2.Explorer;
 using Dev2.Runtime.Security;
 
 namespace Dev2.Runtime.Hosting
@@ -31,7 +33,7 @@ namespace Dev2.Runtime.Hosting
         IExplorerRepositorySync _sync;
         readonly IFile _file;
         public static IExplorerServerResourceRepository Instance { get; private set; }
-
+        private IExplorerItem _root;
         static ServerExplorerRepository()
         {
             Instance = new ServerExplorerRepository
@@ -71,9 +73,12 @@ namespace Dev2.Runtime.Hosting
 
         public IExplorerItem Load(Guid workSpaceId)
         {
-            return ExplorerItemFactory.CreateRootExplorerItem(EnvironmentVariables.GetWorkspacePath(workSpaceId), workSpaceId);
+            return _root ?? (_root = ExplorerItemFactory.CreateRootExplorerItem(EnvironmentVariables.GetWorkspacePath(workSpaceId), workSpaceId));
         }
-
+        private void Reload(Guid workSpaceId)
+        {
+             _root = ExplorerItemFactory.CreateRootExplorerItem(EnvironmentVariables.GetWorkspacePath(workSpaceId), workSpaceId);
+        }
         public IExplorerItem Load(ResourceType type, Guid workSpaceId)
         {
             return ExplorerItemFactory.CreateRootExplorerItem(type, EnvironmentVariables.GetWorkspacePath(workSpaceId), workSpaceId);
@@ -95,6 +100,7 @@ namespace Dev2.Runtime.Hosting
                         return RenameExplorerItem(itemToRename, workSpaceId);
                     }
             }
+           
         }
 
         IExplorerRepositoryResult RenameExplorerItem(IExplorerItem itemToRename, Guid workSpaceId)
@@ -111,6 +117,7 @@ namespace Dev2.Runtime.Hosting
                 return new ExplorerRepositoryResult(ExecStatus.Fail, "There is an item that exists with the same name and path");
             }
             ResourceCatalogResult result = ResourceCatalogue.RenameResource(workSpaceId, itemToRename.ResourceId, itemToRename.DisplayName);
+            Reload(workSpaceId);
             return new ExplorerRepositoryResult(result.Status, result.Message);
         }
 
@@ -128,14 +135,17 @@ namespace Dev2.Runtime.Hosting
                 {
                     MoveVersionFolder(path, newPath);
                     Directory.Delete(DirectoryStructureFromPath(path), true);
+                   // Reload(workSpaceId);
                     return new ExplorerRepositoryResult(ExecStatus.Success, "");
                 }
                 if(resourceCatalogResult.Status == ExecStatus.NoMatch)
                 {
                     Directory.Move(DirectoryStructureFromPath(path), DirectoryStructureFromPath(newPath));
                     MoveVersionFolder(path, newPath);
+                    //Reload(workSpaceId);
                     return new ExplorerRepositoryResult(ExecStatus.Success, "");
                 }
+                Reload(workSpaceId);
                 return new ExplorerRepositoryResult(ExecStatus.Fail, resourceCatalogResult.Message);
             }
             catch(Exception err)
@@ -161,6 +171,51 @@ namespace Dev2.Runtime.Hosting
         {
             VerifyArgument.IsNotNull("sync", sync);
             _sync = sync;
+        }
+
+        public IExplorerItem Find(Guid id)
+        {
+            var items = Load(Guid.Empty);
+            return Find(items, id);
+        }
+
+        public IExplorerItem UpdateItem(IResource resource)
+        {
+            if(Find(resource.ResourceID) == null)
+            {
+               return AddItemToCollection(new ServerExplorerItem(resource.ResourceName, resource.ResourceID, resource.ResourceType, null, resource.UserPermissions, resource.ResourcePath, "", ""));
+            }
+            return Find(resource.ResourceID);
+        }
+
+        public IExplorerItem AddItemToCollection(IExplorerItem serverExplorerItem)
+        {
+            IExplorerItem parent = FindParent(serverExplorerItem.ResourcePath,_root);
+            parent.Children.Add(serverExplorerItem);
+
+            return serverExplorerItem;
+        }
+
+        IExplorerItem FindParent(string resourcePath,IExplorerItem rooItem)
+        {
+            if(resourcePath.Contains("\\"))
+            {
+                string name = resourcePath.Substring(0, resourcePath.IndexOf("\\", StringComparison.Ordinal));
+                var next = rooItem.Children.FirstOrDefault(a => a.DisplayName == name);
+                return FindParent(resourcePath.Substring(1 + resourcePath.IndexOf("\\", StringComparison.Ordinal)), next);
+            }
+            return rooItem;
+        }
+
+        public IExplorerItem Find(IExplorerItem item,Guid itemToFind)
+        {
+            if (item.ResourceId == itemToFind)
+                return item;
+            if (item.Children == null || item.Children.Count == 0)
+            {
+                return null;
+            }
+            return item.Children.Select(child => Find(child, itemToFind)).FirstOrDefault(found => found != null);
         }
 
         public IExplorerRepositoryResult DeleteItem(IExplorerItem itemToDelete, Guid workSpaceId)
@@ -197,6 +252,7 @@ namespace Dev2.Runtime.Hosting
             }
             try
             {
+                path = path + "\\";
                 List<ResourceCatalogResult> deletedResources = ResourceCatalogue.GetResourceList(workSpaceId)
                                                                                 .Where(a => a.ResourcePath.StartsWith(path))
                                                                                 .Select(a => ResourceCatalogue.DeleteResource(workSpaceId, a.ResourceName, a.ResourceType.ToString())).ToList();
@@ -283,7 +339,7 @@ namespace Dev2.Runtime.Hosting
             MoveVersions(itemToMove, newPath);
             ResourceCatalogResult result = ResourceCatalogue.RenameCategory(workSpaceId,itemToMove.ResourcePath , newPath,new List<IResource>{ResourceCatalogue.GetResource(workSpaceId,itemToMove.ResourceId)});
             _file.Delete(string.Format("{0}.xml", DirectoryStructureFromPath(itemToMove.ResourcePath)));
-            
+            Reload(workSpaceId);
             return new ExplorerRepositoryResult(result.Status, result.Message);
         }
 

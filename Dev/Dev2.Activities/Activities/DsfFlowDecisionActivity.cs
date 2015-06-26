@@ -1,7 +1,7 @@
 
 /*
 *  Warewolf - The Easy Service Bus
-*  Copyright 2014 by Warewolf Ltd <alpha@warewolf.io>
+*  Copyright 2015 by Warewolf Ltd <alpha@warewolf.io>
 *  Licensed under GNU Affero General Public License 3.0 or later. 
 *  Some rights reserved.
 *  Visit our website for more information <http://warewolf.io/>
@@ -11,6 +11,8 @@
 
 using System.Collections.Generic;
 using Dev2.Activities;
+using Dev2.Common.Interfaces.Toolbox;
+using Warewolf.Core;
 
 // ReSharper disable CheckNamespace
 
@@ -18,6 +20,7 @@ using Dev2.Activities;
 namespace Unlimited.Applications.BusinessDesignStudio.Activities
 // ReSharper restore CheckNamespace
 {
+   [ToolDescriptorInfo("ControlFlow-Descision", "Decision", ToolType.Native, "8999E59A-38A3-43BB-A98F-6090C5C9EA1E", "Bob", "1.0.0.0", "c:\\", "Control Flow", "/Warewolf.Studio.Themes.Luna;component/Images.xaml")]             
     public class DsfFlowDecisionActivity : DsfFlowNodeActivity<bool>
     {
         #region Ctor

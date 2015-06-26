@@ -1,7 +1,7 @@
 
 /*
 *  Warewolf - The Easy Service Bus
-*  Copyright 2014 by Warewolf Ltd <alpha@warewolf.io>
+*  Copyright 2015 by Warewolf Ltd <alpha@warewolf.io>
 *  Licensed under GNU Affero General Public License 3.0 or later. 
 *  Some rights reserved.
 *  Visit our website for more information <http://warewolf.io/>
@@ -48,20 +48,20 @@ namespace Dev2.Runtime.ESB.Management
             var hasResourceId = Guid.TryParse(resourceIdString, out resourceId);
             if(!hasResourceId)
             {
-                res.SetMessage(Resources.CompilerError_TerminationFailed);
+                res.SetMessage(Warewolf.Studio.Resources.Languages.Services.CompilerError_TerminationFailed);
                 res.HasError = true;
             }
             var service = ExecutableServiceRepository.Instance.Get(theWorkspace.ID, resourceId);
             if(service == null)
             {
-                res.SetMessage(Resources.CompilerError_TerminationFailed);
+                res.SetMessage(Warewolf.Studio.Resources.Languages.Services.CompilerError_TerminationFailed);
                 res.HasError = true;
             }
 
             if(service != null)
             {
                 service.Terminate();
-                res.SetMessage(Resources.CompilerMessage_TerminationSuccess);
+                res.SetMessage(Warewolf.Studio.Resources.Languages.Services.CompilerMessage_TerminationSuccess);
             }
 
             Dev2JsonSerializer serializer = new Dev2JsonSerializer();

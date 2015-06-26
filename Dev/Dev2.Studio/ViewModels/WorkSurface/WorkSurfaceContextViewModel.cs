@@ -17,9 +17,11 @@ using System.Threading;
 using System.Windows;
 using System.Windows.Input;
 using Caliburn.Micro;
-using Dev2.AppResources.Repositories;
 using Dev2.Common;
+using Dev2.Common.Interfaces;
 using Dev2.Common.Interfaces.Diagnostics.Debug;
+using Dev2.Common.Interfaces.Infrastructure.SharedModels;
+using Dev2.Common.Interfaces.Services.Security;
 using Dev2.Common.Interfaces.Studio.Controller;
 using Dev2.Communication;
 using Dev2.Data.ServiceModel.Messages;
@@ -64,7 +66,7 @@ namespace Dev2.Studio.ViewModels.WorkSurface
     {
         #region private fields
 
-        IDataListViewModel _dataListViewModel;
+        //IDataListViewModel _dataListViewModel;
         IWorkSurfaceViewModel _workSurfaceViewModel;
         DebugOutputViewModel _debugOutputViewModel;
         IContextualResourceModel _contextualResourceModel;
@@ -122,23 +124,11 @@ namespace Dev2.Studio.ViewModels.WorkSurface
         {
             get
             {
-                return _dataListViewModel;
+                return null;
             }
             set
             {
-                if(_dataListViewModel == value)
-                {
-                    return;
-                }
-
-                _dataListViewModel = value;
-                if(_dataListViewModel != null)
-                {
-                    _dataListViewModel.ConductWith(this);
-                    _dataListViewModel.Parent = this;
-                }
-
-                NotifyOfPropertyChange(() => DataListViewModel);
+                
             }
         }
 
@@ -224,7 +214,7 @@ namespace Dev2.Studio.ViewModels.WorkSurface
 
         }
 
-        void OnReceivedResourceAffectedMessage(Guid resourceId, CompileMessageList compileMessageList)
+        void OnReceivedResourceAffectedMessage(Guid resourceId, ICompileMessageList compileMessageList)
         {
             var numberOfDependants = compileMessageList.Dependants;
             if (resourceId == ContextualResourceModel.ID && numberOfDependants.Count>0)
@@ -796,7 +786,7 @@ namespace Dev2.Studio.ViewModels.WorkSurface
             var model = DataListViewModel as SimpleBaseViewModel;
             if(model != null)
             {
-                DataListViewModel.Parent = null;
+                //DataListViewModel.Parent = null;
                 model.Dispose();
                 DataListViewModel.Dispose();
             }
